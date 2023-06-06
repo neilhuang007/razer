@@ -34,7 +34,7 @@ public class PrereleaseDisclaimer extends GuiScreen {
         FontManager.getProductSansRegular(24).drawCenteredString("Features, interfaces and sequences are not final and can be expected to change at any time", sr.getScaledWidth() / 2D,
                 sr.getScaledHeight() / 2D - 50, ColorUtil.withAlpha(Color.WHITE, (int) fadeAnimation.getValue()).getRGB());
 
-        FontManager.getProductSansRegular(16).drawCenteredString("© Rise Client 2022. All Rights Reserved", sr.getScaledWidth() / 2D,
+        FontManager.getProductSansRegular(16).drawCenteredString("© Razer Client 2023. All Rights Reserved", sr.getScaledWidth() / 2D,
                 sr.getScaledHeight() / 2D + 70, ColorUtil.withAlpha(Color.WHITE, (int) fadeAnimation.getValue() / 2).getRGB());
 
         //ColorUtil.withAlpha(Color.WHITE, (int) fadeAnimation.getValue()).getRGB()

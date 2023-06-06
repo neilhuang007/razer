@@ -122,11 +122,11 @@ public final class LoginMenu extends Menu {
                 scaledResolution.getScaledHeight() - watermarkLarge.height() - 2,
                 ColorUtil.withAlpha(TEXT_SUBTEXT, 128).getRGB());
 
-        FontManager.getProductSansRegular(16).drawRightString("Designed and built by Alan and Syphillis",
+        FontManager.getProductSansRegular(16).drawRightString("Designed and built by neilhuang007",
                 scaledResolution.getScaledWidth() - 5, scaledResolution.getScaledHeight() - 40,
                 ColorUtil.withAlpha(TEXT_SUBTEXT, 100).getRGB());
 
-        FontManager.getProductSansRegular(12).drawRightString("© Rise Client 2022. All Rights Reserved",
+        FontManager.getProductSansRegular(12).drawRightString("© Razer Client 2023. All Rights Reserved",
                 scaledResolution.getScaledWidth() - 5, scaledResolution.getScaledHeight() - 30,
                 ColorUtil.withAlpha(TEXT_SUBTEXT, 100).getRGB());
 

@@ -109,12 +109,6 @@ public final class AltManagerMenu extends Menu {
         UI_BLOOM_RUNNABLES.clear();
 
         double offset = 3.5;
-        nunitoNormal.drawString("We recommend buying alts from, ",
-                offset + 0.5, scaledResolution.getScaledHeight() - offset - nunitoNormal.height() * 2 - 3,
-                ColorUtil.withAlpha(Color.WHITE, 70).getRGB());
-        nunitoNormal.drawString("dortgen.sell.app, kingalts.shop, localalts or sweetaccounts.mysellix.io",
-                offset + 0.5, scaledResolution.getScaledHeight() - offset - nunitoNormal.height(),
-                ColorUtil.withAlpha(Color.WHITE, 70).getRGB());
         // TODO: Don't forget to NOT render the displays out of the screen to save performance
     }
 

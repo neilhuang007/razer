@@ -29,12 +29,14 @@ public class SkinUtil implements InstanceAccess {
         mc.getTextureManager().loadTexture(resourceLocation, headTexture);
         SKIN_CACHE.put(uuid, resourceLocation);
         AbstractClientPlayer.getDownloadImageSkin(resourceLocation, uuid);
+        System.out.println(uuid);
         return resourceLocation;
     }
 
     public static String uuidOf(String name) {
         String data = scrape(NAME_TO_UUID + name);
         JsonObject jsonObject = JsonParser.parseString(data).getAsJsonObject();
+        System.out.println(data);
         if (jsonObject == null || !jsonObject.has("id")) return null;
         return jsonObject.get("id").getAsString();
     }
