@@ -136,6 +136,7 @@ public enum Client {
         mc.gameSettings.ofFastRender = false;
         mc.gameSettings.ofShowGlErrors = DEVELOPMENT_SWITCH;
 
+
         // Performance
         mc.gameSettings.ofSmartAnimations = true;
         mc.gameSettings.ofSmoothFps = false;
