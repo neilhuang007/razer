@@ -1,13 +1,10 @@
 package net.minecraft.network;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.packet.PacketReceiveEvent;
-import me.neilhuang007.razer.newevent.impl.packet.PacketSendEvent;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.packet.PacketReceiveEvent;
+import RazerOfficial.Razer.gg.event.impl.packet.PacketSendEvent;
 import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.viaversion.viaversion.api.connection.UserConnection;
-import com.viaversion.viaversion.connection.UserConnectionImpl;
-import com.viaversion.viaversion.protocol.ProtocolPipelineImpl;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.epoll.Epoll;
@@ -25,11 +22,6 @@ import io.netty.util.AttributeKey;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import net.minecraft.util.*;
-import net.minecraft.viamcp.ViaMCP;
-import net.minecraft.viamcp.handler.CommonTransformer;
-import net.minecraft.viamcp.handler.MCPDecodeHandler;
-import net.minecraft.viamcp.handler.MCPEncodeHandler;
-import net.minecraft.viamcp.utils.NettyUtil;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
@@ -50,17 +42,17 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
     public static final AttributeKey<EnumConnectionState> attrKeyConnectionState = AttributeKey.valueOf("protocol");
     public static final LazyLoadBase<NioEventLoopGroup> CLIENT_NIO_EVENTLOOP = new LazyLoadBase<NioEventLoopGroup>() {
         protected NioEventLoopGroup load() {
-            return new NioEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Client IO #%d").setDaemon(true).build());
+            return new NioEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Razer IO #%d").setDaemon(true).build());
         }
     };
     public static final LazyLoadBase<EpollEventLoopGroup> field_181125_e = new LazyLoadBase<EpollEventLoopGroup>() {
         protected EpollEventLoopGroup load() {
-            return new EpollEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Epoll Client IO #%d").setDaemon(true).build());
+            return new EpollEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Epoll Razer IO #%d").setDaemon(true).build());
         }
     };
     public static final LazyLoadBase<LocalEventLoopGroup> CLIENT_LOCAL_EVENTLOOP = new LazyLoadBase<LocalEventLoopGroup>() {
         protected LocalEventLoopGroup load() {
-            return new LocalEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Local Client IO #%d").setDaemon(true).build());
+            return new LocalEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Local Razer IO #%d").setDaemon(true).build());
         }
     };
     private final EnumPacketDirection direction;
@@ -134,7 +126,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
         if (this.channel.isOpen()) {
             try {
                 final PacketReceiveEvent event = new PacketReceiveEvent(p_channelRead0_2_);
-                Client.INSTANCE.getEventBus().handle(event);
+                Razer.INSTANCE.getEventBus().handle(event);
 
                 if (event.isCancelled()) {
                     return;
@@ -149,12 +141,12 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
     public void receivePacket(final Packet packet) {
         if (this.channel.isOpen()) {
             try {
-                if (Client.INSTANCE.getSecurityManager().isInsecure(packet)) {
+                if (Razer.INSTANCE.getSecurityManager().isInsecure(packet)) {
                     return;
                 }
 
                 final PacketReceiveEvent event = new PacketReceiveEvent(packet);
-                Client.INSTANCE.getEventBus().handle(event);
+                Razer.INSTANCE.getEventBus().handle(event);
 
                 if (event.isCancelled()) {
                     return;
@@ -236,7 +228,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
      */
     private void dispatchPacket(final Packet inPacket, final GenericFutureListener<? extends Future<? super Void>>[] futureListeners) {
         final PacketSendEvent event = new PacketSendEvent(inPacket);
-        Client.INSTANCE.getEventBus().handle(event);
+        Razer.INSTANCE.getEventBus().handle(event);
 
         if (event.isCancelled()) {
             return;
@@ -405,13 +397,13 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
                 }
 
                 p_initChannel_1_.pipeline().addLast((String) "timeout", (ChannelHandler) (new ReadTimeoutHandler(30))).addLast((String) "splitter", (ChannelHandler) (new MessageDeserializer2())).addLast((String) "decoder", (ChannelHandler) (new MessageDeserializer(EnumPacketDirection.CLIENTBOUND))).addLast((String) "prepender", (ChannelHandler) (new MessageSerializer2())).addLast((String) "encoder", (ChannelHandler) (new MessageSerializer(EnumPacketDirection.SERVERBOUND))).addLast((String) "packet_handler", (ChannelHandler) networkmanager);
-//                p_initChannel_1_.pipeline().addLast("timeout", new ReadTimeoutHandler(30)).addLast("splitter", new MessageDeserializer2()).addLast("decoder", new MessageDeserializer(EnumPacketDirection.CLIENTBOUND)).addLast("prepender", new MessageSerializer2()).addLast("encoder", new MessageSerializer(EnumPacketDirection.SERVERBOUND)).addLast("packet_handler", networkmanager);
+                p_initChannel_1_.pipeline().addLast("timeout", new ReadTimeoutHandler(30)).addLast("splitter", new MessageDeserializer2()).addLast("decoder", new MessageDeserializer(EnumPacketDirection.CLIENTBOUND)).addLast("prepender", new MessageSerializer2()).addLast("encoder", new MessageSerializer(EnumPacketDirection.SERVERBOUND)).addLast("packet_handler", networkmanager);
 
-                if (p_initChannel_1_ instanceof SocketChannel && ViaMCP.getInstance().getVersion() != ViaMCP.PROTOCOL_VERSION) {
-                    UserConnection user = new UserConnectionImpl(p_initChannel_1_, true);
-                    new ProtocolPipelineImpl(user);
-                    p_initChannel_1_.pipeline().addBefore("encoder", CommonTransformer.HANDLER_ENCODER_NAME, new MCPEncodeHandler(user)).addBefore("decoder", CommonTransformer.HANDLER_DECODER_NAME, new MCPDecodeHandler(user));
-                }
+//                if (p_initChannel_1_ instanceof SocketChannel && ViaMCP.getInstance().getVersion() != ViaMCP.PROTOCOL_VERSION) {
+//                    UserConnection user = new UserConnectionImpl(p_initChannel_1_, true);
+//                    new ProtocolPipelineImpl(user);
+//                    p_initChannel_1_.pipeline().addBefore("encoder", CommonTransformer.HANDLER_ENCODER_NAME, new MCPEncodeHandler(user)).addBefore("decoder", CommonTransformer.HANDLER_DECODER_NAME, new MCPDecodeHandler(user));
+//                }
             }
         }).channel(oclass).connect(p_181124_0_, p_181124_1_).syncUninterruptibly();
         return networkmanager;
@@ -438,13 +430,13 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
                 }
 
                 p_initChannel_1_.pipeline().addLast((String) "timeout", (ChannelHandler) (new ReadTimeoutHandler(30))).addLast((String) "splitter", (ChannelHandler) (new MessageDeserializer2())).addLast((String) "decoder", (ChannelHandler) (new MessageDeserializer(EnumPacketDirection.CLIENTBOUND))).addLast((String) "prepender", (ChannelHandler) (new MessageSerializer2())).addLast((String) "encoder", (ChannelHandler) (new MessageSerializer(EnumPacketDirection.SERVERBOUND))).addLast((String) "packet_handler", (ChannelHandler) networkmanager);
-//                p_initChannel_1_.pipeline().addLast("timeout", new ReadTimeoutHandler(30)).addLast("splitter", new MessageDeserializer2()).addLast("decoder", new MessageDeserializer(EnumPacketDirection.CLIENTBOUND)).addLast("prepender", new MessageSerializer2()).addLast("encoder", new MessageSerializer(EnumPacketDirection.SERVERBOUND)).addLast("packet_handler", networkmanager);
+                p_initChannel_1_.pipeline().addLast("timeout", new ReadTimeoutHandler(30)).addLast("splitter", new MessageDeserializer2()).addLast("decoder", new MessageDeserializer(EnumPacketDirection.CLIENTBOUND)).addLast("prepender", new MessageSerializer2()).addLast("encoder", new MessageSerializer(EnumPacketDirection.SERVERBOUND)).addLast("packet_handler", networkmanager);
 
-                if (p_initChannel_1_ instanceof SocketChannel && ViaMCP.getInstance().getVersion() != ViaMCP.PROTOCOL_VERSION) {
-                    UserConnection user = new UserConnectionImpl(p_initChannel_1_, true);
-                    new ProtocolPipelineImpl(user);
-                    p_initChannel_1_.pipeline().addBefore("encoder", CommonTransformer.HANDLER_ENCODER_NAME, new MCPEncodeHandler(user)).addBefore("decoder", CommonTransformer.HANDLER_DECODER_NAME, new MCPDecodeHandler(user));
-                }
+//                if (p_initChannel_1_ instanceof SocketChannel && ViaMCP.getInstance().getVersion() != ViaMCP.PROTOCOL_VERSION) {
+//                    UserConnection user = new UserConnectionImpl(p_initChannel_1_, true);
+//                    new ProtocolPipelineImpl(user);
+//                    p_initChannel_1_.pipeline().addBefore("encoder", CommonTransformer.HANDLER_ENCODER_NAME, new MCPEncodeHandler(user)).addBefore("decoder", CommonTransformer.HANDLER_DECODER_NAME, new MCPDecodeHandler(user));
+//                }
             }
         }).channel(oclass).connect(p_181124_0_, p_181124_1_).syncUninterruptibly();
         return networkmanager;
@@ -514,15 +506,15 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
             if (this.channel.pipeline().get("decompress") instanceof NettyCompressionDecoder) {
                 ((NettyCompressionDecoder) this.channel.pipeline().get("decompress")).setCompressionTreshold(treshold);
             } else {
-                NettyUtil.decodeEncodePlacement(channel.pipeline(), "decoder", "decompress", new NettyCompressionDecoder(treshold));
-//                this.channel.pipeline().addBefore("decoder", "decompress", new NettyCompressionDecoder(treshold));
+                //NettyUtil.decodeEncodePlacement(channel.pipeline(), "decoder", "decompress", new NettyCompressionDecoder(treshold));
+                this.channel.pipeline().addBefore("decoder", "decompress", new NettyCompressionDecoder(treshold));
             }
 
             if (this.channel.pipeline().get("compress") instanceof NettyCompressionEncoder) {
                 ((NettyCompressionEncoder) this.channel.pipeline().get("decompress")).setCompressionTreshold(treshold);
             } else {
-                NettyUtil.decodeEncodePlacement(channel.pipeline(), "encoder", "compress", new NettyCompressionEncoder(treshold));
-//                this.channel.pipeline().addBefore("encoder", "compress", new NettyCompressionEncoder(treshold));
+                //NettyUtil.decodeEncodePlacement(channel.pipeline(), "encoder", "compress", new NettyCompressionEncoder(treshold));
+                this.channel.pipeline().addBefore("encoder", "compress", new NettyCompressionEncoder(treshold));
             }
         } else {
             if (this.channel.pipeline().get("decompress") instanceof NettyCompressionDecoder) {

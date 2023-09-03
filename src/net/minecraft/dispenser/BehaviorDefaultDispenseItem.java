@@ -58,7 +58,7 @@ public class BehaviorDefaultDispenseItem implements IBehaviorDispenseItem {
     }
 
     /**
-     * Order razer to display dispense particles from the specified block and facing.
+     * Order gg to display dispense particles from the specified block and facing.
      */
     protected void spawnDispenseParticles(final IBlockSource source, final EnumFacing facingIn) {
         source.getWorld().playAuxSFX(2000, source.getBlockPos(), this.func_82488_a(facingIn));

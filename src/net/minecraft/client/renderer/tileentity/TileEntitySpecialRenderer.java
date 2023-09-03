@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.tileentity;
 
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.tileentity.TileEntity;

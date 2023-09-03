@@ -1,7 +1,7 @@
 package net.minecraft.client.gui;
 
-import me.neilhuang007.razer.component.impl.player.LastConnectionComponent;
-import me.neilhuang007.razer.ui.menu.impl.main.MainMenu;
+import RazerOfficial.Razer.gg.component.impl.player.LastConnectionComponent;
+import RazerOfficial.Razer.gg.ui.menu.impl.main.MainMenu;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.multiplayer.GuiConnecting;

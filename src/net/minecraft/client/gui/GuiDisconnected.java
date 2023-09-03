@@ -1,10 +1,10 @@
 package net.minecraft.client.gui;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.component.impl.player.LastConnectionComponent;
-import me.neilhuang007.razer.newevent.impl.other.ServerKickEvent;
-import me.neilhuang007.razer.ui.menu.impl.main.MainMenu;
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.component.impl.player.LastConnectionComponent;
+import RazerOfficial.Razer.gg.event.impl.other.ServerKickEvent;
+import RazerOfficial.Razer.gg.ui.menu.impl.main.MainMenu;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
@@ -53,7 +53,7 @@ public class GuiDisconnected extends GuiScreen {
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 2 + this.field_175353_i / 2 + FontRenderer.FONT_HEIGHT, 100 - padding, 20, "Leave"));
         this.buttonList.add(new GuiButton(1, this.width / 2 + padding, this.height / 2 + this.field_175353_i / 2 + FontRenderer.FONT_HEIGHT, 100 - padding, 20, "Reconnect"));
 
-        Client.INSTANCE.getEventBus().handle(new ServerKickEvent(multilineMessage));
+        Razer.INSTANCE.getEventBus().handle(new ServerKickEvent(multilineMessage));
     }
 
     /**

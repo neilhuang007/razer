@@ -1,9 +1,9 @@
-# Specifies how 1.8.x razer should see the cooldown indicator
+# Specifies how 1.8.x gg should see the cooldown indicator
 # You can choose between TITLE, ACTION_BAR, BOSS_BAR and DISABLED
 # ONLY DISABLE IF YOU HAVE 1.9 COOLDOWN DISABLED ON YOUR SERVER
 # 1.8 PLAYERS MAY ASK WHY PVP IS NOT WORKING OTHERWISE
 cooldown-indicator: TITLE
-# Replaces Adventure mode with Survival mode for 1.7.x razer
+# Replaces Adventure mode with Survival mode for 1.7.x gg
 # Enable this option if your server is using the 'CanDestroy'
 # or 'CanPlaceOn' flags on items
 replace-adventure: false

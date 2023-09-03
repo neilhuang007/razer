@@ -1,7 +1,7 @@
 package net.minecraft.block;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.other.BlockAABBEvent;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.other.BlockAABBEvent;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockState;
@@ -441,7 +441,7 @@ public class Block {
 
         if (collidingEntity == Minecraft.getMinecraft().thePlayer) {
             final BlockAABBEvent event = new BlockAABBEvent(worldIn, this, pos, axisalignedbb, mask);
-            Client.INSTANCE.getEventBus().handle(event);
+            Razer.INSTANCE.getEventBus().handle(event);
 
             if (event.isCancelled()) return;
 
@@ -951,7 +951,7 @@ public class Block {
     }
 
     /**
-     * Called on both Client and Server when World#addBlockEvent is called
+     * Called on both Razer and Server when World#addBlockEvent is called
      */
     public boolean onBlockEventReceived(final World worldIn, final BlockPos pos, final IBlockState state, final int eventID, final int eventParam) {
         return false;

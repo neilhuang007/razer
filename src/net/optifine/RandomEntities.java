@@ -1,7 +1,7 @@
 package net.optifine;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.other.WorldChangeEvent;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.other.WorldChangeEvent;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.entity.DataWatcher;
@@ -76,7 +76,7 @@ public class RandomEntities {
     }
 
     public static void worldChanged(final World oldWorld, final World newWorld) {
-        Client.INSTANCE.getEventBus().handle(new WorldChangeEvent());
+        Razer.INSTANCE.getEventBus().handle(new WorldChangeEvent());
 
         if (newWorld != null) {
             final ConcurrentLinkedQueue list = newWorld.getLoadedEntityList();

@@ -1,6 +1,6 @@
 package net.optifine.gui;
 
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.src.Config;

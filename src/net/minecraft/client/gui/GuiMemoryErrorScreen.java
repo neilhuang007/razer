@@ -1,6 +1,6 @@
 package net.minecraft.client.gui;
 
-import me.neilhuang007.razer.ui.menu.impl.main.MainMenu;
+import RazerOfficial.Razer.gg.ui.menu.impl.main.MainMenu;
 import net.minecraft.client.resources.I18n;
 
 import java.io.IOException;

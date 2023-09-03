@@ -1,7 +1,7 @@
 package net.minecraft.client.gui.inventory;
 
-import me.neilhuang007.razer.util.font.Font;
-import me.neilhuang007.razer.util.font.FontManager;
+import RazerOfficial.Razer.gg.util.font.Font;
+import RazerOfficial.Razer.gg.util.font.FontManager;
 import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;

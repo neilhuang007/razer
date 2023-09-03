@@ -1,10 +1,10 @@
 package net.minecraft.client.multiplayer;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.component.impl.player.SlotComponent;
-import me.neilhuang007.razer.newevent.impl.inventory.SyncCurrentItemEvent;
-import me.neilhuang007.razer.newevent.impl.other.BlockBreakEvent;
-import me.neilhuang007.razer.newevent.impl.other.BlockDamageEvent;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
+import RazerOfficial.Razer.gg.event.impl.inventory.SyncCurrentItemEvent;
+import RazerOfficial.Razer.gg.event.impl.other.BlockBreakEvent;
+import RazerOfficial.Razer.gg.event.impl.other.BlockDamageEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -120,7 +120,7 @@ public class PlayerControllerMP {
      */
     public boolean onPlayerDestroyBlock(final BlockPos pos, final EnumFacing side) {
         final BlockDamageEvent bdEvent = new BlockDamageEvent(this.mc.thePlayer, this.mc.thePlayer.worldObj, pos);
-        Client.INSTANCE.getEventBus().handle(bdEvent);
+        Razer.INSTANCE.getEventBus().handle(bdEvent);
 
         if (this.currentGameType.isAdventure()) {
             if (this.currentGameType == WorldSettings.GameType.SPECTATOR) {
@@ -207,7 +207,7 @@ public class PlayerControllerMP {
             return false;
         } else {
             final BlockBreakEvent event = new BlockBreakEvent(loc);
-            Client.INSTANCE.getEventBus().handle(event);
+            Razer.INSTANCE.getEventBus().handle(event);
 
             if (event.isCancelled()) {
                 return false;
@@ -338,7 +338,7 @@ public class PlayerControllerMP {
         int i = inventoryPlayer.currentItem;
 
         final SyncCurrentItemEvent event = new SyncCurrentItemEvent(i);
-        Client.INSTANCE.getEventBus().handle(event);
+        Razer.INSTANCE.getEventBus().handle(event);
 
         i = event.getSlot();
 

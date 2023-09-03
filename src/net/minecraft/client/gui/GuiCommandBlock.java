@@ -1,6 +1,6 @@
 package net.minecraft.client.gui;
 
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.command.server.CommandBlockLogic;

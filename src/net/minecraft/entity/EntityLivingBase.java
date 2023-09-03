@@ -1,10 +1,10 @@
 package net.minecraft.entity;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.motion.JumpEvent;
-import me.neilhuang007.razer.newevent.impl.motion.MinimumMotionEvent;
-import me.neilhuang007.razer.newevent.impl.render.SwingAnimationEvent;
-import me.neilhuang007.razer.util.player.MoveUtil;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.motion.JumpEvent;
+import RazerOfficial.Razer.gg.event.impl.motion.MinimumMotionEvent;
+import RazerOfficial.Razer.gg.event.impl.render.SwingAnimationEvent;
+import RazerOfficial.Razer.gg.util.player.MoveUtil;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Maps;
@@ -1154,7 +1154,7 @@ public abstract class EntityLivingBase extends Entity implements java.io.Seriali
                         (1 + this.getActivePotionEffect(Potion.digSlowdown).getAmplifier()) * 2 : 6));
 
         SwingAnimationEvent swingAnimationEvent = new SwingAnimationEvent(swingAnimationEnd);
-        Client.INSTANCE.getEventBus().handle(swingAnimationEvent);
+        Razer.INSTANCE.getEventBus().handle(swingAnimationEvent);
         swingAnimationEnd = swingAnimationEvent.getAnimationEnd();
 
         return (int) (swingAnimationEnd * Minecraft.getMinecraft().timer.timerSpeed);
@@ -1363,7 +1363,7 @@ public abstract class EntityLivingBase extends Entity implements java.io.Seriali
 
         if (this instanceof EntityPlayerSP) {
             final JumpEvent event = new JumpEvent(jumpMotion, this.movementYaw);
-            Client.INSTANCE.getEventBus().handle(event);
+            Razer.INSTANCE.getEventBus().handle(event);
             jumpMotion = event.getJumpMotion();
             this.movementYaw = event.getYaw();
             this.velocityYaw = event.getYaw();
@@ -1720,7 +1720,7 @@ public abstract class EntityLivingBase extends Entity implements java.io.Seriali
         double minimumMotion = 0.005D;
         if (this == Minecraft.getMinecraft().thePlayer) {
             final MinimumMotionEvent minimumMotionEvent = new MinimumMotionEvent(minimumMotion);
-            Client.INSTANCE.getEventBus().handle(minimumMotionEvent);
+            Razer.INSTANCE.getEventBus().handle(minimumMotionEvent);
             minimumMotion = minimumMotionEvent.getMinimumMotion();
         }
 

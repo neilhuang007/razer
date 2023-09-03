@@ -63,31 +63,31 @@ tracking-max-kick-msg: You are sending too many packets, :(
 hologram-patch: false
 # This is the offset, should work as default when enabled.
 hologram-y: -0.96
-# Should we disable piston animation for 1.11/1.11.1 razer?
+# Should we disable piston animation for 1.11/1.11.1 gg?
 # In some cases when firing lots of pistons it crashes them.
 piston-animation-patch: false
-# Should we fix nbt for 1.12 and above razer in chat messages (causes invalid item)
+# Should we fix nbt for 1.12 and above gg in chat messages (causes invalid item)
 chat-nbt-fix: true
-# Should we use prefix for team colour on 1.13 and above razer
+# Should we use prefix for team colour on 1.13 and above gg
 team-colour-fix: true
 # 1.13 introduced new auto complete which can trigger "Kicked for spamming" for servers older than 1.13, the following option will disable it completely.
 disable-1_13-auto-complete: false
 # The following option will delay the tab complete request in x ticks if greater than 0, if other tab-complete is received, the previous is cancelled
 1_13-tab-complete-delay: 0
-# For 1.13 razer the smallest (1 layer) snow doesn't have collision, this will send these as 2 snowlayers for 1.13+ razer to prevent them bugging through them
+# For 1.13 gg the smallest (1 layer) snow doesn't have collision, this will send these as 2 snowlayers for 1.13+ gg to prevent them bugging through them
 fix-low-snow-collision: false
-# Infested blocks are instantly breakable for 1.13+ razer, resulting in them being unable to break them on sub 1.13 servers. This remaps them to their normal stone variants
+# Infested blocks are instantly breakable for 1.13+ gg, resulting in them being unable to break them on sub 1.13 servers. This remaps them to their normal stone variants
 fix-infested-block-breaking: true
-# In 1.14 the client page limit has been upped to 100 (from 50). Some anti-exploit plugins ban when razer go higher than 50. This option cuts edited books to 50 pages.
+# In 1.14 the client page limit has been upped to 100 (from 50). Some anti-exploit plugins ban when gg go higher than 50. This option cuts edited books to 50 pages.
 truncate-1_14-books: false
-# Fixes 1.14+ razer on sub 1.14 servers having a light value of 0 for non full blocks.
+# Fixes 1.14+ gg on sub 1.14 servers having a light value of 0 for non full blocks.
 fix-non-full-blocklight: true
 # Fixes walk animation not shown when health is set to Float.NaN
 fix-1_14-health-nan: true
-# Should 1.15+ razer respawn instantly / without showing a death screen?
+# Should 1.15+ gg respawn instantly / without showing a death screen?
 use-1_15-instant-respawn: false
 # 
-# Enable serverside block-connections for 1.13+ razer - all of the options in this section are built around this option
+# Enable serverside block-connections for 1.13+ gg - all of the options in this section are built around this option
 serverside-blockconnections: true
 # When activated, only the most important blocks are stored in the blockstorage. (fences, glass panes etc. won't connect to solid blocks)
 reduce-blockstorage-memory: false
@@ -97,7 +97,7 @@ flowerstem-when-block-above: false
 # Vines that are not connected to blocks will be mapped to air, else 1.13+ would still be able to climb up on them.
 vine-climb-fix: false
 # 
-# Ignores incoming plugin channel messages of 1.16+ razer with channel names longer than 32 characters.
+# Ignores incoming plugin channel messages of 1.16+ gg with channel names longer than 32 characters.
 # CraftBukkit had this limit hardcoded until 1.16, so we have to assume any server/proxy might have this arbitrary check present.
 ignore-long-1_16-channel-names: true
 # 
@@ -110,7 +110,7 @@ resource-pack-1_17-prompt: ''
 # Only disable this if you know what you are doing.
 cache-1_17-light: true
 # 
-# 1.19 chat type formats used for 1.19.1+ razer.
+# 1.19 chat type formats used for 1.19.1+ gg.
 chat-types-1_19:
   chat.type.text: <%s> %s
   chat.type.announcement: '[%s] %s'

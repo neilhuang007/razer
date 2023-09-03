@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.module.impl.render.ItemPhysics;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.module.impl.render.ItemPhysics;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -88,7 +88,7 @@ public class RenderEntityItem extends Render<EntityItem> {
      * @param entityYaw The yaw rotation of the passed entity
      */
     public void doRender(final EntityItem entity, final double x, final double y, final double z, final float entityYaw, final float partialTicks) {
-        ItemPhysics itemPhysics = Client.INSTANCE.getModuleManager().get(ItemPhysics.class);
+        ItemPhysics itemPhysics = Razer.INSTANCE.getModuleManager().get(ItemPhysics.class);
         if (itemPhysics != null && itemPhysics.isEnabled()) {
             if (!entity.onGround) {
                 rotation *= 1.005f;

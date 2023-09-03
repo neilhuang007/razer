@@ -1,20 +1,20 @@
 package net.minecraft.client;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.component.impl.player.SlotComponent;
-import me.neilhuang007.razer.module.impl.render.FreeLook;
-import me.neilhuang007.razer.newevent.impl.input.ClickEvent;
-import me.neilhuang007.razer.newevent.impl.input.KeyboardInputEvent;
-import me.neilhuang007.razer.newevent.impl.other.AttackEvent;
-import me.neilhuang007.razer.newevent.impl.other.GameEvent;
-import me.neilhuang007.razer.newevent.impl.other.PossibleClickEvent;
-import me.neilhuang007.razer.newevent.impl.other.TickEvent;
-import me.neilhuang007.razer.protection.launch.McqBFVeaHN;
-import me.neilhuang007.razer.ui.menu.impl.intro.IntroSequence;
-import me.neilhuang007.razer.ui.menu.impl.main.MainMenu;
-import me.neilhuang007.razer.util.chat.ChatUtil;
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
-import me.neilhuang007.razer.util.render.RenderUtil;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
+import RazerOfficial.Razer.gg.module.impl.render.FreeLook;
+import RazerOfficial.Razer.gg.event.impl.input.ClickEvent;
+import RazerOfficial.Razer.gg.event.impl.input.KeyboardInputEvent;
+import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
+import RazerOfficial.Razer.gg.event.impl.other.GameEvent;
+import RazerOfficial.Razer.gg.event.impl.other.PossibleClickEvent;
+import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
+
+import RazerOfficial.Razer.gg.ui.menu.impl.intro.IntroSequence;
+import RazerOfficial.Razer.gg.ui.menu.impl.main.MainMenu;
+import RazerOfficial.Razer.gg.util.chat.ChatUtil;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.util.render.RenderUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
@@ -157,7 +157,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     private static Minecraft theMinecraft;
     public PlayerControllerMP playerController;
     private boolean fullscreen;
-    private boolean enableGLErrorChecking = Client.DEVELOPMENT_SWITCH;
+    private boolean enableGLErrorChecking = Razer.DEVELOPMENT_SWITCH;
     private boolean hasCrashed;
 
     /**
@@ -461,14 +461,14 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         this.mcSoundHandler = new SoundHandler(this.mcResourceManager, this.gameSettings);
         this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
         this.mcMusicTicker = new MusicTicker(this);
-        this.fontRendererObj = new FontRenderer(this.gameSettings, new ResourceLocation(McqBFVeaHN.getVariable(new byte[]{102, 111, 110, 116, 49}) + ".png"), this.renderEngine, false); // "textures/font/ascii.png"
+        this.fontRendererObj = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii.png"), this.renderEngine, false); // "textures/font/ascii.png"
 
         if (this.gameSettings.language != null) {
             this.fontRendererObj.setUnicodeFlag(this.isUnicode());
             this.fontRendererObj.setBidiFlag(this.mcLanguageManager.isCurrentLanguageBidirectional());
         }
 
-        this.standardGalacticFontRenderer = new FontRenderer(this.gameSettings, new ResourceLocation(McqBFVeaHN.getVariable(new byte[]{102, 111, 110, 116, 50}) + ".png"), this.renderEngine, false); // textures/font/ascii_sga
+        this.standardGalacticFontRenderer = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii_sga.png"), this.renderEngine, false); // textures/font/ascii_sga
         this.mcResourceManager.registerReloadListener(this.fontRendererObj);
         this.mcResourceManager.registerReloadListener(this.standardGalacticFontRenderer);
         this.mcResourceManager.registerReloadListener(new GrassColorReloadListener());
@@ -495,10 +495,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         GlStateManager.matrixMode(5888);
 
         this.checkGLError("Startup");
-
-        if (!Client.DEVELOPMENT_SWITCH && McqBFVeaHN.value != -2048) { // protection
-            GlStateManager.depthFunc((Integer) McqBFVeaHN.getVariable(new byte[]{100, 101, 112, 116, 104}));
-        }
 
         this.textureMapBlocks = new TextureMap("textures");
         this.textureMapBlocks.setMipmapLevels(this.gameSettings.mipmapLevels);
@@ -546,7 +542,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
             this.gameSettings.saveOptions();
         }
 
-        Client.INSTANCE.initRise();
+        Razer.INSTANCE.initRise();
 
         this.renderGlobal.makeEntityOutlineShader();
     }
@@ -561,10 +557,10 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
 
     private void createDisplay() throws LWJGLException {
         Display.setResizable(true);
-        Display.setTitle("Initializing " + Client.NAME + "...");
+        Display.setTitle("Initializing " + Razer.NAME + "...");
 
         try {
-            Display.create((new PixelFormat()).withDepthBits((Integer) McqBFVeaHN.getVariable(new byte[]{100, 101, 112, 116, 104, 66, 105, 116, 115}))); // 24
+            Display.create((new PixelFormat()).withDepthBits((Integer) 24)); // 24
         } catch (final LWJGLException lwjglexception) {
             logger.error("Couldn't set pixel format", lwjglexception);
 
@@ -931,7 +927,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         for (int j = 0; j < this.timer.elapsedTicks; ++j) {
             timer.timerSpeed = 1;
 
-            Client.INSTANCE.getEventBus().handle(new TickEvent());
+            Razer.INSTANCE.getEventBus().handle(new TickEvent());
             this.runTick();
         }
 
@@ -940,7 +936,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         if (gameEvent.finished(50 * 20)) {
             gameEvent.reset();
 
-            Client.INSTANCE.getEventBus().handle(new GameEvent());
+            Razer.INSTANCE.getEventBus().handle(new GameEvent());
         }
 
         this.mcProfiler.endStartSection("preRenderErrors");
@@ -1217,7 +1213,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
      * Called when the window is closing. Sets 'running' to false which allows the game loop to exit cleanly.
      */
     public void shutdown() {
-        Client.INSTANCE.terminate();
+        Razer.INSTANCE.terminate();
         this.running = false;
     }
 
@@ -1281,11 +1277,11 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
 
     public void clickMouse() {
         if (this.leftClickCounter <= 0) {
-            Client.INSTANCE.getEventBus().handle(new ClickEvent());
+            Razer.INSTANCE.getEventBus().handle(new ClickEvent());
 
             if (this.objectMouseOver != null && this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
                 final AttackEvent event = new AttackEvent(this.objectMouseOver.entityHit);
-                Client.INSTANCE.getEventBus().handle(event);
+                Razer.INSTANCE.getEventBus().handle(event);
 
                 if (event.isCancelled()) return;
             }
@@ -1599,7 +1595,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
                 this.dispatchKeypresses();
 
                 if (Keyboard.getEventKeyState()) {
-                    Client.INSTANCE.getEventBus().handle(new KeyboardInputEvent(k, currentScreen));
+                    Razer.INSTANCE.getEventBus().handle(new KeyboardInputEvent(k, currentScreen));
 
                     if (k == 62 && this.entityRenderer != null) {
                         this.entityRenderer.switchUseShader();
@@ -1674,7 +1670,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
 
                             // Don't allow the user to change their persecuting when in Freelook
                             // This eliminates a really awful flickering effect when you do so
-                            if (!Client.INSTANCE.getModuleManager().get(FreeLook.class).isEnabled()) {
+                            if (!Razer.INSTANCE.getModuleManager().get(FreeLook.class).isEnabled()) {
                                 ++this.gameSettings.thirdPersonView;
 
                                 if (this.gameSettings.thirdPersonView > 2) {
@@ -1751,7 +1747,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
                 }
             }
 
-            Client.INSTANCE.getEventBus().handle(new PossibleClickEvent());
+            Razer.INSTANCE.getEventBus().handle(new PossibleClickEvent());
 
             if (this.thePlayer.isUsingItem()) {
                 if (!this.gameSettings.keyBindUseItem.isKeyDown()) {
@@ -2197,9 +2193,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         theCrash.getCategory().addCrashSectionCallable("Using VBOs", () -> Minecraft.this.gameSettings.useVbo ? "Yes" : "No");
         theCrash.getCategory().addCrashSectionCallable("Is Modded", () -> {
             final String s = ClientBrandRetriever.getClientModName();
-            return !s.equals("vanilla") ? "Definitely; Client brand changed to '" + s + "'" : (Minecraft.class.getSigners() == null ? "Very likely; Jar signature invalidated" : "Probably not. Jar signature remains and client brand is untouched.");
+            return !s.equals("vanilla") ? "Definitely; Razer brand changed to '" + s + "'" : (Minecraft.class.getSigners() == null ? "Very likely; Jar signature invalidated" : "Probably not. Jar signature remains and client brand is untouched.");
         });
-        theCrash.getCategory().addCrashSectionCallable("Type", () -> "Client (map_client.txt)");
+        theCrash.getCategory().addCrashSectionCallable("Type", () -> "Razer (map_client.txt)");
         theCrash.getCategory().addCrashSectionCallable("Resource Packs", () -> {
             final StringBuilder stringbuilder = new StringBuilder();
 

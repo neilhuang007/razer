@@ -1,6 +1,6 @@
 package net.minecraft.client.gui;
 
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import com.google.common.collect.Lists;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.model.ModelBook;

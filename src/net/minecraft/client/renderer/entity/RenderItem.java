@@ -1,8 +1,8 @@
 package net.minecraft.client.renderer.entity;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.render.GlintEvent;
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.render.GlintEvent;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
@@ -158,7 +158,7 @@ public class RenderItem implements IResourceManagerReloadListener {
                 boolean hasEffect = stack.hasEffect();
 
                 GlintEvent glintEvent = new GlintEvent(hasEffect, effect, stack, model);
-                Client.INSTANCE.getEventBus().handle(glintEvent);
+                Razer.INSTANCE.getEventBus().handle(glintEvent);
                 hasEffect = glintEvent.isEnchanted();
                 effect = glintEvent.isRender();
 

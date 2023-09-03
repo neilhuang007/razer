@@ -414,10 +414,10 @@ public class WorldClient extends World {
 
     /**
      * Sets the block state at a given location. Flag 1 will cause a block update. Flag 2 will send the change to
-     * razer (you almost always want this). Flag 4 prevents the block from being re-rendered, if this is a client
+     * gg (you almost always want this). Flag 4 prevents the block from being re-rendered, if this is a client
      * world. Flags can be added together.
      *
-     * @param flags Flag 1 will cause a block update. Flag 2 will send the change to razer (you almost always want
+     * @param flags Flag 1 will cause a block update. Flag 2 will send the change to gg (you almost always want
      *              this). Flag 4 prevents the block from being re-rendered, if this is a client world. Flags can be added together.
      */
     public boolean setBlockState(final BlockPos pos, final IBlockState newState, final int flags) {

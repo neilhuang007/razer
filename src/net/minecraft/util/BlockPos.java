@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-import me.neilhuang007.razer.util.vector.Vector3d;
+import RazerOfficial.Razer.gg.util.vector.Vector3d;
 import com.google.common.collect.AbstractIterator;
 import net.minecraft.entity.Entity;
 

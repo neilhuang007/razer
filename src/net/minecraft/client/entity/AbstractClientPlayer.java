@@ -1,8 +1,8 @@
 package net.minecraft.client.entity;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.render.LookEvent;
-import me.neilhuang007.razer.util.vector.Vector2f;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.render.LookEvent;
+import RazerOfficial.Razer.gg.util.vector.Vector2f;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
@@ -207,7 +207,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer {
         float pitch = this.rotationPitch;
 
         LookEvent lookEvent = new LookEvent(new Vector2f(yaw, pitch));
-        Client.INSTANCE.getEventBus().handle(lookEvent);
+        Razer.INSTANCE.getEventBus().handle(lookEvent);
         yaw = lookEvent.getRotation().x;
         pitch = lookEvent.getRotation().y;
 

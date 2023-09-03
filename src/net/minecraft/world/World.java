@@ -1,7 +1,7 @@
 package net.minecraft.world;
 
-import me.neilhuang007.razer.util.RayCastUtil;
-import me.neilhuang007.razer.util.interfaces.InstanceAccess;
+import RazerOfficial.Razer.gg.util.RayCastUtil;
+import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -305,10 +305,10 @@ public abstract class World implements IBlockAccess, InstanceAccess, java.io.Ser
 
     /**
      * Sets the block state at a given location. Flag 1 will cause a block update. Flag 2 will send the change to
-     * razer (you almost always want this). Flag 4 prevents the block from being re-rendered, if this is a client
+     * gg (you almost always want this). Flag 4 prevents the block from being re-rendered, if this is a client
      * world. Flags can be added together.
      *
-     * @param flags Flag 1 will cause a block update. Flag 2 will send the change to razer (you almost always want
+     * @param flags Flag 1 will cause a block update. Flag 2 will send the change to gg (you almost always want
      *              this). Flag 4 prevents the block from being re-rendered, if this is a client world. Flags can be added together.
      */
     public boolean setBlockState(final BlockPos pos, final IBlockState newState, final int flags) {

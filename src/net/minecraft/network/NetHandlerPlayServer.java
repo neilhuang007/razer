@@ -152,7 +152,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
     }
 
     /**
-     * Processes razer perspective on player positioning and/or orientation
+     * Processes gg perspective on player positioning and/or orientation
      */
     public void processPlayer(final C03PacketPlayer packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
@@ -619,7 +619,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
     }
 
     /**
-     * Process chat messages (broadcast back to razer) and commands (executes)
+     * Process chat messages (broadcast back to gg) and commands (executes)
      */
     public void processChatMessage(final C01PacketChatMessage packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());

@@ -1,16 +1,16 @@
 package net.minecraft.client.renderer;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.module.Module;
-import me.neilhuang007.razer.module.impl.render.*;
-import me.neilhuang007.razer.newevent.impl.render.MouseOverEvent;
-import me.neilhuang007.razer.newevent.impl.render.Render2DEvent;
-import me.neilhuang007.razer.newevent.impl.render.Render3DEvent;
-import me.neilhuang007.razer.newevent.impl.render.ViewBobbingEvent;
-import me.neilhuang007.razer.util.interfaces.InstanceAccess;
-import me.neilhuang007.razer.util.render.RenderUtil;
-import me.neilhuang007.razer.util.render.StencilUtil;
-import me.neilhuang007.razer.util.shader.ShaderUtil;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.module.Module;
+import RazerOfficial.Razer.gg.module.impl.render.*;
+import RazerOfficial.Razer.gg.event.impl.render.MouseOverEvent;
+import RazerOfficial.Razer.gg.event.impl.render.Render2DEvent;
+import RazerOfficial.Razer.gg.event.impl.render.Render3DEvent;
+import RazerOfficial.Razer.gg.event.impl.render.ViewBobbingEvent;
+import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
+import RazerOfficial.Razer.gg.util.render.RenderUtil;
+import RazerOfficial.Razer.gg.util.render.StencilUtil;
+import RazerOfficial.Razer.gg.util.shader.ShaderUtil;
 import com.google.common.base.Predicates;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.block.Block;
@@ -461,7 +461,7 @@ public class EntityRenderer implements IResourceManagerReloadListener, InstanceA
             float expand = 0;
 
             MouseOverEvent mouseOverEvent = new MouseOverEvent(reach, expand);
-            Client.INSTANCE.getEventBus().handle(mouseOverEvent);
+            Razer.INSTANCE.getEventBus().handle(mouseOverEvent);
             reach = mouseOverEvent.getRange();
             expand = mouseOverEvent.getExpand();
 
@@ -634,7 +634,7 @@ public class EntityRenderer implements IResourceManagerReloadListener, InstanceA
 
             f = f / (float) entitylivingbase.maxHurtTime;
             f = MathHelper.sin(f * f * f * f * (float) Math.PI);
-            final HurtCamera hurtCamera = Client.INSTANCE.getModuleManager().get(HurtCamera.class);
+            final HurtCamera hurtCamera = Razer.INSTANCE.getModuleManager().get(HurtCamera.class);
 
             final float f2 = hurtCamera.isEnabled() ? 0 : entitylivingbase.attackedAtYaw;
             GlStateManager.rotate(-f2, 0.0F, 1.0F, 0.0F);
@@ -699,10 +699,10 @@ public class EntityRenderer implements IResourceManagerReloadListener, InstanceA
                 float f2 = entity.rotationPitch;
 
                 if (this.mc.gameSettings.thirdPersonView == 2) {
-                    f2 += Client.INSTANCE.getConstantManager().O;
+                    f2 += Razer.INSTANCE.getConstantManager().O;
                 }
 
-                Module noCameraClip = Client.INSTANCE.getModuleManager().get(NoCameraClip.class);
+                Module noCameraClip = Razer.INSTANCE.getModuleManager().get(NoCameraClip.class);
 
                 if (noCameraClip == null || !noCameraClip.isEnabled()) {
                     final double d4 = (double) (-MathHelper.sin(f1 / 180.0F * (float) Math.PI) * MathHelper.cos(f2 / 180.0F * (float) Math.PI)) * d3;
@@ -1206,7 +1206,7 @@ public class EntityRenderer implements IResourceManagerReloadListener, InstanceA
 //                    this.mc.ingameGUI.renderGameOverlay(partialTicks);
 
                     GlStateManager.pushMatrix();
-                    Client.INSTANCE.getEventBus().handle(new Render2DEvent(mc.scaledResolution, partialTicks));
+                    Razer.INSTANCE.getEventBus().handle(new Render2DEvent(mc.scaledResolution, partialTicks));
                     GlStateManager.popMatrix();
 
                     Interface interfaceModule = getModule(Interface.class);
@@ -1690,7 +1690,7 @@ public class EntityRenderer implements IResourceManagerReloadListener, InstanceA
 
         // I need this here, else there will be bugs
         setupCameraTransform(partialTicks, 0);
-        Client.INSTANCE.getEventBus().handle(new Render3DEvent(partialTicks));
+        Razer.INSTANCE.getEventBus().handle(new Render3DEvent(partialTicks));
 
         RendererLivingEntity.SHADER_RENDERING = true;
         InstanceAccess.render3DRunnables(partialTicks);
@@ -1720,7 +1720,7 @@ public class EntityRenderer implements IResourceManagerReloadListener, InstanceA
     private void addRainParticles() {
         float f = this.mc.theWorld.getRainStrength(1.0F);
 
-        Ambience ambience = Client.INSTANCE.getModuleManager().get(Ambience.class);
+        Ambience ambience = Razer.INSTANCE.getModuleManager().get(Ambience.class);
         if (ambience != null && ambience.skipRainParticles()) return;
 
         if (!Config.isRainFancy()) {
@@ -1862,7 +1862,7 @@ public class EntityRenderer implements IResourceManagerReloadListener, InstanceA
                             this.random.setSeed(l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761);
                             blockpos$mutableblockpos.func_181079_c(l1, k2, k1);
 
-                            final Ambience ambience = Client.INSTANCE.getModuleManager().get(Ambience.class);
+                            final Ambience ambience = Razer.INSTANCE.getModuleManager().get(Ambience.class);
 
                             final float f1 = ambience.getFloatTemperature(blockpos$mutableblockpos, biomegenbase);
 

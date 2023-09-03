@@ -1,9 +1,9 @@
 package net.minecraft.client.gui;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.render.LimitedRender2DEvent;
-import me.neilhuang007.razer.newevent.impl.render.RenderHungerEvent;
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.render.LimitedRender2DEvent;
+import RazerOfficial.Razer.gg.event.impl.render.RenderHungerEvent;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -33,8 +33,8 @@ import net.optifine.CustomColors;
 
 import java.util.Random;
 
-import static me.neilhuang007.razer.util.interfaces.InstanceAccess.LIMITED_POST_RENDER_RUNNABLES;
-import static me.neilhuang007.razer.util.interfaces.InstanceAccess.LIMITED_PRE_RENDER_RUNNABLES;
+import static RazerOfficial.Razer.gg.util.interfaces.InstanceAccess.LIMITED_POST_RENDER_RUNNABLES;
+import static RazerOfficial.Razer.gg.util.interfaces.InstanceAccess.LIMITED_PRE_RENDER_RUNNABLES;
 
 public class GuiIngame extends Gui {
     private static final ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
@@ -285,7 +285,7 @@ public class GuiIngame extends Gui {
             this.overlayPlayerList.updatePlayerList(false);
         }
 
-        Client.INSTANCE.getEventBus().handle(new LimitedRender2DEvent(scaledResolution, partialTicks));
+        Razer.INSTANCE.getEventBus().handle(new LimitedRender2DEvent(scaledResolution, partialTicks));
 
         LIMITED_PRE_RENDER_RUNNABLES.forEach(Runnable::run);
         LIMITED_POST_RENDER_RUNNABLES.forEach(Runnable::run);
@@ -625,7 +625,7 @@ public class GuiIngame extends Gui {
                     }
                 }
 
-                Client.INSTANCE.getEventBus().handle(new RenderHungerEvent(p_180477_1_));
+                Razer.INSTANCE.getEventBus().handle(new RenderHungerEvent(p_180477_1_));
             } else if (entity instanceof EntityLivingBase) {
                 this.mc.mcProfiler.endStartSection("mountHealth");
                 final EntityLivingBase entitylivingbase = (EntityLivingBase) entity;

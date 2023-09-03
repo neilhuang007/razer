@@ -87,7 +87,7 @@ public class BlockNote extends BlockContainer {
     }
 
     /**
-     * Called on both Client and Server when World#addBlockEvent is called
+     * Called on both Razer and Server when World#addBlockEvent is called
      */
     public boolean onBlockEventReceived(final World worldIn, final BlockPos pos, final IBlockState state, final int eventID, final int eventParam) {
         final float f = (float) Math.pow(2.0D, (double) (eventParam - 12) / 12.0D);

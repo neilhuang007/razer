@@ -1,8 +1,8 @@
 package net.minecraft.client.network;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.other.TeleportEvent;
-import me.neilhuang007.razer.ui.menu.impl.main.MainMenu;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.ui.menu.impl.main.MainMenu;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -340,7 +340,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
         entityotherplayermp.prevPosZ = entityotherplayermp.lastTickPosZ = entityotherplayermp.serverPosZ = packetIn.getZ();
         final int i = packetIn.getCurrentItemID();
 
-        Client.INSTANCE.getCheatDetector().getRegistrationListener().handleSpawn(entityotherplayermp);
+        //Razer.INSTANCE.getCheatDetector().getRegistrationListener().handleSpawn(entityotherplayermp);
 
         if (i == 0) {
             entityotherplayermp.inventory.mainInventory[entityotherplayermp.inventory.currentItem] = null;
@@ -445,14 +445,14 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
             this.clientWorldController.removeEntityFromWorld(packetIn.getEntityIDs()[i]);
 
             if (entity instanceof EntityOtherPlayerMP) {
-                Client.INSTANCE.getCheatDetector().getRegistrationListener().handleDestroy(entity.getUniqueID());
+                //Razer.INSTANCE.getCheatDetector().getRegistrationListener().handleDestroy(entity.getUniqueID());
             }
         }
     }
 
     /**
      * Handles changes in player positioning and rotation such as when travelling to a new dimension, (re)spawning,
-     * mounting horses etc. Seems to immediately reply to the server with the razer post-processing perspective on the
+     * mounting horses etc. Seems to immediately reply to the server with the gg post-processing perspective on the
      * player positioning
      */
     public void handlePlayerPosLook(final S08PacketPlayerPosLook packetIn) {
@@ -473,7 +473,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
                 f1
         );
 
-        Client.INSTANCE.getEventBus().handle(event);
+        Razer.INSTANCE.getEventBus().handle(event);
 
         if (event.isCancelled()) {
             return;
@@ -569,7 +569,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
     }
 
     /**
-     * Updates the block and metadata and generates a blockupdate (and notify the razer)
+     * Updates the block and metadata and generates a blockupdate (and notify the gg)
      */
     public void handleBlockChange(final S23PacketBlockChange packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);

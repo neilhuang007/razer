@@ -1,11 +1,11 @@
 package net.minecraft.entity;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.motion.PostStrafeEvent;
-import me.neilhuang007.razer.newevent.impl.motion.StrafeEvent;
-import me.neilhuang007.razer.newevent.impl.motion.WaterEvent;
-import me.neilhuang007.razer.newevent.impl.other.StepEvent;
-import me.neilhuang007.razer.util.vector.Vector3d;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.motion.PostStrafeEvent;
+import RazerOfficial.Razer.gg.event.impl.motion.StrafeEvent;
+import RazerOfficial.Razer.gg.event.impl.motion.WaterEvent;
+import RazerOfficial.Razer.gg.event.impl.other.StepEvent;
+import RazerOfficial.Razer.gg.util.vector.Vector3d;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -441,7 +441,7 @@ public abstract class Entity implements ICommandSender {
         this.rotationPitch = (float) ((double) this.rotationPitch - (double) pitch * 0.15D);
 
         if (this instanceof EntityPlayerSP) {
-            this.rotationPitch = MathHelper.clamp_float(this.rotationPitch, -Client.INSTANCE.getConstantManager().J, Client.INSTANCE.getConstantManager().J);
+            this.rotationPitch = MathHelper.clamp_float(this.rotationPitch, -Razer.INSTANCE.getConstantManager().J, Razer.INSTANCE.getConstantManager().J);
         }
 
         this.prevRotationPitch += this.rotationPitch - f;
@@ -800,7 +800,7 @@ public abstract class Entity implements ICommandSender {
                 }
 
                 if (this instanceof EntityPlayerSP) {
-                    Client.INSTANCE.getEventBus().handle(new StepEvent(this.getEntityBoundingBox().minY - this.posY));
+                    Razer.INSTANCE.getEventBus().handle(new StepEvent(this.getEntityBoundingBox().minY - this.posY));
                 }
             }
 
@@ -1055,7 +1055,7 @@ public abstract class Entity implements ICommandSender {
     public boolean isInWater() {
         if (this == Minecraft.getMinecraft().thePlayer && stopWatch.finished(100)) {
             final WaterEvent event = new WaterEvent(this.inWater);
-            Client.INSTANCE.getEventBus().handle(event);
+            Razer.INSTANCE.getEventBus().handle(event);
             this.inWater = event.isWater();
             stopWatch.reset();
         }
@@ -1086,7 +1086,7 @@ public abstract class Entity implements ICommandSender {
      * sets the players height back to normal after doing things like sleeping and dieing
      */
     protected void resetHeight() {
-        /*final Jesus jesus = Client.INSTANCE.getModuleManager().get(Jesus.class);
+        /*final Jesus jesus = Razer.INSTANCE.getModuleManager().get(Jesus.class);
 
         if (jesus != null && jesus.isEnabled() && jesus.mode.getValue().getName().equals("Gravity")) {
             return;
@@ -1172,7 +1172,7 @@ public abstract class Entity implements ICommandSender {
         if (player) {
             final StrafeEvent event = new StrafeEvent(forward, strafe, friction, rotationYaw);
 
-            Client.INSTANCE.getEventBus().handle(event);
+            Razer.INSTANCE.getEventBus().handle(event);
 
             if (event.isCancelled()) {
                 return;
@@ -1207,7 +1207,7 @@ public abstract class Entity implements ICommandSender {
         if (player) {
             final PostStrafeEvent event = new PostStrafeEvent();
 
-            Client.INSTANCE.getEventBus().handle(event);
+            Razer.INSTANCE.getEventBus().handle(event);
         }
     }
 

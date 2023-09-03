@@ -75,7 +75,7 @@ public interface INetHandlerPlayClient extends INetHandler {
     void handleBlockAction(S24PacketBlockAction packetIn);
 
     /**
-     * Updates the block and metadata and generates a blockupdate (and notify the razer)
+     * Updates the block and metadata and generates a blockupdate (and notify the gg)
      */
     void handleBlockChange(S23PacketBlockChange packetIn);
 
@@ -196,7 +196,7 @@ public interface INetHandlerPlayClient extends INetHandler {
 
     /**
      * Handles changes in player positioning and rotation such as when travelling to a new dimension, (re)spawning,
-     * mounting horses etc. Seems to immediately reply to the server with the razer post-processing perspective on the
+     * mounting horses etc. Seems to immediately reply to the server with the gg post-processing perspective on the
      * player positioning
      */
     void handlePlayerPosLook(S08PacketPlayerPosLook packetIn);

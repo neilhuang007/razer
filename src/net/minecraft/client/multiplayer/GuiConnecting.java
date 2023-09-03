@@ -1,10 +1,10 @@
 package net.minecraft.client.multiplayer;
 
 import by.radioegor146.nativeobfuscator.Native;
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.component.impl.player.LastConnectionComponent;
-import me.neilhuang007.razer.newevent.impl.other.ServerJoinEvent;
-import me.neilhuang007.razer.util.player.ServerUtil;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.component.impl.player.LastConnectionComponent;
+import RazerOfficial.Razer.gg.event.impl.other.ServerJoinEvent;
+import RazerOfficial.Razer.gg.util.player.ServerUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiDisconnected;
@@ -43,7 +43,7 @@ public class GuiConnecting extends GuiScreen {
         mcIn.setServerData(p_i1181_3_);
         this.connect(serveraddress.getIP(), serveraddress.getPort());
 
-        Client.INSTANCE.getEventBus().register(this);
+        Razer.INSTANCE.getEventBus().register(this);
     }
 
     public GuiConnecting(final GuiScreen p_i1182_1_, final Minecraft mcIn, final String hostName, final int port) {
@@ -52,13 +52,13 @@ public class GuiConnecting extends GuiScreen {
         mcIn.loadWorld(null);
         this.connect(hostName, port);
 
-        Client.INSTANCE.getEventBus().register(this);
+        Razer.INSTANCE.getEventBus().register(this);
     }
 
     private void connect(String ip, int port) {
 
         final ServerJoinEvent event = new ServerJoinEvent(ip, port);
-        Client.INSTANCE.getEventBus().handle(event);
+        Razer.INSTANCE.getEventBus().handle(event);
 
         logger.info("Connecting to " + ip + ", " + port);
 
@@ -111,7 +111,7 @@ public class GuiConnecting extends GuiScreen {
         }).start();
 
         try {
-//            Client.INSTANCE.getNetworkManager().getCommunication().write(new lIlIlIlIIIlllIIlIlIIIlllIIlllIlIIIlllIlI(ip, port));
+//            Razer.INSTANCE.getNetworkManager().getCommunication().write(new lIlIlIlIIIlllIIlIlIIIlllIIlllIlIIIlllIlI(ip, port));
         } catch (Exception exception) {
             System.out.println("Not connected to the server");
         }
@@ -163,7 +163,7 @@ public class GuiConnecting extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-        Client.INSTANCE.getEventBus().unregister(this);
+        Razer.INSTANCE.getEventBus().unregister(this);
     }
 
     /**

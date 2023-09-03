@@ -7,7 +7,7 @@ public interface INetHandlerPlayServer extends INetHandler {
     void handleAnimation(C0APacketAnimation packetIn);
 
     /**
-     * Process chat messages (broadcast back to razer) and commands (executes)
+     * Process chat messages (broadcast back to gg) and commands (executes)
      */
     void processChatMessage(C01PacketChatMessage packetIn);
 
@@ -70,7 +70,7 @@ public interface INetHandlerPlayServer extends INetHandler {
     void processKeepAlive(C00PacketKeepAlive packetIn);
 
     /**
-     * Processes razer perspective on player positioning and/or orientation
+     * Processes gg perspective on player positioning and/or orientation
      */
     void processPlayer(C03PacketPlayer packetIn);
 

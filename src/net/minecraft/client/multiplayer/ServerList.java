@@ -1,6 +1,6 @@
 package net.minecraft.client.multiplayer;
 
-import me.neilhuang007.razer.Client;
+import RazerOfficial.Razer.gg.Razer;
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMultiplayer;
@@ -34,7 +34,7 @@ public class ServerList {
     public void loadServerList() {
         try {
             this.servers.clear();
-            final NBTTagCompound nbttagcompound = CompressedStreamTools.read(new File(this.mc.mcDataDir + (GuiMultiplayer.usingFinderList ? "/" + Client.NAME : ""), "servers.dat"));
+            final NBTTagCompound nbttagcompound = CompressedStreamTools.read(new File(this.mc.mcDataDir + (GuiMultiplayer.usingFinderList ? "/" + Razer.NAME : ""), "servers.dat"));
 
             if (nbttagcompound == null) {
                 return;
@@ -64,7 +64,7 @@ public class ServerList {
 
             final NBTTagCompound nbttagcompound = new NBTTagCompound();
             nbttagcompound.setTag("servers", nbttaglist);
-            CompressedStreamTools.safeWrite(nbttagcompound, new File(this.mc.mcDataDir + (GuiMultiplayer.usingFinderList ? "/" + Client.NAME : ""), "servers.dat"));
+            CompressedStreamTools.safeWrite(nbttagcompound, new File(this.mc.mcDataDir + (GuiMultiplayer.usingFinderList ? "/" + Razer.NAME : ""), "servers.dat"));
         } catch (final Exception exception) {
             logger.error("Couldn't save server list", exception);
         }

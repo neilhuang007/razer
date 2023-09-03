@@ -207,7 +207,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
     }
 
     /**
-     * Called on both Client and Server when World#addBlockEvent is called
+     * Called on both Razer and Server when World#addBlockEvent is called
      */
     public boolean onBlockEventReceived(final World worldIn, final BlockPos pos, final IBlockState state, final int eventID, final int eventParam) {
         super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);

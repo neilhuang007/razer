@@ -1,6 +1,6 @@
 package net.optifine.gui;
 
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import com.mojang.authlib.exceptions.InvalidCredentialsException;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

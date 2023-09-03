@@ -1,10 +1,10 @@
 package net.minecraft.client.gui;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.input.GuiClickEvent;
-import me.neilhuang007.razer.newevent.impl.input.GuiMouseReleaseEvent;
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
-import me.neilhuang007.razer.util.interfaces.InstanceAccess;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.input.GuiClickEvent;
+import RazerOfficial.Razer.gg.event.impl.input.GuiMouseReleaseEvent;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -399,7 +399,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback, Instanc
      */
     protected void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) throws IOException {
         GuiClickEvent guiClickEvent = new GuiClickEvent(mouseX, mouseY, mouseButton);
-        Client.INSTANCE.getEventBus().handle(guiClickEvent);
+        Razer.INSTANCE.getEventBus().handle(guiClickEvent);
 
         if (mouseButton == 0) {
             for (int i = 0; i < this.buttonList.size(); ++i) {
@@ -419,7 +419,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback, Instanc
      */
     protected void mouseReleased(final int mouseX, final int mouseY, final int state) {
         GuiMouseReleaseEvent guiMouseReleaseEvent = new GuiMouseReleaseEvent();
-        Client.INSTANCE.getEventBus().handle(guiMouseReleaseEvent);
+        Razer.INSTANCE.getEventBus().handle(guiMouseReleaseEvent);
 
         if (this.selectedButton != null && state == 0) {
             this.selectedButton.mouseReleased(mouseX, mouseY);

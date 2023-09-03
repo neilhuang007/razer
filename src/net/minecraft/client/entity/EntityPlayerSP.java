@@ -1,12 +1,12 @@
 package net.minecraft.client.entity;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.input.ChatInputEvent;
-import me.neilhuang007.razer.newevent.impl.motion.*;
-import me.neilhuang007.razer.newevent.impl.other.MoveEvent;
-import me.neilhuang007.razer.util.chat.ChatUtil;
-import me.neilhuang007.razer.util.interfaces.InstanceAccess;
-import me.neilhuang007.razer.util.vector.Vector2f;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.input.ChatInputEvent;
+import RazerOfficial.Razer.gg.event.impl.motion.*;
+import RazerOfficial.Razer.gg.event.impl.other.MoveEvent;
+import RazerOfficial.Razer.gg.util.chat.ChatUtil;
+import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
+import RazerOfficial.Razer.gg.util.vector.Vector2f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -159,13 +159,13 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
             prevRenderPitchHead = renderPitchHead;
             renderPitchHead = rotationPitch;
 
-            Client.INSTANCE.getEventBus().handle(new PreUpdateEvent());
+            Razer.INSTANCE.getEventBus().handle(new PreUpdateEvent());
 
             super.onUpdate();
 
             this.onUpdateWalkingPlayer();
 
-            Client.INSTANCE.getEventBus().handle(new PostMotionEvent());
+            Razer.INSTANCE.getEventBus().handle(new PostMotionEvent());
         }
     }
 
@@ -190,7 +190,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
                 this.onGround
         );
 
-        Client.INSTANCE.getEventBus().handle(event);
+        Razer.INSTANCE.getEventBus().handle(event);
 
         final boolean flag = this.isSprinting();
 
@@ -286,7 +286,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
      */
     public void sendChatMessage(final String message) {
         final ChatInputEvent event = new ChatInputEvent(message);
-        Client.INSTANCE.getEventBus().handle(event);
+        Razer.INSTANCE.getEventBus().handle(event);
 
         if (event.isCancelled())
             return;
@@ -415,7 +415,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
 
             if (!this.isOpenBlockSpace(blockpos)) {
                 PushOutOfBlockEvent pushOutOfBlockEvent = new PushOutOfBlockEvent();
-                Client.INSTANCE.getEventBus().handle(pushOutOfBlockEvent);
+                Razer.INSTANCE.getEventBus().handle(pushOutOfBlockEvent);
                 if (pushOutOfBlockEvent.isCancelled()) {
                     return false;
                 }
@@ -705,7 +705,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
         this.movementInput.updatePlayerMoveState();
 
         final SlowDownEvent slowDownEvent = new SlowDownEvent(0.2F, 0.2F);
-        Client.INSTANCE.getEventBus().handle(slowDownEvent);
+        Razer.INSTANCE.getEventBus().handle(slowDownEvent);
 
         if (!slowDownEvent.isCancelled() && this.isUsingItem() && !this.isRiding()) {
             this.movementInput.moveStrafe *= slowDownEvent.getStrafeMultiplier();
@@ -806,7 +806,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
     @Override
     public void moveEntity(double x, double y, double z) {
         final MoveEvent moveEvent = new MoveEvent(x, y, z);
-        Client.INSTANCE.getEventBus().handle(moveEvent);
+        Razer.INSTANCE.getEventBus().handle(moveEvent);
 
         if (moveEvent.isCancelled()) {
             return;

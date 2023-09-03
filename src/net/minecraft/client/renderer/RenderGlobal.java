@@ -1,9 +1,9 @@
 package net.minecraft.client.renderer;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.other.BlockDamageEvent;
-import me.neilhuang007.razer.util.chat.ChatUtil;
-import me.neilhuang007.razer.util.interfaces.InstanceAccess;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.other.BlockDamageEvent;
+import RazerOfficial.Razer.gg.util.chat.ChatUtil;
+import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -1229,8 +1229,8 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             f += 180.0F;
         }
 
-        final float f2 = MathHelper.cos(-f1 * 0.017453292F - (float) Client.INSTANCE.getConstantManager().l);
-        final float f3 = MathHelper.sin(-f1 * 0.017453292F - (float) Client.INSTANCE.getConstantManager().l);
+        final float f2 = MathHelper.cos(-f1 * 0.017453292F - (float) Razer.INSTANCE.getConstantManager().l);
+        final float f3 = MathHelper.sin(-f1 * 0.017453292F - (float) Razer.INSTANCE.getConstantManager().l);
         final float f4 = -MathHelper.cos(-f * 0.017453292F);
         final float f5 = MathHelper.sin(-f * 0.017453292F);
         return new Vector3f(f3 * f4, f5, f2 * f4);
@@ -1534,7 +1534,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 worldrenderer.pos(0.0D, 100.0D, 0.0D).func_181666_a(f6, f7, f8, afloat[3]).endVertex();
 
                 for (int l = 0; l <= 16; ++l) {
-                    final float f18 = (float) l * (float) Client.INSTANCE.getConstantManager().l * 2.0F / 16.0F;
+                    final float f18 = (float) l * (float) Razer.INSTANCE.getConstantManager().l * 2.0F / 16.0F;
                     final float f12 = MathHelper.sin(f18);
                     final float f13 = MathHelper.cos(f18);
                     worldrenderer.pos(f12 * 120.0F, f13 * 120.0F, -f13 * 40.0F * afloat[3]).func_181666_a(afloat[0], afloat[1], afloat[2], 0.0F).endVertex();
@@ -2729,7 +2729,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
                 for (int k1 = 0; k1 < 100; ++k1) {
                     final double d7 = random.nextDouble() * 4.0D;
-                    final double d9 = random.nextDouble() * Client.INSTANCE.getConstantManager().I;
+                    final double d9 = random.nextDouble() * Razer.INSTANCE.getConstantManager().I;
                     final double d11 = Math.cos(d9) * d7;
                     final double d23 = 0.01D + random.nextDouble() * 0.5D;
                     final double d24 = Math.sin(d9) * d7;
@@ -2754,7 +2754,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                     this.spawnParticle(EnumParticleTypes.ITEM_CRACK, d6, d8, d10, random.nextGaussian() * 0.15D, random.nextDouble() * 0.2D, random.nextGaussian() * 0.15D, Item.getIdFromItem(Items.ender_eye));
                 }
 
-                for (double d22 = 0.0D; d22 < (Client.INSTANCE.getConstantManager().I); d22 += 0.15707963267948966D) {
+                for (double d22 = 0.0D; d22 < (Razer.INSTANCE.getConstantManager().I); d22 += 0.15707963267948966D) {
                     this.spawnParticle(EnumParticleTypes.PORTAL, d6 + Math.cos(d22) * 5.0D, d8 - 0.4D, d10 + Math.sin(d22) * 5.0D, Math.cos(d22) * -5.0D, 0.0D, Math.sin(d22) * -5.0D);
                     this.spawnParticle(EnumParticleTypes.PORTAL, d6 + Math.cos(d22) * 5.0D, d8 - 0.4D, d10 + Math.sin(d22) * 5.0D, Math.cos(d22) * -7.0D, 0.0D, Math.sin(d22) * -7.0D);
                 }
@@ -2780,7 +2780,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     public void sendBlockBreakProgress(final int breakerId, final BlockPos pos, final int progress) {
         if (progress >= 0 && progress < 10) {
             final BlockDamageEvent bdEvent = new BlockDamageEvent(this.mc.thePlayer, this.mc.thePlayer.worldObj, pos);
-            Client.INSTANCE.getEventBus().handle(bdEvent);
+            Razer.INSTANCE.getEventBus().handle(bdEvent);
 
             DestroyBlockProgress destroyblockprogress = this.damagedBlocks.get(Integer.valueOf(breakerId));
 

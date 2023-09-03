@@ -1,7 +1,7 @@
 package net.minecraft.world;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.module.impl.render.Ambience;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.module.impl.render.Ambience;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
@@ -172,7 +172,7 @@ public abstract class WorldProvider {
         float f2 = 0.84705883F;
         float f3 = 1.0F;
 
-        Ambience ambience = Client.INSTANCE.getModuleManager().get(Ambience.class);
+        Ambience ambience = Razer.INSTANCE.getModuleManager().get(Ambience.class);
 
         // Our custom fog color
         if (ambience != null && ambience.isEnabled() && ambience.getWeather().getValue().getName().equals("Nether Particles")) {

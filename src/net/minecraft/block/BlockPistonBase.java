@@ -118,7 +118,7 @@ public class BlockPistonBase extends Block {
     }
 
     /**
-     * Called on both Client and Server when World#addBlockEvent is called
+     * Called on both Razer and Server when World#addBlockEvent is called
      */
     public boolean onBlockEventReceived(final World worldIn, final BlockPos pos, final IBlockState state, final int eventID, final int eventParam) {
         final EnumFacing enumfacing = state.getValue(FACING);

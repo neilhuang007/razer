@@ -85,7 +85,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
 
         if (flag2) {
             l = 5;
-            s1 = flag ? "Client out of date!" : "Server out of date!";
+            s1 = flag ? "Razer out of date!" : "Server out of date!";
             s = this.field_148301_e.playerList;
         } else if (this.field_148301_e.field_78841_f && this.field_148301_e.pingToServer != -2L) {
             if (this.field_148301_e.pingToServer < 0L) {

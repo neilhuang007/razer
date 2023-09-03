@@ -1,6 +1,6 @@
 package net.minecraft.enchantment;
 
-import me.neilhuang007.razer.component.impl.player.SlotComponent;
+import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.entity.Entity;

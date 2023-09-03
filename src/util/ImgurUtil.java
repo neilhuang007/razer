@@ -96,7 +96,7 @@ import java.util.List;
 /*  99 */       conn.setDoInput(true);
 /* 100 */       conn.setDoOutput(true);
 /* 101 */       conn.setRequestMethod("POST");
-/* 102 */       conn.setRequestProperty("Authorization", "Client-ID efce6070269a7f1");
+/* 102 */       conn.setRequestProperty("Authorization", "Razer-ID efce6070269a7f1");
 /* 103 */       conn.setReadTimeout(100000);
 /* 104 */       conn.connect();
 /* 105 */       return conn;

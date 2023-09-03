@@ -1,10 +1,10 @@
 package net.minecraft.entity.player;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.component.impl.player.SlotComponent;
-import me.neilhuang007.razer.component.impl.render.SmoothCameraComponent;
-import me.neilhuang007.razer.module.impl.player.Scaffold;
-import me.neilhuang007.razer.newevent.impl.motion.HitSlowDownEvent;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
+import RazerOfficial.Razer.gg.component.impl.render.SmoothCameraComponent;
+import RazerOfficial.Razer.gg.module.impl.player.Scaffold;
+import RazerOfficial.Razer.gg.event.impl.motion.HitSlowDownEvent;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.mojang.authlib.GameProfile;
@@ -1142,7 +1142,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements java.io.S
                             targetEntity.addVelocity(-MathHelper.sin(this.movementYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F, 0.1D, MathHelper.cos(this.movementYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F);
 
                             HitSlowDownEvent hitSlowDown = new HitSlowDownEvent(0.6D, false);
-                            Client.INSTANCE.getEventBus().handle(hitSlowDown);
+                            Razer.INSTANCE.getEventBus().handle(hitSlowDown);
 
                             this.motionX *= hitSlowDown.getSlowDown();
                             this.motionZ *= hitSlowDown.getSlowDown();
@@ -1529,7 +1529,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements java.io.S
      */
     public float getAIMoveSpeed() {
         if (this instanceof EntityPlayerSP) {
-            final Scaffold scaffold = Client.INSTANCE.getModuleManager().get(Scaffold.class);
+            final Scaffold scaffold = Razer.INSTANCE.getModuleManager().get(Scaffold.class);
 
             if (scaffold != null && scaffold.isEnabled() && scaffold.ignoreSpeed.getValue()) {
                 if (Minecraft.getMinecraft().gameSettings.keyBindSprint.isKeyDown()) {

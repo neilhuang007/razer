@@ -1,6 +1,6 @@
 package net.optifine;
 
-import me.neilhuang007.razer.util.interfaces.InstanceAccess;
+import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.src.Config;

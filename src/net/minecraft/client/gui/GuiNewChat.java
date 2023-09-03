@@ -1,10 +1,10 @@
 package net.minecraft.client.gui;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.module.Module;
-import me.neilhuang007.razer.module.impl.render.Interface;
-import me.neilhuang007.razer.module.impl.render.UnlimitedChat;
-import me.neilhuang007.razer.ui.ingame.GuiIngameCache;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.module.Module;
+import RazerOfficial.Razer.gg.module.impl.render.Interface;
+import RazerOfficial.Razer.gg.module.impl.render.UnlimitedChat;
+import RazerOfficial.Razer.gg.ui.ingame.GuiIngameCache;
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -72,7 +72,7 @@ public class GuiNewChat extends Gui {
                             ++j;
 
                             if (l1 > 3) {
-                                final Interface interfaceModule = Client.INSTANCE.getModuleManager().get(Interface.class);
+                                final Interface interfaceModule = Razer.INSTANCE.getModuleManager().get(Interface.class);
                                 final int j2 = -i1 * 9;
                                 final String s = chatline.getChatComponent().getFormattedText();
                                 drawRect(0, j2 - 9, interfaceModule != null && interfaceModule.isEnabled() && interfaceModule.limitChatWidth.getValue() ? Math.min(l + 4, this.mc.fontRendererObj.width(s) + 2) : l + 4, j2, 2130706432);
@@ -194,7 +194,7 @@ public class GuiNewChat extends Gui {
             this.field_146253_i.add(0, new ChatLine(p_146237_3_, ichatcomponent, p_146237_2_));
         }
 
-        final Module unlimitedChat = Client.INSTANCE.getModuleManager().get(UnlimitedChat.class);
+        final Module unlimitedChat = Razer.INSTANCE.getModuleManager().get(UnlimitedChat.class);
         int maxSize = unlimitedChat == null || !unlimitedChat.isEnabled() ? 100 : 10000;
 
         while (this.field_146253_i.size() > maxSize) {

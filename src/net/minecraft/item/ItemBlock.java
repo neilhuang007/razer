@@ -1,7 +1,9 @@
 package net.minecraft.item;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,7 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.viamcp.utils.FixedSoundEngine;
+
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -35,39 +37,49 @@ public class ItemBlock extends Item {
      * @param pos  The block being right-clicked
      * @param side The side being right-clicked
      */
-    public boolean onItemUse(final ItemStack stack, final EntityPlayer playerIn, final World worldIn, BlockPos pos, final EnumFacing side, final float hitX, final float hitY, final float hitZ) {
-        return FixedSoundEngine.onItemUse(this, stack, playerIn, worldIn, pos, side, hitX, hitY, hitZ);
-        //        final IBlockState iblockstate = worldIn.getBlockState(pos);
-//        final Block block = iblockstate.getBlock();
-//
-//        if (!block.isReplaceable(worldIn, pos)) {
-//            pos = pos.offset(side);
-//        }
-//
-//        if (stack.stackSize == 0) {
-//            return false;
-//        } else if (!playerIn.canPlayerEdit(pos, side, stack)) {
-//            return false;
-//        } else if (worldIn.canBlockBePlaced(this.block, pos, false, side, null, stack)) {
-//            final int i = this.getMetadata(stack.getMetadata());
-//            IBlockState iblockstate1 = this.block.onBlockPlaced(worldIn, pos, side, hitX, hitY, hitZ, i, playerIn);
-//
-//            if (worldIn.setBlockState(pos, iblockstate1, 3)) {
-//                iblockstate1 = worldIn.getBlockState(pos);
-//
-//                if (iblockstate1.getBlock() == this.block) {
-//                    setTileEntityNBT(worldIn, playerIn, pos, stack);
-//                    this.block.onBlockPlacedBy(worldIn, pos, iblockstate1, playerIn, stack);
-//                }
-//
-//                worldIn.playSoundEffect((float) pos.getX() + 0.5F, (float) pos.getY() + 0.5F, (float) pos.getZ() + 0.5F, this.block.stepSound.getPlaceSound(), (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getFrequency() * 0.8F);
-//                --stack.stackSize;
-//            }
-//
-//            return true;
-//        } else {
-//            return false;
-//        }
+    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        IBlockState iblockstate = worldIn.getBlockState(pos);
+        Block block = iblockstate.getBlock();
+
+        if (!block.isReplaceable(worldIn, pos))
+        {
+            pos = pos.offset(side);
+        }
+
+        if (stack.stackSize == 0)
+        {
+            return false;
+        }
+        else if (!playerIn.canPlayerEdit(pos, side, stack))
+        {
+            return false;
+        }
+        else if (worldIn.canBlockBePlaced(this.block, pos, false, side, (Entity)null, stack))
+        {
+            int i = this.getMetadata(stack.getMetadata());
+            IBlockState iblockstate1 = this.block.onBlockPlaced(worldIn, pos, side, hitX, hitY, hitZ, i, playerIn);
+
+            if (worldIn.setBlockState(pos, iblockstate1, 3))
+            {
+                iblockstate1 = worldIn.getBlockState(pos);
+
+                if (iblockstate1.getBlock() == this.block)
+                {
+                    setTileEntityNBT(worldIn, playerIn, pos, stack);
+                    this.block.onBlockPlacedBy(worldIn, pos, iblockstate1, playerIn, stack);
+                }
+
+                worldIn.playSoundEffect((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), this.block.stepSound.getPlaceSound(), (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getFrequency() * 0.8F);
+                --stack.stackSize;
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public static boolean setTileEntityNBT(final World worldIn, final EntityPlayer pos, final BlockPos stack, final ItemStack p_179224_3_) {

@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-import me.neilhuang007.razer.Client;
+import RazerOfficial.Razer.gg.Razer;
 import net.optifine.util.MathUtils;
 
 import java.util.Random;
@@ -214,11 +214,11 @@ public class MathHelper {
     public static double wrapAngleTo180_double(double value) {
         value = value % 360.0D;
 
-        if (value >= Client.INSTANCE.getConstantManager().O) {
+        if (value >= Razer.INSTANCE.getConstantManager().O) {
             value -= 360.0D;
         }
 
-        if (value < -Client.INSTANCE.getConstantManager().O) {
+        if (value < -Razer.INSTANCE.getConstantManager().O) {
             value += 360.0D;
         }
 

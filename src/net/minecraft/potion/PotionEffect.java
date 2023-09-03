@@ -1,7 +1,7 @@
 package net.minecraft.potion;
 
-import me.neilhuang007.razer.module.impl.movement.PotionExtender;
-import me.neilhuang007.razer.util.interfaces.InstanceAccess;
+import RazerOfficial.Razer.gg.module.impl.movement.PotionExtender;
+import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import org.apache.logging.log4j.LogManager;

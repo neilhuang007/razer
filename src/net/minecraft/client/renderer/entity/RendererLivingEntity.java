@@ -1,8 +1,8 @@
 package net.minecraft.client.renderer.entity;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.render.HurtRenderEvent;
-import me.neilhuang007.razer.util.font.impl.minecraft.FontRenderer;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.render.HurtRenderEvent;
+import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -324,7 +324,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                     }
 
                     final HurtRenderEvent hurtRenderEvent = new HurtRenderEvent(false);
-                    Client.INSTANCE.getEventBus().handle(hurtRenderEvent);
+                    Razer.INSTANCE.getEventBus().handle(hurtRenderEvent);
                     final boolean oldDamage = hurtRenderEvent.isOldDamage();
 
                     if (flag && !oldDamage) {

@@ -1,6 +1,6 @@
 package net.minecraft.client.resources;
 
-import me.neilhuang007.razer.util.interfaces.InstanceAccess;
+import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;

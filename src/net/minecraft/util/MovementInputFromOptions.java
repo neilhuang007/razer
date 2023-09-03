@@ -1,7 +1,7 @@
 package net.minecraft.util;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.input.MoveInputEvent;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.input.MoveInputEvent;
 import net.minecraft.client.settings.GameSettings;
 
 public class MovementInputFromOptions extends MovementInput {
@@ -36,7 +36,7 @@ public class MovementInputFromOptions extends MovementInput {
 
         final MoveInputEvent moveInputEvent = new MoveInputEvent(moveForward, moveStrafe, jump, sneak, 0.3D);
 
-        Client.INSTANCE.getEventBus().handle(moveInputEvent);
+        Razer.INSTANCE.getEventBus().handle(moveInputEvent);
 
         final double sneakMultiplier = moveInputEvent.getSneakSlowDownMultiplier();
         this.moveForward = moveInputEvent.getForward();

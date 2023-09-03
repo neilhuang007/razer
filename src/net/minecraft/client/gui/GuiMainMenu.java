@@ -1,9 +1,9 @@
 package net.minecraft.client.gui;
 
-import me.neilhuang007.razer.util.account.microsoft.MicrosoftLogin;
-import me.neilhuang007.razer.util.interfaces.InstanceAccess;
-import me.neilhuang007.razer.util.shader.RiseShaders;
-import me.neilhuang007.razer.util.shader.base.ShaderRenderType;
+import RazerOfficial.Razer.gg.util.account.microsoft.MicrosoftLogin;
+import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
+import RazerOfficial.Razer.gg.util.shader.RiseShaders;
+import RazerOfficial.Razer.gg.util.shader.base.ShaderRenderType;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;

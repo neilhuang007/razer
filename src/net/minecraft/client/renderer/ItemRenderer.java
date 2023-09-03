@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer;
 
-import me.neilhuang007.razer.Client;
-import me.neilhuang007.razer.newevent.impl.render.RenderItemEvent;
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.render.RenderItemEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -322,7 +322,7 @@ public class ItemRenderer {
                 boolean useItem = itemInUseCount > 0;
 
                 final RenderItemEvent event = new RenderItemEvent(enumaction, useItem, animationProgression, partialTicks, swingProgress, itemToRender);
-                Client.INSTANCE.getEventBus().handle(event);
+                Razer.INSTANCE.getEventBus().handle(event);
                 enumaction = event.getEnumAction();
                 useItem = event.isUseItem();
                 animationProgression = event.getAnimationProgression();
