@@ -14,7 +14,7 @@ difficulty:2
 fancyGraphics:true
 ao:2
 renderClouds:true
-resourcePacks:[]
+resourcePacks:["§b§lFurfSky §f§lReborn §8§lFULL"]
 incompatibleResourcePacks:[]
 lastServer:
 lang:en_US

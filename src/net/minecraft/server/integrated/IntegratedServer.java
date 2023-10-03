@@ -306,6 +306,11 @@ public class IntegratedServer extends MinecraftServer {
         return false;
     }
 
+    @Override
+    public boolean shouldUseNativeTransport() {
+        return false;
+    }
+
     public boolean func_181035_ah() {
         return false;
     }
@@ -454,6 +459,16 @@ public class IntegratedServer extends MinecraftServer {
         return 4;
     }
 
+    @Override
+    public boolean shouldBroadcastRconToOps() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldBroadcastConsoleToOps() {
+        return false;
+    }
+
     private void onTick() {
         for (final WorldServer worldserver : this.worldServers) {
             this.onTick(worldserver);
@@ -530,5 +545,10 @@ public class IntegratedServer extends MinecraftServer {
                 }
             }
         }
+    }
+
+    @Override
+    public String getCommandSenderName() {
+        return null;
     }
 }

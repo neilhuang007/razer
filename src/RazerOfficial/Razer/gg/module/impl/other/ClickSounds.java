@@ -26,16 +26,16 @@ public final class ClickSounds extends Module {
 
     @EventLink()
     public final Listener<ClickEvent> onClick = event -> {
-        String soundName = "rise.click.standard";
+        String soundName = "razor.click.standard";
 
         switch (sound.getValue().getName()) {
             case "Double": {
-                soundName = "rise.click.double";
+                soundName = "razor.click.double";
                 break;
             }
 
             case "Alan": {
-                soundName = "rise.click.alan";
+                soundName = "razor.click.alan";
                 break;
             }
         }

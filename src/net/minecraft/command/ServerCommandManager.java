@@ -100,8 +100,8 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
         if (flag) {
             for (final EntityPlayer entityplayer : minecraftserver.getConfigurationManager().func_181057_v()) {
                 if (entityplayer != sender && minecraftserver.getConfigurationManager().canSendCommands(entityplayer.getGameProfile()) && command.canCommandSenderUseCommand(sender)) {
-                    final boolean flag1 = sender instanceof MinecraftServer && MinecraftServer.getServer().func_183002_r();
-                    final boolean flag2 = sender instanceof RConConsoleSource && MinecraftServer.getServer().func_181034_q();
+                    boolean flag1 = sender instanceof MinecraftServer && MinecraftServer.getServer().shouldBroadcastConsoleToOps();
+                    boolean flag2 = sender instanceof RConConsoleSource && MinecraftServer.getServer().shouldBroadcastRconToOps();
 
                     if (flag1 || flag2 || !(sender instanceof RConConsoleSource) && !(sender instanceof MinecraftServer)) {
                         entityplayer.addChatMessage(ichatcomponent);

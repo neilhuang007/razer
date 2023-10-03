@@ -191,7 +191,7 @@ public class FontManager {
 
     private static Font get(HashMap<Integer, FontRenderer> map, int size, String name, boolean fractionalMetrics, boolean AA, boolean otf, boolean international) {
         if (!map.containsKey(size)) {
-            final java.awt.Font font = FontUtil.getResource("rise/font/" + name + (otf ? ".otf" : ".ttf"), size);
+            final java.awt.Font font = FontUtil.getResource("razor/font/" + name + (otf ? ".otf" : ".ttf"), size);
 
             if (font != null) {
                 map.put(size, new FontRenderer(font, fractionalMetrics, AA, international));

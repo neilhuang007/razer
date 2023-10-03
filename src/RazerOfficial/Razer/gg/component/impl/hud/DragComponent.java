@@ -35,7 +35,7 @@ public class DragComponent extends Component {
     private static final ArrayList<Module> modules = new ArrayList<>();
     private static final Animation animationAlpha = new Animation(Easing.LINEAR, 600);
     public static final StopWatch closeStopWatch = new StopWatch(), stopWatch = new StopWatch();
-    private static final ResourceLocation image = new ResourceLocation("rise/icons/click.png");
+    private static final ResourceLocation image = new ResourceLocation("razor/icons/click.png");
     private static ScaledResolution lastScaledResolution;
 
     public static ArrayList<Snap> snaps = new ArrayList<>();

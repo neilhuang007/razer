@@ -6,7 +6,6 @@ import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreUpdateEvent;
 import RazerOfficial.Razer.gg.module.impl.movement.LongJump;
-import RazerOfficial.Razer.gg.module.impl.other.Test;
 import RazerOfficial.Razer.gg.module.impl.player.AntiVoid;
 import RazerOfficial.Razer.gg.module.impl.player.Scaffold;
 import RazerOfficial.Razer.gg.util.packet.PacketUtil;
@@ -29,7 +28,6 @@ public class BlinkAntiVoid extends Mode<AntiVoid> {
     private int overVoidTicks;
     private Scaffold scaffold;
     private LongJump longJump;
-    private Test test;
 
     public BlinkAntiVoid(String name, AntiVoid parent) {
         super(name, parent);
@@ -53,11 +51,7 @@ public class BlinkAntiVoid extends Mode<AntiVoid> {
             longJump = getModule(LongJump.class);
         }
 
-        if (test == null) {
-            test = getModule(Test.class);
-        }
-
-        if (scaffold.isEnabled() || longJump.isEnabled() || test.isEnabled()) {
+        if (scaffold.isEnabled() || longJump.isEnabled()) {
             return;
         }
 

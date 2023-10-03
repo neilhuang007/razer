@@ -43,7 +43,7 @@ public class LanguageComponent implements InstanceAccess {
                 position.getY() + y + 24, ColorUtil.withAlpha(getStandardClickGUI().getFontColor(), 100).hashCode());
 
         // Draw flag
-        RenderUtil.image(new ResourceLocation("rise/icons/language/" + locale.getFile() + ".png"),
+        RenderUtil.image(new ResourceLocation("razor/icons/language/" + locale.getFile() + ".png"),
                 position.getX() + sidebar + FontManager.getNunito(20).width(this.englishName) + 25, position.getY() + y + 5, 15, 15);
 
         this.lastY = y;

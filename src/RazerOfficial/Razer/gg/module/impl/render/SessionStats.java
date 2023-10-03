@@ -12,7 +12,6 @@ import RazerOfficial.Razer.gg.event.impl.render.Render2DEvent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;
-import RazerOfficial.Razer.gg.module.impl.movement.Flight;
 import RazerOfficial.Razer.gg.util.font.FontManager;
 import RazerOfficial.Razer.gg.util.localization.Localization;
 import RazerOfficial.Razer.gg.util.player.MoveUtil;
@@ -53,8 +52,7 @@ public class SessionStats extends Module {
     @EventLink()
     public final Listener<PreMotionEvent> onPreMotionEvent = event -> {
 
-        if (MoveUtil.isMoving() && MoveUtil.speed() < 0.5 && !mc.thePlayer.inWater &&
-                !Razer.INSTANCE.getModuleManager().get(Flight.class).isEnabled()) {
+        if (MoveUtil.isMoving() && MoveUtil.speed() < 0.5 && !mc.thePlayer.inWater) {
 
             double deltaX = mc.thePlayer.lastTickPosX - mc.thePlayer.posX;
             double deltaZ = mc.thePlayer.lastTickPosZ - mc.thePlayer.posZ;
@@ -63,7 +61,7 @@ public class SessionStats extends Module {
             if (distance < 5) {
                 this.session.distanceWalked += distance;
             }
-        } else if (MoveUtil.isMoving() && Razer.INSTANCE.getModuleManager().get(Flight.class).isEnabled()) {
+        } else if (MoveUtil.isMoving() && false) {
             double deltaX = mc.thePlayer.lastTickPosX - mc.thePlayer.posX;
             double deltaZ = mc.thePlayer.lastTickPosZ - mc.thePlayer.posZ;
             double distance = Math.hypot(deltaX, deltaZ);

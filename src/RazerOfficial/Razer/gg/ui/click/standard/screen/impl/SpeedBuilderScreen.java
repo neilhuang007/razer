@@ -22,7 +22,7 @@ public final class SpeedBuilderScreen extends Screen {
 
     public ScrollUtil scrollUtil = new ScrollUtil();
 
-    private ResourceLocation image = new ResourceLocation("rise/images/SpeedBuilderBackground.png");
+    private ResourceLocation image = new ResourceLocation("razor/images/SpeedBuilderBackground.png");
 
     public ArrayList<Modifier> modifiers = new ArrayList<>();
     public ArrayList<Tick> ticks = new ArrayList<>();
@@ -40,7 +40,7 @@ public final class SpeedBuilderScreen extends Screen {
         selectedTick = ticks.get(0);
 
         //Registering all modifiers
-//        final Reflections reflections = new Reflections("com.riseclient.rise.ui.click.standard.screen.impl.speedbuilder.impl");
+//        final Reflections reflections = new Reflections("com.riseclient.razor.ui.click.standard.screen.impl.speedbuilder.impl");
 //
 //        reflections.getSubTypesOf(Modifier.class).forEach(clazz -> {
 //            try {

@@ -24,7 +24,7 @@ public final class ModuleManager extends ArrayList<Module> {
      * Called on client start and when for some reason when we reinitialize (idk custom modules?)
      */
     public void init() {
-//        final Reflections reflections = new Reflections("com.riseclient.rise.module.impl");
+//        final Reflections reflections = new Reflections("com.riseclient.razor.module.impl");
 //
 //        reflections.getSubTypesOf(Module.class).forEach(clazz -> {
 //            try {

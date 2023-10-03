@@ -117,6 +117,8 @@ public final class RiseClickGUI extends GuiScreen implements InstanceAccess {
 
     @Override
     public void onGuiClosed() {
+        /* removes the blur */
+        Razer.INSTANCE.getModuleManager().get(ClickGUI.class).toggle();
         Keyboard.enableRepeatEvents(false);
         dragging = false;
     }

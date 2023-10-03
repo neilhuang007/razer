@@ -47,12 +47,12 @@ public class Localization {
 
     /**
      * Called on client startup. Populates the maps for each locale by reading and parsing their properties files
-     * located in rise/text
+     * located in razor/text
      */
     @SneakyThrows
     public static void populate() {
         for (Locale locale : Locale.values()) {
-            ResourceLocation resourceLocation = new ResourceLocation("rise/text/" + locale.getFile() + ".properties");
+            ResourceLocation resourceLocation = new ResourceLocation("razor/text/" + locale.getFile() + ".properties");
 
             try (InputStream stream = Minecraft.getMinecraft().getResourceManager().getResource(resourceLocation).getInputStream();
                  BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))) {

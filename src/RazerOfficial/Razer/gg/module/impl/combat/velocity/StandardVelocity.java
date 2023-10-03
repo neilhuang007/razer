@@ -4,7 +4,6 @@ import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketReceiveEvent;
 import RazerOfficial.Razer.gg.module.impl.combat.Velocity;
-import RazerOfficial.Razer.gg.module.impl.movement.Flight;
 import RazerOfficial.Razer.gg.value.Mode;
 import RazerOfficial.Razer.gg.value.impl.NumberValue;
 import net.minecraft.network.Packet;
@@ -16,7 +15,7 @@ public final class StandardVelocity extends Mode<Velocity> {
     private final NumberValue horizontal = new NumberValue("Horizontal", this, 0, 0, 100, 1);
     private final NumberValue vertical = new NumberValue("Vertical", this, 0, 0, 100, 1);
 
-    private Flight fly;
+
 
     public StandardVelocity(String name, Velocity parent) {
         super(name, parent);
@@ -25,11 +24,9 @@ public final class StandardVelocity extends Mode<Velocity> {
     @EventLink()
     public final Listener<PacketReceiveEvent> onPacketReceiveEvent = event -> {
 
-        if (fly == null) {
-            fly = getModule(Flight.class);
-        }
 
-        if (getParent().onSwing.getValue() || getParent().onSprint.getValue() && !mc.thePlayer.isSwingInProgress || fly.isEnabled()) return;
+
+        if (getParent().onSwing.getValue() || getParent().onSprint.getValue() && !mc.thePlayer.isSwingInProgress) return;
         final Packet<?> p = event.getPacket();
 
         final double horizontal = this.horizontal.getValue().doubleValue();

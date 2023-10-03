@@ -77,7 +77,8 @@ public class NetworkSystem {
             final Class<? extends ServerSocketChannel> oclass;
             final LazyLoadBase<? extends EventLoopGroup> lazyloadbase;
 
-            if (Epoll.isAvailable() && this.mcServer.func_181035_ah()) {
+            if (Epoll.isAvailable() && this.mcServer.shouldUseNativeTransport())
+            {
                 oclass = EpollServerSocketChannel.class;
                 lazyloadbase = field_181141_b;
                 logger.info("Using epoll channel type");

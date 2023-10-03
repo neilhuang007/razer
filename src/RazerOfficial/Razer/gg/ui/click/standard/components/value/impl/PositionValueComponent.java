@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class PositionValueComponent extends ValueComponent {
 
-    private final ResourceLocation image = new ResourceLocation("rise/icons/click.png");
+    private final ResourceLocation image = new ResourceLocation("razor/icons/click.png");
 
     public PositionValueComponent(final Value<?> value) {
         super(value);

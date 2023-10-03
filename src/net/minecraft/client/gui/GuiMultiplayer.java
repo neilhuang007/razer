@@ -100,13 +100,13 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback {
 //            this.buttonList.add(ViaMCP.getInstance().asyncSlider);
 //        }
 
-        // Server Finder
-        int width = 100;
-        this.buttonList.add(new GuiButton(9, this.width - width - 5, 5, width, 20, "Server Finder"));
-        width = 50;
-        this.buttonList.add(new GuiButton(10, this.width - width - 5, this.height - 28, width, 20, "Change"));
-        this.buttonList.add(this.btnClearList = new GuiButton(11, this.width - width - 5, this.height - 52, width, 20, "Clear"));
-        this.btnClearList.enabled = usingFinderList;
+//        // Server Finder
+//        int width = 100;
+//        this.buttonList.add(new GuiButton(9, this.width - width - 5, 5, width, 20, "Server Finder"));
+//        width = 50;
+//        this.buttonList.add(new GuiButton(10, this.width - width - 5, this.height - 28, width, 20, "Change"));
+//        this.buttonList.add(this.btnClearList = new GuiButton(11, this.width - width - 5, this.height - 52, width, 20, "Clear"));
+//        this.btnClearList.enabled = usingFinderList;
     }
 
     /**
@@ -175,17 +175,6 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback {
                 this.mc.displayGuiScreen(this.parentScreen);
             } else if (button.id == 8) {
                 this.refreshServerList();
-            } else if (button.id == 9) {
-                this.mc.displayGuiScreen(new ServerFinder());
-            } else if (button.id == 10) {
-                usingFinderList = !usingFinderList;
-                this.btnClearList.enabled = usingFinderList;
-                this.savedServerList.loadServerList();
-                this.serverListSelector.func_148195_a(this.savedServerList);
-            } else if (button.id == 11) {
-                this.savedServerList.clearServers();
-                this.savedServerList.saveServerList();
-                this.serverListSelector.func_148195_a(this.savedServerList);
             }
         }
     }

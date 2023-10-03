@@ -20,7 +20,7 @@ public final class CommandManager extends ArrayList<Command> {
      * Called on client start
      */
     public void init() {
-//        final Reflections reflections = new Reflections("com.riseclient.rise.command.impl");
+//        final Reflections reflections = new Reflections("com.riseclient.razor.command.impl");
 //
 //        reflections.getSubTypesOf(Command.class).forEach(clazz -> {
 //            try {

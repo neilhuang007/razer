@@ -81,7 +81,7 @@ public class GuiConnecting extends GuiScreen {
                     }
 
                     inetaddress = InetAddress.getByName(finalIp);
-                    GuiConnecting.this.networkManager = NetworkManager.func_181124_a(inetaddress, finalPort, GuiConnecting.this.mc.gameSettings.func_181148_f());
+                    GuiConnecting.this.networkManager = NetworkManager.createNetworkManagerAndConnect(inetaddress, finalPort, GuiConnecting.this.mc.gameSettings.func_181148_f());
                     GuiConnecting.this.networkManager.setNetHandler(new NetHandlerLoginClient(GuiConnecting.this.networkManager, GuiConnecting.this.mc, GuiConnecting.this.previousGuiScreen));
                     GuiConnecting.this.networkManager.sendPacket(new C00Handshake(47, finalIp, finalPort, EnumConnectionState.LOGIN));
                     GuiConnecting.this.networkManager.sendPacket(new C00PacketLoginStart(GuiConnecting.this.mc.getSession().getProfile()));

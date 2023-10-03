@@ -28,8 +28,8 @@ import java.io.IOException;
 
 public final class LoginMenu extends Menu {
 
-    private static final ResourceLocation SETTINGS_ICON = new ResourceLocation("rise/icons/main_menu/SettingsIcon.png");
-    private static final ResourceLocation LANGUAGES_ICON = new ResourceLocation("rise/icons/main_menu/LanguagesIcon.png");
+    private static final ResourceLocation SETTINGS_ICON = new ResourceLocation("razor/icons/main_menu/SettingsIcon.png");
+    private static final ResourceLocation LANGUAGES_ICON = new ResourceLocation("razor/icons/main_menu/LanguagesIcon.png");
 
     // "Logo" animation
     private final Font fontRenderer = FontManager.getProductSansRegular(64);
@@ -92,7 +92,7 @@ public final class LoginMenu extends Menu {
         final double destination = this.emailButton.getY() - this.fontRenderer.height();
         this.animation.run(destination);
 
-        // Render the rise "logo"
+        // Render the razor "logo"
         final double value = this.animation.getValue();
         final Color color = ColorUtil.withAlpha(Color.WHITE, (int) (value / destination * 200));
         this.fontRenderer.drawCenteredString("Welcome", width / 2.0F, value - 10, color.getRGB());

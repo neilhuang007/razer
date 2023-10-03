@@ -91,7 +91,7 @@ public class IntroSequence extends GuiScreen {
         ScaledResolution sr = new ScaledResolution(mc);
         RenderUtil.color(Color.WHITE);
         RenderUtil.rectangle(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), Color.BLACK);
-        RenderUtil.image(new ResourceLocation("rise/images/splash.png"), sr.getScaledWidth() / 2D - 75,
+        RenderUtil.image(new ResourceLocation("razor/images/splash.png"), sr.getScaledWidth() / 2D - 75,
                 sr.getScaledHeight() / 2D - 25, 150, 50, new Color(255, 255, 255, (int) this.logoAnimation.getValue()));
 
         if (this.timeTracker.finished(4000)) {

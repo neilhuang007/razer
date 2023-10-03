@@ -25,8 +25,8 @@ import java.io.IOException;
 
 public final class MainMenu extends Menu {
 
-    private static final ResourceLocation SETTINGS_ICON = new ResourceLocation("rise/icons/main_menu/SettingsIcon.png");
-    private static final ResourceLocation LANGUAGES_ICON = new ResourceLocation("rise/icons/main_menu/LanguagesIcon.png");
+    private static final ResourceLocation SETTINGS_ICON = new ResourceLocation("razor/icons/main_menu/SettingsIcon.png");
+    private static final ResourceLocation LANGUAGES_ICON = new ResourceLocation("razor/icons/main_menu/LanguagesIcon.png");
 
     // "Logo" animation
     private final Font fontRenderer = FontManager.getProductSansRegular(64);
@@ -78,7 +78,7 @@ public final class MainMenu extends Menu {
         // String name
         String name = rice ? "Razer" : Razer.NAME;
 
-        // Render the rise "logo"
+        // Render the razor "logo"
         final double value = this.animation.getValue();
         final Color color = ColorUtil.withAlpha(Color.WHITE, (int) (value / destination * 200));
         this.fontRenderer.drawCenteredString(name, width / 2.0F, value, color.getRGB());

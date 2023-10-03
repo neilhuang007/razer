@@ -11,9 +11,9 @@ public class SoundUtil implements InstanceAccess {
     public void toggleSound(final boolean enable) {
         if (mc.thePlayer != null && mc.thePlayer.ticksExisted != ticksExisted) {
             if (enable) {
-                playSound("rise.toggle.enable");
+                playSound("razor.toggle.enable");
             } else {
-                playSound("rise.toggle.disable");
+                playSound("razor.toggle.disable");
             }
             ticksExisted = mc.thePlayer.ticksExisted;
         }

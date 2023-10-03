@@ -39,9 +39,9 @@ public class Radar extends Module {
     private final NumberValue opacity = new NumberValue("Background Opacity", this, 100, 64, 128, 1);
     private final DragValue position = new DragValue("", this, new Vector2d(200, 200), true);
 
-    private final ResourceLocation radarBeamResource = new ResourceLocation("rise/icons/radar/radarbeam.png");
-    private final ResourceLocation radarDotResource = new ResourceLocation("rise/icons/radar/radardot.png");
-    private final ResourceLocation radarScopeResource = new ResourceLocation("rise/icons/radar/radarscope.png");
+    private final ResourceLocation radarBeamResource = new ResourceLocation("razor/icons/radar/radarbeam.png");
+    private final ResourceLocation radarDotResource = new ResourceLocation("razor/icons/radar/radardot.png");
+    private final ResourceLocation radarScopeResource = new ResourceLocation("razor/icons/radar/radarscope.png");
 
     @EventLink()
     public final Listener<Render2DEvent> onRender2D = event -> {

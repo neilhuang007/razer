@@ -72,7 +72,7 @@ public class TargetStrafe extends Module {
          */
         Module speed = getModule(Speed.class);
         Module test = null;
-        Module flight = getModule(Flight.class);
+        Module flight = null;
 
         if (holdJump.getValue() && !mc.gameSettings.keyBindJump.isKeyDown() || !(mc.gameSettings.keyBindForward.isKeyDown() &&
                 ((flight != null && flight.isEnabled()) || ((speed != null && speed.isEnabled()) || (test != null && test.isEnabled()))))) {

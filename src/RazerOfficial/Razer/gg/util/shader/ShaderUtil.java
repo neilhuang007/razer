@@ -65,7 +65,7 @@ public class ShaderUtil implements InstanceAccess {
 
     public static String getShaderResource(final String resource) {
         try {
-            final InputStream inputStream = RESOURCE_MANAGER.getResource(new ResourceLocation("rise/shader/" + resource)).getInputStream();
+            final InputStream inputStream = RESOURCE_MANAGER.getResource(new ResourceLocation("razor/shader/" + resource)).getInputStream();
             final InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String source = "";

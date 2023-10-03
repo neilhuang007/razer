@@ -5,9 +5,7 @@ import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
 import RazerOfficial.Razer.gg.event.impl.other.WorldChangeEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketSendEvent;
-import RazerOfficial.Razer.gg.module.impl.movement.Flight;
 import RazerOfficial.Razer.gg.module.impl.movement.LongJump;
-import RazerOfficial.Razer.gg.module.impl.other.Test;
 import RazerOfficial.Razer.gg.module.impl.player.AntiVoid;
 import RazerOfficial.Razer.gg.module.impl.player.Scaffold;
 import RazerOfficial.Razer.gg.util.packet.PacketUtil;
@@ -29,8 +27,8 @@ public class WatchdogAntiVoid extends Mode<AntiVoid> {
 
     private Scaffold scaffold;
     private LongJump longJump;
-    private Flight fly;
-    private Test test;
+
+
 
     public WatchdogAntiVoid(String name, AntiVoid parent) {
         super(name, parent);
@@ -44,19 +42,11 @@ public class WatchdogAntiVoid extends Mode<AntiVoid> {
             scaffold = getModule(Scaffold.class);
         }
 
-        if (fly== null) {
-            fly = getModule(Flight.class);
-        }
-
         if (longJump == null) {
             longJump = getModule(LongJump.class);
         }
 
-        if (test == null) {
-            test = getModule(Test.class);
-        }
-
-        if (scaffold.isEnabled() || longJump.isEnabled() || test.isEnabled() || fly.isEnabled()) {
+        if (scaffold.isEnabled() || longJump.isEnabled()) {
             return;
         }
 

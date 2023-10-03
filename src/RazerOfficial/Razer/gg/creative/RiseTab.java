@@ -21,7 +21,7 @@ import java.util.List;
 public final class RiseTab extends CreativeTabs implements InstanceAccess {
 
     public RiseTab() {
-        super(12, "rise");
+        super(12, "razor");
     }
 
     @Override

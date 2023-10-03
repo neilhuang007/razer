@@ -28,8 +28,6 @@ import RazerOfficial.Razer.gg.util.file.alt.AltManager;
 import RazerOfficial.Razer.gg.util.file.config.ConfigFile;
 import RazerOfficial.Razer.gg.util.file.config.ConfigManager;
 import RazerOfficial.Razer.gg.util.file.data.DataManager;
-import RazerOfficial.Razer.gg.util.file.insult.InsultFile;
-import RazerOfficial.Razer.gg.util.file.insult.InsultManager;
 import RazerOfficial.Razer.gg.util.localization.Locale;
 import RazerOfficial.Razer.gg.util.math.MathConst;
 import RazerOfficial.Razer.gg.util.value.ConstantManager;
@@ -94,7 +92,7 @@ public enum Razer {
 
     private ConfigManager configManager;
     private AltManager altManager;
-    private InsultManager insultManager;
+
     private TargetManager targetManager;
     private ConstantManager constantManager;
     private PacketLogManager packetLogManager;
@@ -139,7 +137,6 @@ public enum Razer {
         this.fileManager = new FileManager();
         this.configManager = new ConfigManager();
         this.altManager = new AltManager();
-        this.insultManager = new InsultManager();
         this.dataManager = new DataManager();
         this.securityManager = new SecurityFeatureManager();
         this.botManager = new BotManager();
@@ -153,7 +150,7 @@ public enum Razer {
 
         // Register
         String[] paths = {
-                "me.neilhuang007.gg",
+                "RazerOfficial.Razer.gg",
                 "hackclient."
         };
 
@@ -197,7 +194,6 @@ public enum Razer {
         this.fileManager.init();
         this.configManager.init();
         this.altManager.init();
-        this.insultManager.init();
         this.scriptManager.init();
         this.packetLogManager.init();
 
@@ -206,8 +202,7 @@ public enum Razer {
         this.configFile.allowKeyCodeLoading();
         this.configFile.read();
 
-        this.insultManager.update();
-        this.insultManager.forEach(InsultFile::read);
+
 
         this.standardClickGUI = new RiseClickGUI();
         this.dropdownClickGUI = new DropdownClickGUI();

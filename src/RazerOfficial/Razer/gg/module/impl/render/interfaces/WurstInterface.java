@@ -17,7 +17,7 @@ import java.awt.*;
 public class WurstInterface extends Mode<Interface> {
 
     private Font font;
-    private ResourceLocation resourceLocation = new ResourceLocation("rise/logo/wurst.png");
+    private ResourceLocation resourceLocation = new ResourceLocation("razor/logo/wurst.png");
 
     public WurstInterface(String name, Interface parent) {
         super(name, parent);

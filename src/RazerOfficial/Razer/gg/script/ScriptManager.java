@@ -54,7 +54,7 @@ public final class ScriptManager implements InstanceAccess {
         // Create new global bindings
         this.globalBindings = new SimpleBindings() {{
             this.put("mc", new MinecraftAPI());
-            this.put("rise", new RazerAPI());
+            this.put("razor", new RazerAPI());
             this.put("player", new PlayerAPI());
             this.put("world", new WorldAPI());
             this.put("network", new NetworkAPI());
