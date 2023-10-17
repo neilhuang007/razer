@@ -94,19 +94,6 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback {
         this.buttonList.add(new GuiButton(8, this.width / 2 + 4, this.height - 28, 70, 20, I18n.format("selectServer.refresh")));
         this.buttonList.add(new GuiButton(0, this.width / 2 + 4 + 76, this.height - 28, 75, 20, I18n.format("gui.cancel")));
         this.selectServer(this.serverListSelector.func_148193_k());
-
-        // ViaMCP
-//        if (!ViaMCP.isHidden()) {
-//            this.buttonList.add(ViaMCP.getInstance().asyncSlider);
-//        }
-
-//        // Server Finder
-//        int width = 100;
-//        this.buttonList.add(new GuiButton(9, this.width - width - 5, 5, width, 20, "Server Finder"));
-//        width = 50;
-//        this.buttonList.add(new GuiButton(10, this.width - width - 5, this.height - 28, width, 20, "Change"));
-//        this.buttonList.add(this.btnClearList = new GuiButton(11, this.width - width - 5, this.height - 52, width, 20, "Clear"));
-//        this.btnClearList.enabled = usingFinderList;
     }
 
     /**

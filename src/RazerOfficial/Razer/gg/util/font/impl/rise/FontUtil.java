@@ -9,6 +9,8 @@ import java.io.IOException;
 
 public class FontUtil {
 
+
+
     private static final IResourceManager RESOURCE_MANAGER = InstanceAccess.mc.getResourceManager();
 
     /**

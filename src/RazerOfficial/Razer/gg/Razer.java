@@ -19,17 +19,19 @@ import RazerOfficial.Razer.gg.security.SecurityFeatureManager;
 import RazerOfficial.Razer.gg.ui.click.clover.CloverClickGUI;
 import RazerOfficial.Razer.gg.ui.click.dropdown.DropdownClickGUI;
 import RazerOfficial.Razer.gg.ui.click.standard.RiseClickGUI;
-import RazerOfficial.Razer.gg.ui.menu.impl.alt.AltManagerMenu;
+import RazerOfficial.Razer.gg.ui.menu.impl.alt.GuiAccountManager;
+import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.AccountManager;
 import RazerOfficial.Razer.gg.ui.theme.ThemeManager;
 import RazerOfficial.Razer.gg.util.ReflectionUtil;
 import RazerOfficial.Razer.gg.util.file.FileManager;
 import RazerOfficial.Razer.gg.util.file.FileType;
-import RazerOfficial.Razer.gg.util.file.alt.AltManager;
+
 import RazerOfficial.Razer.gg.util.file.config.ConfigFile;
 import RazerOfficial.Razer.gg.util.file.config.ConfigManager;
 import RazerOfficial.Razer.gg.util.file.data.DataManager;
 import RazerOfficial.Razer.gg.util.localization.Locale;
 import RazerOfficial.Razer.gg.util.math.MathConst;
+import RazerOfficial.Razer.gg.util.thealtening.AltService;
 import RazerOfficial.Razer.gg.util.value.ConstantManager;
 import by.radioegor146.nativeobfuscator.Native;
 import lombok.Getter;
@@ -70,6 +72,8 @@ public enum Razer {
     public static Type CLIENT_TYPE = Type.RISE;
 
 
+
+
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     @Setter
@@ -91,7 +95,8 @@ public enum Razer {
     private FileManager fileManager;
 
     private ConfigManager configManager;
-    private AltManager altManager;
+    private AltService altService;
+    private AccountManager AccountManager;
 
     private TargetManager targetManager;
     private ConstantManager constantManager;
@@ -102,12 +107,27 @@ public enum Razer {
     private CloverClickGUI cloverClickGUI;
     private RiseClickGUI standardClickGUI;
     private DropdownClickGUI dropdownClickGUI;
-    private AltManagerMenu altManagerMenu;
+    private GuiAccountManager altManagerMenu;
 
     private RiseTab creativeTab;
 
     @Setter
     private boolean validated;
+
+    public void switchToMojang() {
+        try {
+            altService.switchService(AltService.EnumAltService.MOJANG);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            System.out.println("Couldnt switch to modank altservice");
+        }
+    }
+    public void switchToTheAltening() {
+        try {
+            altService.switchService(AltService.EnumAltService.THEALTENING);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            System.out.println("Couldnt switch to altening altservice");
+        }
+    }
 
     /**
      * The main method when the Minecraft#startGame method is about
@@ -115,6 +135,7 @@ public enum Razer {
      * can start loading our own classes and modules.
      */
     public void initRise() {
+
 
         // Init
         Minecraft mc = Minecraft.getMinecraft();
@@ -130,19 +151,21 @@ public enum Razer {
         mc.gameSettings.ofSmoothFps = false;
         mc.gameSettings.ofFastMath = false;
 
+        File ALT_DIRECTORY = new File(FileManager.DIRECTORY, "alts");
 
         this.moduleManager = new ModuleManager();
         this.componentManager = new ComponentManager();
         this.commandManager = new CommandManager();
         this.fileManager = new FileManager();
         this.configManager = new ConfigManager();
-        this.altManager = new AltManager();
+        this.AccountManager = new AccountManager(ALT_DIRECTORY);
         this.dataManager = new DataManager();
         this.securityManager = new SecurityFeatureManager();
         this.botManager = new BotManager();
         this.themeManager = new ThemeManager();
         this.scriptManager = new ScriptManager();
         this.targetManager = new TargetManager();
+        this.altService = new AltService();
 
         this.constantManager = new ConstantManager();
         this.eventBus = new EventBus();
@@ -150,8 +173,7 @@ public enum Razer {
 
         // Register
         String[] paths = {
-                "RazerOfficial.Razer.gg",
-                "hackclient."
+                "RazerOfficial.Razer.gg"
         };
 
         for (String path : paths) {
@@ -193,7 +215,6 @@ public enum Razer {
         this.commandManager.init();
         this.fileManager.init();
         this.configManager.init();
-        this.altManager.init();
         this.scriptManager.init();
         this.packetLogManager.init();
 
@@ -206,7 +227,7 @@ public enum Razer {
 
         this.standardClickGUI = new RiseClickGUI();
         this.dropdownClickGUI = new DropdownClickGUI();
-        this.altManagerMenu = new AltManagerMenu();
+        this.altManagerMenu = new GuiAccountManager();
 
         this.creativeTab = new RiseTab();
 

@@ -1,6 +1,6 @@
 package net.minecraft.client.gui;
 
-import RazerOfficial.Razer.gg.util.account.microsoft.MicrosoftLogin;
+
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import RazerOfficial.Razer.gg.util.shader.RiseShaders;
 import RazerOfficial.Razer.gg.util.shader.base.ShaderRenderType;
@@ -242,12 +242,11 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback, Instance
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer")));
         this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, I18n.format("menu.multiplayer")));
 
-        if (Reflector.GuiModList_Constructor.exists()) {
-            this.buttonList.add(new GuiButton(14, this.width / 2 + 2, p_73969_1_ + p_73969_2_ * 2, 98, 20, "Login"));
-            this.buttonList.add(this.modButton = new GuiButton(6, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, 98, 20, I18n.format("fml.menu.mods")));
-        } else {
-            this.buttonList.add(new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, "Login"));
-        }
+//        if (Reflector.GuiModList_Constructor.exists()) {
+//            this.buttonList.add(new GuiButton(14, this.width / 2 + 2, p_73969_1_ + p_73969_2_ * 2, 98, 20, "Login"));
+//            this.buttonList.add(this.modButton = new GuiButton(6, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, 98, 20, I18n.format("fml.menu.mods")));
+//        } else {
+//            this.buttonList.add(new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, "Login"));
     }
 
     /**
@@ -284,18 +283,18 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback, Instance
             this.mc.displayGuiScreen(new GuiMultiplayer(this));
         }
 
-        if (button.id == 14) {
-            final String clipboardContent = getClipboardString();
-
-            mc.session = new Session(clipboardContent, "", "", "mojang");
-
-            MicrosoftLogin.getRefreshToken(refreshToken -> {
-                if (refreshToken != null) {
-                    final MicrosoftLogin.LoginData login = MicrosoftLogin.login(refreshToken);
-                    mc.session = new Session(login.username, login.uuid, login.mcToken, "microsoft");
-                }
-            });
-        }
+//        if (button.id == 14) {
+//            final String clipboardContent = getClipboardString();
+//
+//            mc.session = new Session(clipboardContent, "", "", "mojang");
+//
+//            MicrosoftLogin.getRefreshToken(refreshToken -> {
+//                if (refreshToken != null) {
+//                    final MicrosoftLogin.LoginData login = MicrosoftLogin.login(refreshToken);
+//                    mc.session = new Session(login.username, login.uuid, login.mcToken, "microsoft");
+//                }
+//            });
+//        }
 
         if (button.id == 4) {
             this.mc.shutdown();

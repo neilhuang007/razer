@@ -35,34 +35,34 @@ public class RazerAPI {
         return SCRIPT_COMMAND_MAP.get(command);
     }
 
-    public ScriptModule registerModule(final String name, final String description) {
-        // Sometimes my genius is almost frightening
-        final AtomicReference<ScriptModule> scriptModuleReference = new AtomicReference<>(null);
-
-        final Module module = new Module(new ScriptModuleInfo(name, description)) {
-            @Override
-            protected void onEnable() {
-                final ScriptModule scriptModule = scriptModuleReference.get();
-                if (scriptModule == null) return;
-
-                scriptModule.call("onEnable");
-            }
-
-            @Override
-            protected void onDisable() {
-                final ScriptModule scriptModule = scriptModuleReference.get();
-                if (scriptModule == null) return;
-
-                scriptModule.call("onDisable");
-            }
-        };
-
-        scriptModuleReference.set(getModule(module));
-        Razer.INSTANCE.getModuleManager().add(module);
-
-        if(Razer.INSTANCE.getStandardClickGUI() != null) Razer.INSTANCE.getStandardClickGUI().rebuildModuleCache();
-        return scriptModuleReference.get();
-    }
+//    public ScriptModule registerModule(final String name, final String description) {
+//        // Sometimes my genius is almost frightening
+//        final AtomicReference<ScriptModule> scriptModuleReference = new AtomicReference<>(null);
+//
+//        final Module module = new Module(new ScriptModuleInfo(name, description)) {
+//            @Override
+//            protected void onEnable() {
+//                final ScriptModule scriptModule = scriptModuleReference.get();
+//                if (scriptModule == null) return;
+//
+//                scriptModule.call("onEnable");
+//            }
+//
+//            @Override
+//            protected void onDisable() {
+//                final ScriptModule scriptModule = scriptModuleReference.get();
+//                if (scriptModule == null) return;
+//
+//                scriptModule.call("onDisable");
+//            }
+//        };
+//
+//        scriptModuleReference.set(getModule(module));
+//        Razer.INSTANCE.getModuleManager().add(module);
+//
+//        if(Razer.INSTANCE.getStandardClickGUI() != null) Razer.INSTANCE.getStandardClickGUI().rebuildModuleCache();
+//        return scriptModuleReference.get();
+//    }
 
     public ScriptModule[] getModules() {
         final List<Module> modules = Razer.INSTANCE.getModuleManager();
@@ -79,25 +79,25 @@ public class RazerAPI {
         return getModule(Razer.INSTANCE.getModuleManager().get(name));
     }
 
-    public ScriptCommand registerCommand(final String name, final String description) {
-        // Sometimes my genius is almost frightening
-        final AtomicReference<ScriptCommand> scriptCommandReference = new AtomicReference<>(null);
-
-        final Command command = new Command(description, name) {
-            @Override
-            public void execute(final String[] args) {
-                final ScriptCommand scriptCommand = scriptCommandReference.get();
-                if (scriptCommand == null) return;
-
-                scriptCommand.call("onExecute", (Object[]) args);
-            }
-        };
-
-        scriptCommandReference.set(getCommand(command));
-        Razer.INSTANCE.getCommandManager().add(command);
-
-        return scriptCommandReference.get();
-    }
+//    public ScriptCommand registerCommand(final String name, final String description) {
+//        // Sometimes my genius is almost frightening
+//        final AtomicReference<ScriptCommand> scriptCommandReference = new AtomicReference<>(null);
+//
+//        final Command command = new Command(description, name) {
+//            @Override
+//            public void execute(final String[] args) {
+//                final ScriptCommand scriptCommand = scriptCommandReference.get();
+//                if (scriptCommand == null) return;
+//
+//                scriptCommand.call("onExecute", (Object[]) args);
+//            }
+//        };
+//
+//        scriptCommandReference.set(getCommand(command));
+//        Razer.INSTANCE.getCommandManager().add(command);
+//
+//        return scriptCommandReference.get();
+//    }
 
     public ScriptCommand[] getCommands() {
         final List<Command> commands = Razer.INSTANCE.getCommandManager();
