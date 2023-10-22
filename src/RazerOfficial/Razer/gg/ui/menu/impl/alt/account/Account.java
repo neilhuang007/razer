@@ -1,58 +1,42 @@
 package RazerOfficial.Razer.gg.ui.menu.impl.alt.account;
 
+import RazerOfficial.Razer.gg.util.SkinUtil;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.util.ResourceLocation;
 
 
+@Getter
+@Setter
 public class Account {
-    private String mask;
-    private final String username;
+
+
     private String password;
-    private ResourceLocation head;
+    private String username;
+    private String uuid;
+    private String refreshToken;
 
-    public Account(String username, String password) {
-        this(username, password, "");
-    }
-
-    public Account(String username, String password, String mask) {
-        this.mask = "";
-        this.username = username;
+    public Account(final String usernane, final String password) {
+        this.username = usernane;
         this.password = password;
-        this.mask = mask;
+        this.uuid = SkinUtil.uuidOf("Steve");
     }
 
-    public String getMask() {
-        return mask;
+    public Account(String username,String password, String uuid, String refreshToken) {
+        this.password = password;
+        this.username = username;
+        this.uuid = uuid;
+        this.refreshToken = refreshToken;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public ResourceLocation getHead() {
-        this.loadHead();
-        return head;
-    }
-
-    public void setMask(String mask) {
-        this.mask = mask;
+    public void setUsername(String username) {
+        this.username = username;
+        this.uuid = SkinUtil.uuidOf(username);
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    private void loadHead() {
-        if (head == null) {
-            head = new ResourceLocation("heads/" + mask);
-            ThreadDownloadImageData textureHead = new ThreadDownloadImageData(null,
-                    String.format("https://minotar.net/avatar/%s", mask), null, null);
-            Minecraft.getMinecraft().getTextureManager().loadTexture(head, textureHead);
-        }
     }
 }

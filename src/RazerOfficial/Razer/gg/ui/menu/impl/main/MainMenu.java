@@ -15,9 +15,7 @@ import RazerOfficial.Razer.gg.util.render.RenderUtil;
 import RazerOfficial.Razer.gg.util.shader.RiseShaders;
 import RazerOfficial.Razer.gg.util.shader.base.ShaderRenderType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiMultiplayer;
-import net.minecraft.client.gui.GuiSelectWorld;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.*;
 import net.minecraft.util.ResourceLocation;
 
 import java.awt.*;
@@ -35,6 +33,10 @@ public final class MainMenu extends Menu {
     private MenuTextButton singlePlayerButton;
     private MenuTextButton multiPlayerButton;
     private MenuTextButton altManagerButton;
+
+    private MenuTextButton quitButton;
+
+    private MenuButton optionsButton;
 
     private MenuButton[] menuButtons;
 
@@ -70,6 +72,8 @@ public final class MainMenu extends Menu {
         this.singlePlayerButton.draw(mouseX, mouseY, partialTicks);
         this.multiPlayerButton.draw(mouseX, mouseY, partialTicks);
         this.altManagerButton.draw(mouseX, mouseY, partialTicks);
+        this.optionsButton.draw(mouseX, mouseY, partialTicks);
+        this.quitButton.draw(mouseX, mouseY, partialTicks);
 
         // Update the animation
         final double destination = this.singlePlayerButton.getY() - this.fontRenderer.height();
@@ -134,12 +138,13 @@ public final class MainMenu extends Menu {
         // Re-creates the buttons for not having to care about the animation reset
         this.singlePlayerButton = new MenuTextButton(buttonX, buttonY, buttonWidth, buttonHeight, () -> mc.displayGuiScreen(new GuiSelectWorld(this)), "Singleplayer");
         this.multiPlayerButton = new MenuTextButton(buttonX, buttonY + buttonHeight + buttonSpacing, buttonWidth, buttonHeight, () -> mc.displayGuiScreen(new GuiMultiplayer(this)), "Multiplayer");
-        this.altManagerButton = new MenuTextButton(buttonX, buttonY + buttonHeight * 2 + buttonSpacing * 2, buttonWidth, buttonHeight, () -> mc.displayGuiScreen(Razer.INSTANCE.getAltManagerMenu()), "AltManager(needs developement)");
-
+        this.altManagerButton = new MenuTextButton(buttonX, buttonY + buttonHeight * 2 + buttonSpacing * 2, buttonWidth, buttonHeight, () -> mc.displayGuiScreen(Razer.INSTANCE.getAltManagerMenu()), "AltManager");
+        this.optionsButton = new MenuTextButton(buttonX, buttonY + buttonHeight * 3 + buttonSpacing * 3, buttonWidth / 2 - (buttonSpacing/2), buttonHeight, () -> mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings)), "options");
+        this.quitButton = new MenuTextButton(buttonX + buttonWidth / 2 + (buttonSpacing/2), buttonY + buttonHeight * 3 + buttonSpacing * 3, buttonWidth / 2 - (buttonSpacing/2), buttonHeight, () -> mc.shutdown(), "quit");
         // Re-create the logo animation for not having to care about its reset
         this.animation = new Animation(Easing.EASE_OUT_QUINT, 600);
 
         // Putting all buttons in an array for handling mouse clicks
-        this.menuButtons = new MenuButton[]{this.singlePlayerButton, this.multiPlayerButton, this.altManagerButton};
+        this.menuButtons = new MenuButton[]{this.singlePlayerButton, this.multiPlayerButton, this.altManagerButton,this.optionsButton,this.quitButton};
     }
 }

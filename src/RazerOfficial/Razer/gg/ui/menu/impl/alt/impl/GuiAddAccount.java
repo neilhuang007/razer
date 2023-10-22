@@ -47,7 +47,7 @@ public class GuiAddAccount extends GuiScreen {
             try {
                 auth.logIn();
                 Razer.INSTANCE.getAccountManager().getAccounts()
-                        .add(new Account(username, password, auth.getSelectedProfile().getName()));
+                        .add(new Account(username, password));
                 Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
                 status = ("Alt added. (" + username + ")");
             } catch (AuthenticationException e) {

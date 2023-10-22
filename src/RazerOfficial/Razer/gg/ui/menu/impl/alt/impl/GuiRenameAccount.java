@@ -27,7 +27,7 @@ public class GuiRenameAccount extends GuiScreen {
                 mc.displayGuiScreen(manager);
                 break;
             case 0:
-                manager.selectedAlt.setMask(nameField.getText());
+                manager.selectedAlt.setUsername(nameField.getText());
                 if (!pwField.getText().isEmpty())
                     manager.selectedAlt.setPassword(pwField.getText());
                 status = "Edited!";

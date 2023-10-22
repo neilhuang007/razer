@@ -60,7 +60,7 @@ public class GuiAccountManager extends GuiScreen {
                 mc.displayGuiScreen(new GuiAddAccount(this));
                 break;
             case 4:
-                mc.displayGuiScreen(new GuiAccountLogin(this));
+                mc.displayGuiScreen(new GuiMicrosoftLogin(this));
                 break;
             case 5:
                 Account randomAlt = Razer.INSTANCE.getAccountManager().getAccounts().get(new java.util.Random().nextInt(Razer.INSTANCE.getAccountManager().getAccounts().size()));
@@ -73,14 +73,19 @@ public class GuiAccountManager extends GuiScreen {
                 mc.displayGuiScreen(new GuiRenameAccount(this));
                 break;
             case 7:
-                Account lastAlt = Razer.INSTANCE.getAccountManager().getLastAlt();
-                if (lastAlt == null) {
-                    status = "\247cThere is no last used alt!";
-                } else {
-                    String user2 = lastAlt.getUsername();
-                    String pass2 = lastAlt.getPassword();
-                    loginThread = new AuthThread(user2, pass2);
-                    loginThread.start();
+//                Account lastAlt = Razer.INSTANCE.getAccountManager().getLastAlt();
+//                if (lastAlt == null) {
+//                    status = "\247cThere is no last used alt!";
+//                } else {
+//                    String user2 = lastAlt.getUsername();
+//                    String pass2 = lastAlt.getPassword();
+//                    loginThread = new AuthThread(user2, pass2);
+//                    loginThread.start();
+//                }
+//                break;
+                if (!Razer.INSTANCE.getAccountManager().getAccounts().isEmpty()) {
+                    Razer.INSTANCE.getAccountManager().getAccounts().clear();
+                    Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
                 }
                 break;
             case 8:
@@ -88,25 +93,25 @@ public class GuiAccountManager extends GuiScreen {
                 Razer.INSTANCE.getAccountManager().getAltSaving().loadFile();
                 status = "\247bReloaded!";
                 break;
-            case 9:
-                JFrame frame = new JFrame("Import");
-                frame.setAlwaysOnTop(true);
-                AccountImport accountImport = new AccountImport();
-                frame.setContentPane(accountImport);
-                new Thread(() -> accountImport.openButton.doClick()).start();
-                break;
-            case 10:
-                if (!Razer.INSTANCE.getAccountManager().getAccounts().isEmpty()) {
-                    Razer.INSTANCE.getAccountManager().getAccounts().clear();
-                    Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
-                }
-                break;
-            case 11:
-                mc.displayGuiScreen(new GuiMultiplayer(this));
-                break;
-            case 12:
-                mc.displayGuiScreen(new GuiAlteningLogin(this));
-                break;
+//            case 9:
+//                JFrame frame = new JFrame("Import");
+//                frame.setAlwaysOnTop(true);
+//                AccountImport accountImport = new AccountImport();
+//                frame.setContentPane(accountImport);
+//                new Thread(() -> accountImport.openButton.doClick()).start();
+//                break;
+//            case 10:
+//                if (!Razer.INSTANCE.getAccountManager().getAccounts().isEmpty()) {
+//                    Razer.INSTANCE.getAccountManager().getAccounts().clear();
+//                    Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
+//                }
+//                break;
+//            case 11:
+//                mc.displayGuiScreen(new GuiMultiplayer(this));
+//                break;
+//            case 12:
+//                mc.displayGuiScreen(new GuiAlteningLogin(this));
+//                break;
         }
     }
 
@@ -140,9 +145,7 @@ public class GuiAccountManager extends GuiScreen {
         for (Account alt : Razer.INSTANCE.getAccountManager().getAccounts()) {
             if (isAltInArea(y)) {
                 String name;
-                if (alt.getMask().equals("")) {
-                    name = alt.getUsername();
-                } else name = alt.getMask();
+                name = alt.getUsername();
                 String pass;
                 if (alt.getPassword().equals("")) {
                     pass = "\247cCracked";
@@ -204,15 +207,15 @@ public class GuiAccountManager extends GuiScreen {
         buttonList.add(login = new GuiButton(1, width / 2 - 122, height - 48, 100, 20, "Login"));
         buttonList.add(remove = new GuiButton(2, width / 2 - 40, height - 24, 70, 20, "Remove"));
         buttonList.add(new GuiButton(3, width / 2 + 4 + 86, height - 48, 100, 20, "Add"));
-        buttonList.add(new GuiButton(4, width / 2 - 16, height - 48, 100, 20, "Direct Login"));
+        buttonList.add(new GuiButton(4, width / 2 - 16, height - 48, 100, 20, "Microsoft Login"));
         buttonList.add(random = new GuiButton(5, width / 2 - 122, height - 24, 78, 20, "Random"));
         buttonList.add(rename = new GuiButton(6, width / 2 + 38, height - 24, 70, 20, "Edit"));
-        buttonList.add(new GuiButton(7, width / 2 - 190, height - 24, 60, 20, "Last Alt"));
+        buttonList.add(new GuiButton(7, width / 2 - 190, height - 24, 60, 20, "Clear"));
         buttonList.add(new GuiButton(8, width / 2 - 190, height - 48, 60, 20, "Reload"));
-        buttonList.add(new GuiButton(9, width / 2 - 247, height - 24, 50, 20, "Import"));
-        buttonList.add(new GuiButton(10, width / 2 - 247, height - 48, 50, 20, "Clear"));
-        buttonList.add(new GuiButton(11, width / 2 + 198, height - 24, 75, 20, "MultiPlayer"));
-        buttonList.add(new GuiButton(12, width / 2 + 198, height - 48, 75, 20, "TheAltening"));
+//        buttonList.add(new GuiButton(9, width / 2 - 247, height - 24, 50, 20, "Import"));
+//        buttonList.add(new GuiButton(10, width / 2 - 247, height - 48, 50, 20, "Clear"));
+//        buttonList.add(new GuiButton(11, width / 2 + 198, height - 24, 75, 20, "MultiPlayer"));
+//        buttonList.add(new GuiButton(12, width / 2 + 198, height - 48, 75, 20, "TheAltening"));
         login.enabled = false;
         remove.enabled = false;
         rename.enabled = false;
