@@ -180,7 +180,7 @@ public class ModernInterface extends Mode<Interface> {
                 // information of user in the bottom right corner of the screen
                 final float x = event.getScaledResolution().getScaledWidth();
                 final float y = event.getScaledResolution().getScaledHeight() - this.productSansRegular.height() - 1;
-                this.productSansRegular.drawStringWithShadow("RiseClient.com", x - userWidth - 5, y, 0xFFCCCCCC);
+//                this.productSansRegular.drawStringWithShadow("RiseClient.com", x - userWidth - 5, y, 0xFFCCCCCC);
 //                this.productSansMedium18.drawStringWithShadow(username, x - nameWidth - 5, y, 0xFFCCCCCC);
 
                 // coordinates of user in the bottom left corner of the screen
@@ -197,7 +197,7 @@ public class ModernInterface extends Mode<Interface> {
         // information of user in the bottom right corner of the screen
         final float x = event.getScaledResolution().getScaledWidth();
         final float y = event.getScaledResolution().getScaledHeight() - this.productSansRegular.height() - 1;
-        this.productSansRegular.drawStringWithShadow("RiseClient.com", x - userWidth - 5, y, 0xFFCCCCCC);
+//        this.productSansRegular.drawStringWithShadow("RiseClient.com", x - userWidth - 5, y, 0xFFCCCCCC);
 //        this.productSansMedium18.drawStringWithShadow(username, x - nameWidth - 5, y, 0xFFCCCCCC);
 
         // coordinates of user in the bottom left corner of the screen
@@ -243,7 +243,7 @@ public class ModernInterface extends Mode<Interface> {
 
             username = mc.getSession() == null || mc.getSession().getUsername() == null ? "null" : mc.getSession().getUsername();
             nameWidth = this.productSansMedium18.width(username);
-            userWidth = this.productSansRegular.width("RiseClient.com") + 2;
+//            userWidth = this.productSansRegular.width("RiseClient.com") + 2;
             coordinates = (int) mc.thePlayer.posX + ", " + (int) mc.thePlayer.posY + ", " + (int) mc.thePlayer.posZ;
             xyzWidth = this.productSansMedium18.width("XYZ:") + 2;
 
