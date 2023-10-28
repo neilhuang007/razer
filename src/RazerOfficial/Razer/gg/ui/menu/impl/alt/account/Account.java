@@ -12,23 +12,39 @@ import net.minecraft.util.ResourceLocation;
 @Setter
 public class Account {
 
-
-    private String password;
     private String username;
+    private String AccountType;
+    private String password;
     private String uuid;
     private String refreshToken;
+
+
 
     public Account(final String usernane, final String password) {
         this.username = usernane;
         this.password = password;
         this.uuid = SkinUtil.uuidOf("Steve");
+        this.AccountType = "MOJANG";
     }
 
-    public Account(String username,String password, String uuid, String refreshToken) {
+    public Account(String username, String uuid, String refreshToken) {
+        this.username = username;
+        this.uuid = uuid;
+        this.refreshToken = refreshToken;
+        this.AccountType = "MICROSOFT";
+    }
+
+    public Account(String password, String username, String uuid, String refreshToken) {
         this.password = password;
         this.username = username;
         this.uuid = uuid;
         this.refreshToken = refreshToken;
+    }
+
+    public Account(String username) {
+        this.username = username;
+        this.uuid = SkinUtil.uuidOf("Steve");
+        this.AccountType = "CRACKED";
     }
 
     public void setUsername(String username) {

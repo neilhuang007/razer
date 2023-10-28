@@ -2,115 +2,119 @@ package RazerOfficial.Razer.gg.ui.menu.impl.alt.account;
 
 
 import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.util.file.FileType;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
-public class AltSaving {
-    private static File altFile;
-    private static File lastAltFile;
-    private static File alteningFile;
 
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    public AltSaving(File dir) {
-        altFile = new File(dir + File.separator + "alts.json");
-        lastAltFile = new File(dir + File.separator + "lastalt.json");
-        alteningFile = new File(dir + File.separator + "alteningkey.json");
+public class AltSaving extends RazerOfficial.Razer.gg.util.file.File {
+    private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+
+    public AltSaving(final File file, final FileType fileType) {
+        super(file, fileType);
     }
 
-    public void setup() {
-        // Tries to create the module's file.
+    @Override
+    public boolean read() {
+        if (!this.getFile().exists()) {
+            return false;
+        }
+
+        Razer.INSTANCE.getAccountManager().getAccounts().clear();
+
         try {
-            // Creates the module file if it doesn't exist.
-            if (!altFile.exists()) {
+            // reads file to a json object
+            final FileReader fileReader = new FileReader(this.getFile());
+            final BufferedReader bufferedReader = new BufferedReader(fileReader);
+            final JsonObject jsonObject = GSON.fromJson(bufferedReader, JsonObject.class);
 
-                // Creates the module's file.
-                altFile.createNewFile();
-                // Returns because there is no need to load.
-                return;
+            // closes both readers
+            bufferedReader.close();
+            fileReader.close();
+
+            // checks if there was data read
+            if (jsonObject == null) {
+                return false;
             }
 
-            // Loads the file.
-            loadFile();
-        } catch (IOException exception) {
-        }
-    }
+            for (Map.Entry<String, JsonElement> jsonElement : jsonObject.entrySet()) {
+                if (jsonElement.getKey().equals("Metadata")) {
+                    continue;
+                }
 
-    public void loadLastAltFile() {
-        if (!lastAltFile.exists()) {
-            try {
-                lastAltFile.createNewFile();
-            } catch (IOException e) {
+                // TODO: Might wanna add "has" checks for each field so it doesn't shit itself while loading
+                JsonObject accountJSONElement = jsonElement.getValue().getAsJsonObject();
+                String username = accountJSONElement.get("username").getAsString();
+                String password = accountJSONElement.get("password").getAsString();
+                String uuid = accountJSONElement.get("uuid").getAsString();
+                String refreshToken = accountJSONElement.get("refreshtoken").getAsString();
+                String accounttype = accountJSONElement.get("accounttype").getAsString();
+                Account account = new Account(password, jsonElement.getKey(), uuid, refreshToken);
+                Razer.INSTANCE.getAccountManager().getAccounts().add(account);
             }
-            return;
+
+        } catch (final IOException ignored) {
+            return false;
         }
-        try (FileReader inFile = new FileReader(lastAltFile)) {
-            Razer.INSTANCE.getAccountManager().setLastAlt(GSON.fromJson(inFile, new TypeToken<Account>() {
-            }.getType()));
-        } catch (Exception e) {
-        }
+
+        return true;
     }
 
-    public void loadAlteningTokenFile() {
-        if (!alteningFile.exists()) {
-            try {
-                alteningFile.createNewFile();
-            } catch (IOException e) {
+    @Override
+    public boolean write() {
+        try {
+            // creates the file
+            if (!this.getFile().exists()) {
+                this.getFile().createNewFile();
             }
-            return;
-        }
-        try (FileReader inFile = new FileReader(alteningFile)) {
-            Razer.INSTANCE.getAccountManager().setAlteningToken(GSON.fromJson(inFile, new TypeToken<String>() {
-            }.getType()));
-        } catch (Exception e) {
-        }
-    }
 
-    public void loadFile() {
-        if (!altFile.exists()) {
-            return;
-        }
-        try (FileReader inFile = new FileReader(altFile)) {
-            Razer.INSTANCE.getAccountManager().setAccounts(GSON.fromJson(inFile, new TypeToken<ArrayList<Account>>() {
-            }.getType()));
+            // creates a new json object where all data is stored in
+            final JsonObject jsonObject = new JsonObject();
 
-            if (Razer.INSTANCE.getAccountManager().getAccounts() == null)
-                Razer.INSTANCE.getAccountManager().setAccounts(new ArrayList<Account>());
+            // Add some extra information to the config
+            final JsonObject metadataJsonObject = new JsonObject();
+            metadataJsonObject.addProperty("version", Razer.VERSION);
+            metadataJsonObject.addProperty("creationDate", DATE_FORMATTER.format(new Date()));
+            jsonObject.add("Metadata", metadataJsonObject);
 
-        } catch (Exception e) {
-        }
-    }
+            for (Account account : Razer.INSTANCE.getAccountManager().getAccounts()) {
+                if (account.getUsername() == null) {
+                    continue;
+                }
 
-    public void saveFile() {
-        if (altFile.exists()) {
-            try (PrintWriter writer = new PrintWriter(altFile)) {
-                writer.print(GSON.toJson(Razer.INSTANCE.getAccountManager().getAccounts()));
-            } catch (Exception e) {
+                final JsonObject moduleJsonObject = new JsonObject();
+                moduleJsonObject.addProperty("username", account.getUsername());
+                moduleJsonObject.addProperty("password", account.getPassword());
+                moduleJsonObject.addProperty("uuid", account.getUuid());
+                moduleJsonObject.addProperty("refreshtoken", account.getRefreshToken());
+                moduleJsonObject.addProperty("accounttype", account.getAccountType());
+                jsonObject.add(account.getUsername(), moduleJsonObject);
             }
-        }
-    }
 
-    public void saveLastAltFile() {
-        if (Razer.INSTANCE.getAccountManager().getLastAlt() != null) {
-            try (PrintWriter writer = new PrintWriter(lastAltFile)) {
-                writer.print(GSON.toJson(Razer.INSTANCE.getAccountManager().getLastAlt()));
-            } catch (Exception e) {
-            }
+            // writes json object data to a file
+            final FileWriter fileWriter = new FileWriter(getFile());
+            final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            GSON.toJson(jsonObject, bufferedWriter);
+
+            // closes the writer
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (final IOException ignored) {
+            return false;
         }
-    }
-    public void saveAlteningTokenFile() {
-        if (Razer.INSTANCE.getAccountManager().getAlteningToken() != null) {
-            try (PrintWriter writer = new PrintWriter(alteningFile)) {
-                writer.print(GSON.toJson(Razer.INSTANCE.getAccountManager().getAlteningToken()));
-            } catch (Exception e) {
-            }
-        }
+
+        return true;
     }
 }

@@ -3,6 +3,7 @@ package RazerOfficial.Razer.gg.ui.menu.impl.alt;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.Account;
+import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.AltSaving;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.impl.*;
 import RazerOfficial.Razer.gg.util.render.RenderUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
@@ -52,7 +53,7 @@ public class GuiAccountManager extends GuiScreen {
                 }
                 Razer.INSTANCE.getAccountManager().getAccounts().remove(selectedAlt);
                 status = "\247aRemoved.";
-                Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
+                Razer.INSTANCE.getAccountManager().get("alts").write();
 
                 selectedAlt = null;
                 break;
@@ -73,45 +74,16 @@ public class GuiAccountManager extends GuiScreen {
                 mc.displayGuiScreen(new GuiRenameAccount(this));
                 break;
             case 7:
-//                Account lastAlt = Razer.INSTANCE.getAccountManager().getLastAlt();
-//                if (lastAlt == null) {
-//                    status = "\247cThere is no last used alt!";
-//                } else {
-//                    String user2 = lastAlt.getUsername();
-//                    String pass2 = lastAlt.getPassword();
-//                    loginThread = new AuthThread(user2, pass2);
-//                    loginThread.start();
-//                }
-//                break;
                 if (!Razer.INSTANCE.getAccountManager().getAccounts().isEmpty()) {
                     Razer.INSTANCE.getAccountManager().getAccounts().clear();
-                    Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
+                    Razer.INSTANCE.getAccountManager().get("alts").read();
                 }
                 break;
             case 8:
                 Razer.INSTANCE.getAccountManager().getAccounts().clear();
-                Razer.INSTANCE.getAccountManager().getAltSaving().loadFile();
+                Razer.INSTANCE.getAccountManager().get("alts").read();
                 status = "\247bReloaded!";
                 break;
-//            case 9:
-//                JFrame frame = new JFrame("Import");
-//                frame.setAlwaysOnTop(true);
-//                AccountImport accountImport = new AccountImport();
-//                frame.setContentPane(accountImport);
-//                new Thread(() -> accountImport.openButton.doClick()).start();
-//                break;
-//            case 10:
-//                if (!Razer.INSTANCE.getAccountManager().getAccounts().isEmpty()) {
-//                    Razer.INSTANCE.getAccountManager().getAccounts().clear();
-//                    Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
-//                }
-//                break;
-//            case 11:
-//                mc.displayGuiScreen(new GuiMultiplayer(this));
-//                break;
-//            case 12:
-//                mc.displayGuiScreen(new GuiAlteningLogin(this));
-//                break;
         }
     }
 
@@ -147,7 +119,7 @@ public class GuiAccountManager extends GuiScreen {
                 String name;
                 name = alt.getUsername();
                 String pass;
-                if (alt.getPassword().equals("")) {
+                if (alt.getAccountType() == "CRACKED") {
                     pass = "\247cCracked";
                 } else {
                     pass = alt.getPassword().replaceAll(".", "*");

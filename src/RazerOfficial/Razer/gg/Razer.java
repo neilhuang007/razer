@@ -151,14 +151,12 @@ public enum Razer {
         mc.gameSettings.ofSmoothFps = false;
         mc.gameSettings.ofFastMath = false;
 
-        File ALT_DIRECTORY = new File(FileManager.DIRECTORY, "alts");
-
         this.moduleManager = new ModuleManager();
         this.componentManager = new ComponentManager();
         this.commandManager = new CommandManager();
         this.fileManager = new FileManager();
         this.configManager = new ConfigManager();
-        this.AccountManager = new AccountManager(ALT_DIRECTORY);
+        this.AccountManager = new AccountManager();
         this.dataManager = new DataManager();
         this.securityManager = new SecurityFeatureManager();
         this.botManager = new BotManager();

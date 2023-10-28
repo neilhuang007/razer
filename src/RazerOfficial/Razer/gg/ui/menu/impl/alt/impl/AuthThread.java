@@ -46,12 +46,10 @@ public class AuthThread extends Thread {
 
     @Override
     public void run() {
-        if (mc.currentScreen instanceof GuiAlteningLogin) Razer.INSTANCE.switchToTheAltening();
-        else Razer.INSTANCE.switchToMojang();
+        Razer.INSTANCE.switchToMojang();
         if (password.equals("")) {
             mc.session = new Session(username, "", "", "mojang");
             status = (ChatFormatting.GREEN + "Logged in. (" + username + " - offline name)");
-            Razer.INSTANCE.getAccountManager().getAltSaving().saveLastAltFile();
             return;
         }
         status = (ChatFormatting.AQUA + "Logging in...");
@@ -59,10 +57,8 @@ public class AuthThread extends Thread {
         if (auth == null) {
             status = (ChatFormatting.RED + "Login failed!");
         } else {
-            Razer.INSTANCE.getAccountManager().setLastAlt((new Account(username, password)));
             status = (ChatFormatting.GREEN + "Logged in. (" + auth.getUsername() + ")");
             mc.session = auth;
-            Razer.INSTANCE.getAccountManager().getAltSaving().saveLastAltFile();
         }
     }
 

@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import net.raphimc.mcauth.step.java.StepGameOwnership;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 
@@ -234,7 +235,7 @@ public class MicrosoftLogin {
     private static class McResponse {
         @Expose
         @SerializedName("access_token")
-        public String access_token;
+        public static String access_token;
     }
 
     private static class GameOwnershipResponse {
@@ -249,6 +250,8 @@ public class MicrosoftLogin {
         }
 
         private boolean hasGameOwnership() {
+            System.out.println("gameownership res:" +
+                    Browser.getBearerResponse("https://api.minecraftservices.com/entitlements/mcstore", McResponse.access_token));
             boolean hasProduct = false;
             boolean hasGame = false;
 
