@@ -62,6 +62,7 @@ public class GuiAddAccount extends GuiScreen {
             if (password.equals("") && combined.getText().isEmpty()) {
                 Razer.INSTANCE.getAccountManager().getAccounts().add(new Account(username));
                 status = (EnumChatFormatting.GREEN + "Alt added. (" + username + " - offline name)");
+                Razer.INSTANCE.getAccountManager().get("alts").write();
                 return;
             }
             status = (EnumChatFormatting.AQUA + "Trying alt...");

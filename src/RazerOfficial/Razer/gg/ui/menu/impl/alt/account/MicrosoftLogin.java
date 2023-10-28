@@ -49,7 +49,8 @@ public class MicrosoftLogin {
         }
     }
 
-    private static final String CLIENT_ID = "9d3162df-30db-4567-93c5-e0b8a5166936", CLIENT_SECRET = "ndQ8Q~j4dkkiXziJe1IXGeYmUaIr37KY9lpSPbZw";
+    //private static final String CLIENT_ID = "9d3162df-30db-4567-93c5-e0b8a5166936", CLIENT_SECRET = "ndQ8Q~j4dkkiXziJe1IXGeYmUaIr37KY9lpSPbZw";
+    private static final String CLIENT_ID = "9fbc7315-7200-4b2b-a655-bb38c865da17", CLIENT_SECRET = "Bzn8Q~YryydJsydgnnxHgJq.NM3Oo4.AEEohLbBb";
     private static final int PORT = 8247;
 
     private static HttpServer server;

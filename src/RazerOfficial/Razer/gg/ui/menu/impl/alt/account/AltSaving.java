@@ -33,17 +33,17 @@ public class AltSaving extends RazerOfficial.Razer.gg.util.file.File {
             // reads file to a json object
             final FileReader fileReader = new FileReader(this.getFile());
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
-            final JsonArray jsonArray = GSON.fromJson(bufferedReader, JsonArray.class);
+            final JsonObject jsonObject = GSON.fromJson(bufferedReader, JsonObject.class);
 
             // closes both readers
             bufferedReader.close();
             fileReader.close();
 
             // checks if there was data read
-            if (jsonArray == null) {
+            if (jsonObject == null) {
                 return false;
             }
-
+            
             for (Map.Entry<String, JsonElement> jsonElement : jsonObject.entrySet()) {
                 if (jsonElement.getKey().equals("Metadata")) {
                     continue;
@@ -51,12 +51,18 @@ public class AltSaving extends RazerOfficial.Razer.gg.util.file.File {
 
                 // TODO: Might wanna add "has" checks for each field so it doesn't shit itself while loading
                 JsonObject accountJSONElement = jsonElement.getValue().getAsJsonObject();
+                String password = "";
+                String refreshToken = "";
+                if(accountJSONElement.has("password")){
+                    password = accountJSONElement.get("password").getAsString();
+                }
+                if(accountJSONElement.has("refreshtoken")){
+                    refreshToken = accountJSONElement.get("refreshtoken").getAsString();
+                }
                 String username = accountJSONElement.get("username").getAsString();
-                String password = accountJSONElement.get("password").getAsString();
                 String uuid = accountJSONElement.get("uuid").getAsString();
-                String refreshToken = accountJSONElement.get("refreshtoken").getAsString();
                 String accounttype = accountJSONElement.get("accounttype").getAsString();
-                Account account = new Account(password, jsonElement.getKey(), uuid, refreshToken);
+                Account account = new Account(username,password, uuid, refreshToken,accounttype);
                 Razer.INSTANCE.getAccountManager().getAccounts().add(account);
             }
 

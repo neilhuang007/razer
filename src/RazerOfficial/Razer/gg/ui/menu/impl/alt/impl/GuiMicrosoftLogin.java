@@ -4,6 +4,7 @@ import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.GuiAccountManager;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.Account;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.MicrosoftLogin;
+import RazerOfficial.Razer.gg.util.SkinUtil;
 import com.mojang.authlib.exceptions.AuthenticationException;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
@@ -41,12 +42,11 @@ public class GuiMicrosoftLogin extends GuiScreen {
                     if (refreshToken != null) {
                         new Thread(() -> {
                             MicrosoftLogin.LoginData loginData = loginWithRefreshToken(refreshToken);
-                            Account account = new Account(loginData.username, "************");
+                            Account account = new Account(loginData.username, SkinUtil.uuidOf(loginData.username),loginData.newRefreshToken);
                             account.setUsername(loginData.username);
-                            account.setRefreshToken(loginData.newRefreshToken); // TODO: THIS IS IMPORTANT
+                            //account.setRefreshToken(loginData.newRefreshToken); // TODO: THIS IS IMPORTANT
                             Razer.INSTANCE.getAccountManager().getAccounts().add(account);
-
-                            Razer.INSTANCE.getAccountManager().set("alts");
+                            Razer.INSTANCE.getAccountManager().get("alts").write();
                         }).start();
                     }
                 });

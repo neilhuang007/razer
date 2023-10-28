@@ -15,6 +15,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import sun.security.util.Length;
 
 import javax.swing.*;
 import java.awt.*;
@@ -119,7 +120,7 @@ public class GuiAccountManager extends GuiScreen {
                 String name;
                 name = alt.getUsername();
                 String pass;
-                if (alt.getAccountType() == "CRACKED") {
+                if ("CRACKED".equals(alt.getAccountType())) {
                     pass = "\247cCracked";
                 } else {
                     pass = alt.getPassword().replaceAll(".", "*");
@@ -184,13 +185,10 @@ public class GuiAccountManager extends GuiScreen {
         buttonList.add(rename = new GuiButton(6, width / 2 + 38, height - 24, 70, 20, "Edit"));
         buttonList.add(new GuiButton(7, width / 2 - 190, height - 24, 60, 20, "Clear"));
         buttonList.add(new GuiButton(8, width / 2 - 190, height - 48, 60, 20, "Reload"));
-//        buttonList.add(new GuiButton(9, width / 2 - 247, height - 24, 50, 20, "Import"));
-//        buttonList.add(new GuiButton(10, width / 2 - 247, height - 48, 50, 20, "Clear"));
-//        buttonList.add(new GuiButton(11, width / 2 + 198, height - 24, 75, 20, "MultiPlayer"));
-//        buttonList.add(new GuiButton(12, width / 2 + 198, height - 48, 75, 20, "TheAltening"));
         login.enabled = false;
         remove.enabled = false;
         rename.enabled = false;
+        Razer.INSTANCE.getAccountManager().get("alts").read();
     }
 
     private boolean isAltInArea(int y) {
