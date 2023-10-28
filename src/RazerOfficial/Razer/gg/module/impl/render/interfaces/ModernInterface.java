@@ -197,7 +197,7 @@ public class ModernInterface extends Mode<Interface> {
         // information of user in the bottom right corner of the screen
         final float x = event.getScaledResolution().getScaledWidth();
         final float y = event.getScaledResolution().getScaledHeight() - this.productSansRegular.height() - 1;
-        this.productSansRegular.drawStringWithShadow("RiseClient.com", x - userWidth - 5, y, 0xFFCCCCCC);
+        this.productSansRegular.drawStringWithShadow("BY NEILHUANG007", x - userWidth - 5, y, 0xFFCCCCCC);
 //        this.productSansMedium18.drawStringWithShadow(username, x - nameWidth - 5, y, 0xFFCCCCCC);
 
         // coordinates of user in the bottom left corner of the screen

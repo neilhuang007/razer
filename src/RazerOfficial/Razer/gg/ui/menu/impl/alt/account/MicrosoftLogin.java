@@ -27,7 +27,7 @@ import java.util.function.Consumer;
 
 public class MicrosoftLogin {
 
-    private static final ExecutorService executor = Executors.newSingleThreadExecutor();
+    static ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public static class LoginData {
         public String mcToken;
@@ -37,7 +37,7 @@ public class MicrosoftLogin {
         public LoginData() {
         }
 
-        public LoginData(final String mcToken, final String newRefreshToken, final String uuid, final String username) {
+        public LoginData(String mcToken, String newRefreshToken, String uuid, String username) {
             this.mcToken = mcToken;
             this.newRefreshToken = newRefreshToken;
             this.uuid = uuid;
@@ -55,42 +55,37 @@ public class MicrosoftLogin {
     private static HttpServer server;
     private static Consumer<String> callback;
 
-    private static void browse(final String url) {
-        // set clipboard to url
-        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            try {
-                Desktop.getDesktop().browse(new URI(url));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (URISyntaxException e) {
-                throw new RuntimeException(e);
-            }
+    static void browse(String url) {
+        try {
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
         }
     }
 
-    public static void getRefreshToken(final Consumer<String> callback) {
+    public static void getRefreshToken(Consumer<String> callback) {
         MicrosoftLogin.callback = callback;
 
         startServer();
         browse("https://login.live.com/oauth20_authorize.srf?client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET + "&response_type=code&redirect_uri=http://localhost:" + PORT + "&scope=XboxLive.signin%20offline_access");
     }
 
-    private static final Gson gson = new Gson();
+    static Gson gson = new Gson();
 
     public static LoginData login(String refreshToken) {
         // Refresh access token
-        final AuthTokenResponse res = gson.fromJson(
+        AuthTokenResponse res = gson.fromJson(
                 Browser.postExternal("https://login.live.com/oauth20_token.srf", "client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET + "&refresh_token=" + refreshToken + "&grant_type=refresh_token&redirect_uri=http://localhost:" + PORT, false),
                 AuthTokenResponse.class
         );
 
         if (res == null) return new LoginData();
 
-        final String accessToken = res.access_token;
+        String accessToken = res.access_token;
         refreshToken = res.refresh_token;
 
         // XBL
-        final XblXstsResponse xblRes = gson.fromJson(
+        XblXstsResponse xblRes = gson.fromJson(
                 Browser.postExternal("https://user.auth.xboxlive.com/user/authenticate",
                         "{\"Properties\":{\"AuthMethod\":\"RPS\",\"SiteName\":\"user.auth.xboxlive.com\",\"RpsTicket\":\"d=" + accessToken + "\"},\"RelyingParty\":\"http://auth.xboxlive.com\",\"TokenType\":\"JWT\"}", true),
                 XblXstsResponse.class);
@@ -98,7 +93,7 @@ public class MicrosoftLogin {
         if (xblRes == null) return new LoginData();
 
         // XSTS
-        final XblXstsResponse xstsRes = gson.fromJson(
+        XblXstsResponse xstsRes = gson.fromJson(
                 Browser.postExternal("https://xsts.auth.xboxlive.com/xsts/authorize",
                         "{\"Properties\":{\"SandboxId\":\"RETAIL\",\"UserTokens\":[\"" + xblRes.Token + "\"]},\"RelyingParty\":\"rp://api.minecraftservices.com/\",\"TokenType\":\"JWT\"}", true),
                 XblXstsResponse.class);
@@ -106,7 +101,7 @@ public class MicrosoftLogin {
         if (xstsRes == null) return new LoginData();
 
         // Minecraft
-        final McResponse mcRes = gson.fromJson(
+        McResponse mcRes = gson.fromJson(
                 Browser.postExternal("https://api.minecraftservices.com/authentication/login_with_xbox",
                         "{\"identityToken\":\"XBL3.0 x=" + xblRes.DisplayClaims.xui[0].uhs + ";" + xstsRes.Token + "\"}", true),
                 McResponse.class);
@@ -114,14 +109,14 @@ public class MicrosoftLogin {
         if (mcRes == null) return new LoginData();
 
         // Check game ownership
-        final GameOwnershipResponse gameOwnershipRes = gson.fromJson(
+        GameOwnershipResponse gameOwnershipRes = gson.fromJson(
                 Browser.getBearerResponse("https://api.minecraftservices.com/entitlements/mcstore", mcRes.access_token),
                 GameOwnershipResponse.class);
 
         if (gameOwnershipRes == null || !gameOwnershipRes.hasGameOwnership()) return new LoginData();
 
         // Profile
-        final ProfileResponse profileRes = gson.fromJson(
+        ProfileResponse profileRes = gson.fromJson(
                 Browser.getBearerResponse("https://api.minecraftservices.com/minecraft/profile", mcRes.access_token),
                 ProfileResponse.class);
 
@@ -139,7 +134,7 @@ public class MicrosoftLogin {
             server.createContext("/", new Handler());
             server.setExecutor(executor);
             server.start();
-        } catch (final IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -155,14 +150,14 @@ public class MicrosoftLogin {
 
     private static class Handler implements HttpHandler {
         @Override
-        public void handle(final HttpExchange req) throws IOException {
+        public void handle(HttpExchange req) throws IOException {
             if (req.getRequestMethod().equals("GET")) {
                 // Login
-                final List<NameValuePair> query = URLEncodedUtils.parse(req.getRequestURI(), StandardCharsets.UTF_8.name());
+                List<NameValuePair> query = URLEncodedUtils.parse(req.getRequestURI(), StandardCharsets.UTF_8.name());
 
                 boolean ok = false;
 
-                for (final NameValuePair pair : query) {
+                for (NameValuePair pair : query) {
                     if (pair.getName().equals("code")) {
                         handleCode(pair.getValue());
 
@@ -178,11 +173,11 @@ public class MicrosoftLogin {
             stopServer();
         }
 
-        private void handleCode(final String code) {
+        private void handleCode(String code) {
             //System.out.println(code);
-            final String response = Browser.postExternal("https://login.live.com/oauth20_token.srf",
+            String response = Browser.postExternal("https://login.live.com/oauth20_token.srf",
                     "client_id=" + CLIENT_ID + "&code=" + code + "&client_secret=" + CLIENT_SECRET + "&grant_type=authorization_code&redirect_uri=http://localhost:" + PORT, false);
-            final AuthTokenResponse res = gson.fromJson(
+            AuthTokenResponse res = gson.fromJson(
                     response,
                     AuthTokenResponse.class);
 
@@ -190,8 +185,8 @@ public class MicrosoftLogin {
             else callback.accept(res.refresh_token);
         }
 
-        private void writeText(final HttpExchange req, final String text) throws IOException {
-            final OutputStream out = req.getResponseBody();
+        private void writeText(HttpExchange req, String text) throws IOException {
+            OutputStream out = req.getResponseBody();
 
             req.getResponseHeaders().add("Content-Type", "text/html; charset=utf-8");
             req.sendResponseHeaders(200, text.length());
@@ -235,7 +230,7 @@ public class MicrosoftLogin {
     private static class McResponse {
         @Expose
         @SerializedName("access_token")
-        public static String access_token;
+        public String access_token;
     }
 
     private static class GameOwnershipResponse {
@@ -250,12 +245,9 @@ public class MicrosoftLogin {
         }
 
         private boolean hasGameOwnership() {
-            System.out.println("gameownership res:" +
-                    Browser.getBearerResponse("https://api.minecraftservices.com/entitlements/mcstore", McResponse.access_token));
             boolean hasProduct = false;
             boolean hasGame = false;
-
-            for (final Item item : items) {
+            for (Item item : items) {
                 if (item.name.equals("product_minecraft")) hasProduct = true;
                 else if (item.name.equals("game_minecraft")) hasGame = true;
             }
@@ -271,4 +263,6 @@ public class MicrosoftLogin {
         @SerializedName("name")
         public String name;
     }
+
 }
+

@@ -37,7 +37,19 @@ public class GuiMicrosoftLogin extends GuiScreen {
     protected void actionPerformed(GuiButton button) {
         switch (button.id) {
             case 0:
+                MicrosoftLogin.getRefreshToken(refreshToken -> {
+                    if (refreshToken != null) {
+                        new Thread(() -> {
+                            MicrosoftLogin.LoginData loginData = loginWithRefreshToken(refreshToken);
+                            Account account = new Account(loginData.username, "************");
+                            account.setUsername(loginData.username);
+                            account.setRefreshToken(loginData.newRefreshToken); // TODO: THIS IS IMPORTANT
+                            Razer.INSTANCE.getAccountManager().getAccounts().add(account);
 
+                            Razer.INSTANCE.getAccountManager().set("alts");
+                        }).start();
+                    }
+                });
                 break;
             case 1:
                 mc.displayGuiScreen(manager);

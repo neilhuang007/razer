@@ -4,10 +4,7 @@ package RazerOfficial.Razer.gg.ui.menu.impl.alt.account;
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.util.file.FileType;
 import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -36,14 +33,14 @@ public class AltSaving extends RazerOfficial.Razer.gg.util.file.File {
             // reads file to a json object
             final FileReader fileReader = new FileReader(this.getFile());
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
-            final JsonObject jsonObject = GSON.fromJson(bufferedReader, JsonObject.class);
+            final JsonArray jsonArray = GSON.fromJson(bufferedReader, JsonArray.class);
 
             // closes both readers
             bufferedReader.close();
             fileReader.close();
 
             // checks if there was data read
-            if (jsonObject == null) {
+            if (jsonArray == null) {
                 return false;
             }
 
