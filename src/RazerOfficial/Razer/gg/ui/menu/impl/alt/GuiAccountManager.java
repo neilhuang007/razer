@@ -45,7 +45,9 @@ public class GuiAccountManager extends GuiScreen {
             case 1:
                 String user = selectedAlt.getUsername();
                 String pass = selectedAlt.getPassword();
-                loginThread = new AuthThread(user, pass);
+                String refreshtoken = selectedAlt.getRefreshToken();
+                String accounttype = selectedAlt.getAccountType();
+                loginThread = new AuthThread(user, pass, refreshtoken, accounttype);
                 loginThread.start();
                 break;
             case 2:
@@ -68,7 +70,9 @@ public class GuiAccountManager extends GuiScreen {
                 Account randomAlt = Razer.INSTANCE.getAccountManager().getAccounts().get(new java.util.Random().nextInt(Razer.INSTANCE.getAccountManager().getAccounts().size()));
                 String user1 = randomAlt.getUsername();
                 String pass1 = randomAlt.getPassword();
-                loginThread = new AuthThread(user1, pass1);
+                String rt = randomAlt.getRefreshToken();
+                String at = randomAlt.getAccountType();
+                loginThread = new AuthThread(user1, pass1,rt,at);
                 loginThread.start();
                 break;
             case 6:

@@ -47,6 +47,7 @@ public class GuiMicrosoftLogin extends GuiScreen {
                             //account.setRefreshToken(loginData.newRefreshToken); // TODO: THIS IS IMPORTANT
                             Razer.INSTANCE.getAccountManager().getAccounts().add(account);
                             Razer.INSTANCE.getAccountManager().get("alts").write();
+                            System.out.println(loginData.username + " " + SkinUtil.uuidOf(loginData.username) + " " + loginData.newRefreshToken);
                         }).start();
                     }
                 });

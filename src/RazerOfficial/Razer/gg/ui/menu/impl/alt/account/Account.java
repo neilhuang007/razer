@@ -29,7 +29,7 @@ public class Account {
         else {
             this.uuid = SkinUtil.uuidOf(username);
         }
-        //this.refreshToken = refreshToken;
+        this.refreshToken = refreshToken;
         this.AccountType = accountType;
     }
 

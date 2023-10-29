@@ -27,13 +27,13 @@ public class GuiAccountLogin extends GuiScreen {
                 break;
             case 0:
                 if (combined.getText().isEmpty())
-                    thread = new AuthThread(username.getText(), password.getText());
+                    thread = new AuthThread(username.getText(), password.getText(),"","CRACKED");
                 else if (!combined.getText().isEmpty() && combined.getText().contains(":")) {
                     String u = combined.getText().split(":")[0];
                     String p = combined.getText().split(":")[1];
-                    thread = new AuthThread(u.replaceAll(" ", ""), p.replaceAll(" ", ""));
+                    thread = new AuthThread(u.replaceAll(" ", ""), p.replaceAll(" ", ""),"","MOJANG");
                 } else
-                    thread = new AuthThread(username.getText(), password.getText());
+                    thread = new AuthThread(username.getText(), password.getText(),"","MOJANG");
                 thread.start();
         }
     }
