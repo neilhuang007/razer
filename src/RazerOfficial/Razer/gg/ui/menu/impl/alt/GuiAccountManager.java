@@ -3,6 +3,7 @@ package RazerOfficial.Razer.gg.ui.menu.impl.alt;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.Account;
+import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.AltSaving;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.impl.*;
 import RazerOfficial.Razer.gg.util.render.RenderUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
@@ -14,6 +15,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import sun.security.util.Length;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +45,9 @@ public class GuiAccountManager extends GuiScreen {
             case 1:
                 String user = selectedAlt.getUsername();
                 String pass = selectedAlt.getPassword();
-                loginThread = new AuthThread(user, pass);
+                String refreshtoken = selectedAlt.getRefreshToken();
+                String accounttype = selectedAlt.getAccountType();
+                loginThread = new AuthThread(user, pass, refreshtoken, accounttype);
                 loginThread.start();
                 break;
             case 2:
@@ -52,7 +56,7 @@ public class GuiAccountManager extends GuiScreen {
                 }
                 Razer.INSTANCE.getAccountManager().getAccounts().remove(selectedAlt);
                 status = "\247aRemoved.";
-                Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
+                Razer.INSTANCE.getAccountManager().get("alts").write();
 
                 selectedAlt = null;
                 break;
@@ -66,52 +70,25 @@ public class GuiAccountManager extends GuiScreen {
                 Account randomAlt = Razer.INSTANCE.getAccountManager().getAccounts().get(new java.util.Random().nextInt(Razer.INSTANCE.getAccountManager().getAccounts().size()));
                 String user1 = randomAlt.getUsername();
                 String pass1 = randomAlt.getPassword();
-                loginThread = new AuthThread(user1, pass1);
+                String rt = randomAlt.getRefreshToken();
+                String at = randomAlt.getAccountType();
+                loginThread = new AuthThread(user1, pass1,rt,at);
                 loginThread.start();
                 break;
             case 6:
                 mc.displayGuiScreen(new GuiRenameAccount(this));
                 break;
             case 7:
-//                Account lastAlt = Razer.INSTANCE.getAccountManager().getLastAlt();
-//                if (lastAlt == null) {
-//                    status = "\247cThere is no last used alt!";
-//                } else {
-//                    String user2 = lastAlt.getUsername();
-//                    String pass2 = lastAlt.getPassword();
-//                    loginThread = new AuthThread(user2, pass2);
-//                    loginThread.start();
-//                }
-//                break;
                 if (!Razer.INSTANCE.getAccountManager().getAccounts().isEmpty()) {
                     Razer.INSTANCE.getAccountManager().getAccounts().clear();
-                    Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
+                    Razer.INSTANCE.getAccountManager().get("alts").read();
                 }
                 break;
             case 8:
                 Razer.INSTANCE.getAccountManager().getAccounts().clear();
-                Razer.INSTANCE.getAccountManager().getAltSaving().loadFile();
+                Razer.INSTANCE.getAccountManager().get("alts").read();
                 status = "\247bReloaded!";
                 break;
-//            case 9:
-//                JFrame frame = new JFrame("Import");
-//                frame.setAlwaysOnTop(true);
-//                AccountImport accountImport = new AccountImport();
-//                frame.setContentPane(accountImport);
-//                new Thread(() -> accountImport.openButton.doClick()).start();
-//                break;
-//            case 10:
-//                if (!Razer.INSTANCE.getAccountManager().getAccounts().isEmpty()) {
-//                    Razer.INSTANCE.getAccountManager().getAccounts().clear();
-//                    Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
-//                }
-//                break;
-//            case 11:
-//                mc.displayGuiScreen(new GuiMultiplayer(this));
-//                break;
-//            case 12:
-//                mc.displayGuiScreen(new GuiAlteningLogin(this));
-//                break;
         }
     }
 
@@ -147,7 +124,7 @@ public class GuiAccountManager extends GuiScreen {
                 String name;
                 name = alt.getUsername();
                 String pass;
-                if (alt.getPassword().equals("")) {
+                if ("CRACKED".equals(alt.getAccountType())) {
                     pass = "\247cCracked";
                 } else {
                     pass = alt.getPassword().replaceAll(".", "*");
@@ -212,13 +189,10 @@ public class GuiAccountManager extends GuiScreen {
         buttonList.add(rename = new GuiButton(6, width / 2 + 38, height - 24, 70, 20, "Edit"));
         buttonList.add(new GuiButton(7, width / 2 - 190, height - 24, 60, 20, "Clear"));
         buttonList.add(new GuiButton(8, width / 2 - 190, height - 48, 60, 20, "Reload"));
-//        buttonList.add(new GuiButton(9, width / 2 - 247, height - 24, 50, 20, "Import"));
-//        buttonList.add(new GuiButton(10, width / 2 - 247, height - 48, 50, 20, "Clear"));
-//        buttonList.add(new GuiButton(11, width / 2 + 198, height - 24, 75, 20, "MultiPlayer"));
-//        buttonList.add(new GuiButton(12, width / 2 + 198, height - 48, 75, 20, "TheAltening"));
         login.enabled = false;
         remove.enabled = false;
         rename.enabled = false;
+        Razer.INSTANCE.getAccountManager().get("alts").read();
     }
 
     private boolean isAltInArea(int y) {

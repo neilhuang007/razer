@@ -4,6 +4,7 @@ import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.GuiAccountManager;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.Account;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.MicrosoftLogin;
+import RazerOfficial.Razer.gg.util.SkinUtil;
 import com.mojang.authlib.exceptions.AuthenticationException;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
@@ -20,49 +21,6 @@ import java.net.Proxy;
 
 public class GuiMicrosoftLogin extends GuiScreen {
     private final GuiAccountManager manager;
-
-//    private class AddAltThread extends Thread {
-//        private final String password;
-//        private final String username;
-//
-//        public AddAltThread(String username, String password) {
-//            this.username = username;
-//            this.password = password;
-//            status = (EnumChatFormatting.GRAY + "Idle...");
-//        }
-//
-//
-//
-//        private final void checkAndAddAlt(String username, String password) {
-//            YggdrasilAuthenticationService service = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
-//            YggdrasilUserAuthentication auth = (YggdrasilUserAuthentication) service
-//                    .createUserAuthentication(com.mojang.authlib.Agent.MINECRAFT);
-//            auth.setUsername(username);
-//            auth.setPassword(password);
-//            try {
-//                auth.logIn();
-//                Razer.INSTANCE.getAccountManager().getAccounts()
-//                        .add(new Account(username, password, auth.getSelectedProfile().getName()));
-//                Razer.INSTANCE.getAccountManager().getAltSaving().saveFile();
-//                status = ("Alt added. (" + username + ")");
-//            } catch (AuthenticationException e) {
-//                status = (EnumChatFormatting.RED + "Alt failed!");
-//                e.printStackTrace();
-//
-//            }
-//        }
-
-//        @Override
-//        public void run() {
-//            if (password.equals("") && combined.getText().isEmpty()) {
-//                Razer.INSTANCE.getAccountManager().getAccounts().add(new Account(username, ""));
-//                status = (EnumChatFormatting.GREEN + "Alt added. (" + username + " - offline name)");
-//                return;
-//            }
-//            status = (EnumChatFormatting.AQUA + "Trying alt...");
-//            checkAndAddAlt(username, password);
-//        }
-//    }
 
     private String status = EnumChatFormatting.GRAY + "Idle...";
 
@@ -84,10 +42,12 @@ public class GuiMicrosoftLogin extends GuiScreen {
                     if (refreshToken != null) {
                         new Thread(() -> {
                             MicrosoftLogin.LoginData loginData = loginWithRefreshToken(refreshToken);
-                            Account account = new Account(loginData.username, "************");
+                            Account account = new Account(loginData.username, SkinUtil.uuidOf(loginData.username),loginData.newRefreshToken);
                             account.setUsername(loginData.username);
-                            account.setRefreshToken(loginData.newRefreshToken); // TODO: THIS IS IMPORTANT
+                            //account.setRefreshToken(loginData.newRefreshToken); // TODO: THIS IS IMPORTANT
                             Razer.INSTANCE.getAccountManager().getAccounts().add(account);
+                            Razer.INSTANCE.getAccountManager().get("alts").write();
+                            System.out.println(loginData.username + " " + SkinUtil.uuidOf(loginData.username) + " " + loginData.newRefreshToken);
                         }).start();
                     }
                 });
