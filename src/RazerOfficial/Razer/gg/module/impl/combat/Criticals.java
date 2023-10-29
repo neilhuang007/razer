@@ -4,10 +4,7 @@ import RazerOfficial.Razer.gg.api.Rise;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;
-import RazerOfficial.Razer.gg.module.impl.combat.criticals.EditCriticals;
-import RazerOfficial.Razer.gg.module.impl.combat.criticals.NoGroundCriticals;
-import RazerOfficial.Razer.gg.module.impl.combat.criticals.PacketCriticals;
-import RazerOfficial.Razer.gg.module.impl.combat.criticals.WatchdogCriticals;
+import RazerOfficial.Razer.gg.module.impl.combat.criticals.*;
 import RazerOfficial.Razer.gg.value.impl.ModeValue;
 
 @Rise
@@ -19,5 +16,6 @@ public final class Criticals extends Module {
             .add(new EditCriticals("Edit", this))
             .add(new NoGroundCriticals("No Ground", this))
             .add(new WatchdogCriticals("Watchdog", this))
+            .add(new DCJCriticals("DCJ", this))
             .setDefault("Packet");
 }
