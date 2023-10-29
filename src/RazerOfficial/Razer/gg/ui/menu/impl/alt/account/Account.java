@@ -3,9 +3,6 @@ package RazerOfficial.Razer.gg.ui.menu.impl.alt.account;
 import RazerOfficial.Razer.gg.util.SkinUtil;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.util.ResourceLocation;
 
 
 @Getter

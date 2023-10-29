@@ -7,13 +7,10 @@ import com.google.gson.annotations.SerializedName;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import net.raphimc.mcauth.step.java.StepGameOwnership;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 
 import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;

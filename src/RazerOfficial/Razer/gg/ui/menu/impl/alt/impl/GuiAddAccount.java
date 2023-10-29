@@ -12,11 +12,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.EnumChatFormatting;
-import net.raphimc.mcauth.MinecraftAuth;
-import net.raphimc.mcauth.step.java.StepMCProfile;
-import net.raphimc.mcauth.step.msa.StepCredentialsMsaCode;
-import net.raphimc.mcauth.util.MicrosoftConstants;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.lwjgl.input.Keyboard;
 
 import java.io.IOException;

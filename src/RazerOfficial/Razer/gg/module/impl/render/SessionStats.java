@@ -1,6 +1,5 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
-import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.api.Hidden;
 import RazerOfficial.Razer.gg.api.Rise;
 import RazerOfficial.Razer.gg.event.Listener;

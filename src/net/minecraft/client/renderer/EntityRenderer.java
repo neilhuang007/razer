@@ -1,12 +1,12 @@
 package net.minecraft.client.renderer;
 
 import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.module.Module;
-import RazerOfficial.Razer.gg.module.impl.render.*;
 import RazerOfficial.Razer.gg.event.impl.render.MouseOverEvent;
 import RazerOfficial.Razer.gg.event.impl.render.Render2DEvent;
 import RazerOfficial.Razer.gg.event.impl.render.Render3DEvent;
 import RazerOfficial.Razer.gg.event.impl.render.ViewBobbingEvent;
+import RazerOfficial.Razer.gg.module.Module;
+import RazerOfficial.Razer.gg.module.impl.render.*;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import RazerOfficial.Razer.gg.util.render.RenderUtil;
 import RazerOfficial.Razer.gg.util.render.StencilUtil;

@@ -1,5 +1,4 @@
-package RazerOfficial.Razer.gg;
-
+import RazerOfficial.Razer.gg.Razer;
 import net.minecraft.client.main.Main;
 
 import java.util.Arrays;

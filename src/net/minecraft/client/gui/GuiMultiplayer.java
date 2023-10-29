@@ -1,6 +1,5 @@
 package net.minecraft.client.gui;
 
-import RazerOfficial.Razer.gg.ui.menu.impl.serverfinder.ServerFinder;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import net.minecraft.client.multiplayer.GuiConnecting;
@@ -9,7 +8,6 @@ import net.minecraft.client.multiplayer.ServerList;
 import net.minecraft.client.network.LanServerDetector;
 import net.minecraft.client.network.OldServerPinger;
 import net.minecraft.client.resources.I18n;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;

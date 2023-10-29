@@ -19,7 +19,7 @@
 //
 //package RazerOfficial.Razer.gg.ui.ingame;
 //
-//import RazerOfficial.Razer.gg.util.render.RenderUtil;
+//import render.util.razerofficial.razer.gg.RenderUtil;
 //import com.google.common.base.Splitter;
 //import com.google.gson.JsonObject;
 //

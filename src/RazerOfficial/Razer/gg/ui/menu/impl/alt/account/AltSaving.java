@@ -3,12 +3,11 @@ package RazerOfficial.Razer.gg.ui.menu.impl.alt.account;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.util.file.FileType;
-import com.google.common.reflect.TypeToken;
-import com.google.gson.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 

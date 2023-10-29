@@ -8,13 +8,11 @@ import RazerOfficial.Razer.gg.script.api.wrapper.impl.ScriptCommand;
 import RazerOfficial.Razer.gg.script.api.wrapper.impl.ScriptModule;
 import RazerOfficial.Razer.gg.script.api.wrapper.impl.vector.ScriptVector2;
 import RazerOfficial.Razer.gg.script.api.wrapper.impl.vector.ScriptVector3;
-import RazerOfficial.Razer.gg.script.util.ScriptModuleInfo;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author Strikeless

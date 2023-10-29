@@ -5,19 +5,14 @@ import RazerOfficial.Razer.gg.ui.menu.impl.alt.GuiAccountManager;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.Account;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.MicrosoftLogin;
 import RazerOfficial.Razer.gg.util.SkinUtil;
-import com.mojang.authlib.exceptions.AuthenticationException;
-import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
-import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Session;
 import org.lwjgl.input.Keyboard;
 
 import java.io.IOException;
-import java.net.Proxy;
 
 public class GuiMicrosoftLogin extends GuiScreen {
     private final GuiAccountManager manager;

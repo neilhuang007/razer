@@ -3,21 +3,20 @@ package RazerOfficial.Razer.gg.ui.menu.impl.alt;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.Account;
-import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.AltSaving;
-import RazerOfficial.Razer.gg.ui.menu.impl.alt.impl.*;
+import RazerOfficial.Razer.gg.ui.menu.impl.alt.impl.AuthThread;
+import RazerOfficial.Razer.gg.ui.menu.impl.alt.impl.GuiAddAccount;
+import RazerOfficial.Razer.gg.ui.menu.impl.alt.impl.GuiMicrosoftLogin;
+import RazerOfficial.Razer.gg.ui.menu.impl.alt.impl.GuiRenameAccount;
 import RazerOfficial.Razer.gg.util.render.RenderUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import sun.security.util.Length;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
