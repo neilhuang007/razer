@@ -36,8 +36,9 @@ public class SkinUtil implements InstanceAccess {
     public static String uuidOf(String name) {
         String data = scrape(NAME_TO_UUID + name);
         JsonObject jsonObject = JsonParser.parseString(data).getAsJsonObject();
-        System.out.println(data);
-        if (jsonObject == null || !jsonObject.has("id")) return null;
+        //System.out.println(data);
+        if(jsonObject.get("id").equals(null)) return "8667ba71-b85a-4004-af54-457a9734eed7";
+        if (jsonObject == null || !jsonObject.has("id")) return "8667ba71-b85a-4004-af54-457a9734eed7";
         return jsonObject.get("id").getAsString();
     }
 

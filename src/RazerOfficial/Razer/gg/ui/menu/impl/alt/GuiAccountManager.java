@@ -25,10 +25,10 @@ public class GuiAccountManager extends GuiScreen {
     private GuiButton remove;
     private GuiButton rename;
     private GuiButton random;
-    private AuthThread loginThread;
+    public AuthThread loginThread;
     private int offset;
     public Account selectedAlt = null;
-    private String status = ChatFormatting.GRAY + "Idle...";
+    public String status = ChatFormatting.GRAY + "Idle...";
 
     @Override
     public void actionPerformed(GuiButton button) {

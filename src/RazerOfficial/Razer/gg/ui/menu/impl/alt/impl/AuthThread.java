@@ -101,11 +101,11 @@ public class AuthThread extends Thread {
             String refreshToken = refreshtoken;
             if (refreshtoken!= null) {
                 new Thread(() -> {
-                    status = (ChatFormatting.YELLOW + "Logging in as (" + account.getUsername() + ")" + " do not hit back");
+                    status = (ChatFormatting.YELLOW + "Logging in as " + account.getUsername() + "" + " do not hit back");
                     MicrosoftLogin.LoginData loginData = loginWithRefreshToken(refreshToken);
                     account.setUsername(loginData.username);
                     account.setRefreshToken(loginData.newRefreshToken);
-                    status = (ChatFormatting.GREEN + "Logged in. (" + account.getUsername() + ")");
+                    status = (ChatFormatting.GREEN + " Succesfully logged in as " + account.getUsername());
                 }).start();
             }
             else {

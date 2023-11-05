@@ -154,6 +154,12 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet>
         {
             try
             {
+                final PacketReceiveEvent event = new PacketReceiveEvent(p_channelRead0_2_);
+                Razer.INSTANCE.getEventBus().handle(event);
+
+                if (event.isCancelled()) {
+                    return;
+                }
                 p_channelRead0_2_.processPacket(this.packetListener);
             }
             catch (ThreadQuickExitException var4)

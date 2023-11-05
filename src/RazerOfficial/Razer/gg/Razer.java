@@ -215,6 +215,7 @@ public enum Razer {
         this.configManager.init();
         this.scriptManager.init();
         this.packetLogManager.init();
+        this.AccountManager.init();
 
         final File file = new File(ConfigManager.CONFIG_DIRECTORY, "latest.json");
         this.configFile = new ConfigFile(file, FileType.CONFIG);

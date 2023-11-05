@@ -5,6 +5,7 @@ import RazerOfficial.Razer.gg.ui.menu.impl.alt.GuiAccountManager;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.Account;
 import RazerOfficial.Razer.gg.ui.menu.impl.alt.account.MicrosoftLogin;
 import RazerOfficial.Razer.gg.util.SkinUtil;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -16,6 +17,8 @@ import java.io.IOException;
 
 public class GuiMicrosoftLogin extends GuiScreen {
     private final GuiAccountManager manager;
+
+    private AuthThread loginThread;
 
     private String status = EnumChatFormatting.GRAY + "Idle...";
 
@@ -29,23 +32,34 @@ public class GuiMicrosoftLogin extends GuiScreen {
         mc.session = new Session(loginData.username, loginData.uuid, loginData.mcToken, "microsoft");
         return loginData;
     }
+    String username;
     @Override
     protected void actionPerformed(GuiButton button) {
         switch (button.id) {
             case 0:
+                // sets the status
+                status.equals(ChatFormatting.RED + "Do not hit back!" + ChatFormatting.AQUA + " Logging in...");
                 MicrosoftLogin.getRefreshToken(refreshToken -> {
                     if (refreshToken != null) {
                         new Thread(() -> {
+                            // logging in
                             MicrosoftLogin.LoginData loginData = loginWithRefreshToken(refreshToken);
                             Account account = new Account(loginData.username, SkinUtil.uuidOf(loginData.username),loginData.newRefreshToken);
-                            account.setUsername(loginData.username);
+                            //account.setUsername(loginData.username);
                             //account.setRefreshToken(loginData.newRefreshToken); // TODO: THIS IS IMPORTANT
                             Razer.INSTANCE.getAccountManager().getAccounts().add(account);
+                            // writes the file
                             Razer.INSTANCE.getAccountManager().get("alts").write();
-                            System.out.println(loginData.username + " " + SkinUtil.uuidOf(loginData.username) + " " + loginData.newRefreshToken);
+                            String username = loginData.username;
+                            //System.out.println(loginData.username + " " + SkinUtil.uuidOf(loginData.username) + " " + loginData.newRefreshToken)
+                            // updates the status on the main gui
+                            loginThread.setStatus(ChatFormatting.GREEN + "Succesfully logged in as" + loginData.username);
                         }).start();
                     }
                 });
+                // updates the status
+                status.equals(ChatFormatting.GREEN + "succesfully logged in as " + username);
+
                 break;
             case 1:
                 mc.displayGuiScreen(manager);
