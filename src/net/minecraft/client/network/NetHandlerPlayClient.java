@@ -1514,15 +1514,19 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
         }
 
         if (packetIn.func_149307_h() == 0 || packetIn.func_149307_h() == 2) {
-            scoreplayerteam.setTeamName(packetIn.func_149306_d());
-            scoreplayerteam.setNamePrefix(packetIn.func_149311_e());
-            scoreplayerteam.setNameSuffix(packetIn.func_149309_f());
-            scoreplayerteam.setChatFormat(EnumChatFormatting.func_175744_a(packetIn.func_179813_h()));
-            scoreplayerteam.func_98298_a(packetIn.func_149308_i());
-            final Team.EnumVisible team$enumvisible = Team.EnumVisible.func_178824_a(packetIn.func_179814_i());
+            try{
+                scoreplayerteam.setTeamName(packetIn.func_149306_d());
+                scoreplayerteam.setNamePrefix(packetIn.func_149311_e());
+                scoreplayerteam.setNameSuffix(packetIn.func_149309_f());
+                scoreplayerteam.setChatFormat(EnumChatFormatting.func_175744_a(packetIn.func_179813_h()));
+                scoreplayerteam.func_98298_a(packetIn.func_149308_i());
+                final Team.EnumVisible team$enumvisible = Team.EnumVisible.func_178824_a(packetIn.func_179814_i());
 
-            if (team$enumvisible != null) {
-                scoreplayerteam.setNameTagVisibility(team$enumvisible);
+                if (team$enumvisible != null) {
+                    scoreplayerteam.setNameTagVisibility(team$enumvisible);
+                }
+            }catch (NullPointerException e){
+                return;
             }
         }
 

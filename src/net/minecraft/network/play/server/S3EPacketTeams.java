@@ -1,6 +1,10 @@
 package net.minecraft.network.play.server;
 
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.script.api.NetworkAPI;
 import com.google.common.collect.Lists;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.network.OldServerPinger;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -119,6 +123,7 @@ public class S3EPacketTeams implements Packet<INetHandlerPlayClient> {
      */
     public void processPacket(final INetHandlerPlayClient handler) {
         handler.handleTeams(this);
+
     }
 
     public String func_149312_c() {

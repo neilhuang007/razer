@@ -10,6 +10,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class MoveInputEvent implements Event {
+    public static boolean isJump;
+    public static boolean isSneak;
     private float forward, strafe;
     private boolean jump, sneak;
     private double sneakSlowDownMultiplier;

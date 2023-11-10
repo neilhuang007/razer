@@ -2,6 +2,7 @@ package net.minecraft.client;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
+import RazerOfficial.Razer.gg.event.impl.input.MoveInputEvent;
 import RazerOfficial.Razer.gg.module.impl.render.FreeLook;
 import RazerOfficial.Razer.gg.event.impl.input.ClickEvent;
 import RazerOfficial.Razer.gg.event.impl.input.KeyboardInputEvent;

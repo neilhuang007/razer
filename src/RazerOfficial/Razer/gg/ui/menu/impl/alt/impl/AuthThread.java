@@ -12,9 +12,12 @@ import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Session;
+import util.time.StopWatch;
 
 
 public class AuthThread extends Thread {
+
+    StopWatch stopWatch = new StopWatch();
     private final String password;
     private String status;
     private final String username;
@@ -25,6 +28,8 @@ public class AuthThread extends Thread {
 
     private final String accounttype;
     private Minecraft mc = Minecraft.getMinecraft();
+
+    StopWatch watch = new StopWatch();
 
     public AuthThread(String username, String password, String refreshtoken, String accounttype) {
         super("Alt Login Thread");
@@ -83,17 +88,17 @@ public class AuthThread extends Thread {
     public void run() {
         if(accounttype.equals("CRACKED")){
             mc.session = new Session(username, "", "", "mojang");
-            status = (ChatFormatting.GREEN + "Logged in. (" + username + " - offline name)");
+            setStatus(ChatFormatting.GREEN + "Logged in. (" + username + " - offline name)");
             return;
         } else if (accounttype.equals("MOJANG")) {
             Razer.INSTANCE.switchToMojang();
 
-            status = (ChatFormatting.AQUA + "Logging in...");
+            setStatus(ChatFormatting.AQUA + "Logging in...");
             Session auth = createSession(username, password);
             if (auth == null) {
-                status = (ChatFormatting.RED + "Login failed!");
+                setStatus(ChatFormatting.RED + "Login failed!");
             } else {
-                status = (ChatFormatting.GREEN + "Logged in. (" + auth.getUsername() + ")");
+                setStatus((ChatFormatting.GREEN + "Logged in. (" + auth.getUsername() + ")"));
                 mc.session = auth;
             }
         } else{
@@ -105,11 +110,17 @@ public class AuthThread extends Thread {
                     MicrosoftLogin.LoginData loginData = loginWithRefreshToken(refreshToken);
                     account.setUsername(loginData.username);
                     account.setRefreshToken(loginData.newRefreshToken);
-                    status = (ChatFormatting.GREEN + " Succesfully logged in as " + account.getUsername());
+                    if(account.getUsername() == null){
+                        setStatus(ChatFormatting.RED + "Login Failed, please retry");
+                    }
+                    else{
+                        setStatus(ChatFormatting.GREEN + "Succesfully logged in as " + loginData.username);
+                    }
                 }).start();
             }
             else {
-                status = (ChatFormatting.RED + "Login failed!");
+
+                setStatus(ChatFormatting.RED + "Login failed!");
             }
 
 
@@ -118,6 +129,10 @@ public class AuthThread extends Thread {
     }
 
     public void setStatus(String status) {
+        watch.reset();
         this.status = status;
+        if(watch.finished(5000)){
+            status = ChatFormatting.GRAY + "Idle...";
+        }
     }
 }

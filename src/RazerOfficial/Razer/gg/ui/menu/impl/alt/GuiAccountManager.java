@@ -16,6 +16,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import util.time.StopWatch;
 
 import java.awt.*;
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class GuiAccountManager extends GuiScreen {
     private int offset;
     public Account selectedAlt = null;
     public String status = ChatFormatting.GRAY + "Idle...";
+
+    StopWatch watch = new StopWatch();
 
     @Override
     public void actionPerformed(GuiButton button) {
@@ -54,7 +57,7 @@ public class GuiAccountManager extends GuiScreen {
                     loginThread = null;
                 }
                 Razer.INSTANCE.getAccountManager().getAccounts().remove(selectedAlt);
-                status = "\247aRemoved.";
+                setStatus("\247aRemoved");
                 Razer.INSTANCE.getAccountManager().get("alts").write();
 
                 selectedAlt = null;
@@ -86,7 +89,7 @@ public class GuiAccountManager extends GuiScreen {
             case 8:
                 Razer.INSTANCE.getAccountManager().getAccounts().clear();
                 Razer.INSTANCE.getAccountManager().get("alts").read();
-                status = "\247bReloaded!";
+                setStatus("\247bReloaded!");
                 break;
         }
     }
@@ -228,6 +231,14 @@ public class GuiAccountManager extends GuiScreen {
         ScaledResolution scale = new ScaledResolution(mc);
         int factor = scale.getScaleFactor();
         GL11.glScissor((int) (x * factor), (int) ((scale.getScaledHeight() - y2) * factor), (int) ((x2 - x) * factor), (int) ((y2 - y) * factor));
+    }
+
+    public void setStatus(String status) {
+        watch.reset();
+        this.status = status;
+        if(watch.finished(5000)){
+            loginThread.setStatus(ChatFormatting.GRAY + "Idle...");
+        }
     }
 
 }

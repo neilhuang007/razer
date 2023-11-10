@@ -29,17 +29,35 @@ public class SkinUtil implements InstanceAccess {
         mc.getTextureManager().loadTexture(resourceLocation, headTexture);
         SKIN_CACHE.put(uuid, resourceLocation);
         AbstractClientPlayer.getDownloadImageSkin(resourceLocation, uuid);
-        System.out.println(uuid);
+        //System.out.println(uuid);
         return resourceLocation;
     }
 
     public static String uuidOf(String name) {
         String data = scrape(NAME_TO_UUID + name);
-        JsonObject jsonObject = JsonParser.parseString(data).getAsJsonObject();
-        //System.out.println(data);
-        if(jsonObject.get("id").equals(null)) return "8667ba71-b85a-4004-af54-457a9734eed7";
-        if (jsonObject == null || !jsonObject.has("id")) return "8667ba71-b85a-4004-af54-457a9734eed7";
-        return jsonObject.get("id").getAsString();
+        // sometimes this gets fucked up because of internet issues
+        if(data == null){
+            // just return the steve one
+            return "8667ba71-b85a-4004-af54-457a9734eed7";
+        }
+        else{
+            JsonObject jsonObject = JsonParser.parseString(data).getAsJsonObject();
+
+            //System.out.println(data);
+            // this should fix internet issue that crashes the server
+            if(jsonObject.has("id")){
+                if(jsonObject.get("id").equals(null)) return "8667ba71-b85a-4004-af54-457a9734eed7";
+                if (jsonObject == null || !jsonObject.has("id")) return "8667ba71-b85a-4004-af54-457a9734eed7";
+                return jsonObject.get("id").getAsString();
+            }
+            else{
+                return "8667ba71-b85a-4004-af54-457a9734eed7";
+            }
+        }
+
+
+
+
     }
 
     private static String scrape(String url) {
