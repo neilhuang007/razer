@@ -62,7 +62,7 @@ public final class TeleportAura extends Module {
         /*
          * Getting targets and selecting the nearest one
          */
-        final List<EntityLivingBase> targets = Razer.INSTANCE.getTargetManager().getTargets(range.getValue().doubleValue());
+        final List<Entity> targets = Razer.INSTANCE.getTargetManager().getTargets(range.getValue().doubleValue());
 
         if (targets.isEmpty()) {
             target = null;
@@ -98,7 +98,7 @@ public final class TeleportAura extends Module {
         }
     };
 
-    private void doAttack(final List<EntityLivingBase> targets) {
+    private void doAttack(final List<Entity> targets) {
         if (clickStopWatch.finished(this.nextSwing) && target != null && !mc.gameSettings.keyBindAttack.isKeyDown() && !mc.gameSettings.keyBindUseItem.isKeyDown()) {
             final long clicks = Math.round(MathUtil.getRandom(this.cps.getValue().intValue(), this.cps.getSecondValue().intValue()));
             this.nextSwing = 1000 / clicks;

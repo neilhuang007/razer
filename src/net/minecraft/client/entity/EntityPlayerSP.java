@@ -3,10 +3,12 @@ package net.minecraft.client.entity;
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.event.impl.input.ChatInputEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.*;
+import RazerOfficial.Razer.gg.event.impl.other.HurtEvent;
 import RazerOfficial.Razer.gg.event.impl.other.MoveEvent;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import RazerOfficial.Razer.gg.util.vector.Vector2f;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -312,7 +314,9 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
      */
     protected void damageEntity(final DamageSource damageSrc, final float damageAmount) {
         if (!this.isEntityInvulnerable(damageSrc)) {
+
             this.setHealth(this.getHealth() - damageAmount);
+
         }
     }
 
@@ -329,6 +333,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
         super.closeScreen();
         this.mc.displayGuiScreen(null);
     }
+
 
     /**
      * Updates health locally.

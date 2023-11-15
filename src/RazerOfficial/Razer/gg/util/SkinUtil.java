@@ -36,11 +36,7 @@ public class SkinUtil implements InstanceAccess {
     public static String uuidOf(String name) {
         String data = scrape(NAME_TO_UUID + name);
         // sometimes this gets fucked up because of internet issues
-        if(data == null){
-            // just return the steve one
-            return "8667ba71-b85a-4004-af54-457a9734eed7";
-        }
-        else{
+        if(!data.isEmpty()){
             JsonObject jsonObject = JsonParser.parseString(data).getAsJsonObject();
 
             //System.out.println(data);
@@ -53,6 +49,11 @@ public class SkinUtil implements InstanceAccess {
             else{
                 return "8667ba71-b85a-4004-af54-457a9734eed7";
             }
+
+        }
+        else{
+            // just return the steve one
+            return "8667ba71-b85a-4004-af54-457a9734eed7";
         }
 
 

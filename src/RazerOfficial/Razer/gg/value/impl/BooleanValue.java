@@ -1,6 +1,7 @@
 package RazerOfficial.Razer.gg.value.impl;
 
 import RazerOfficial.Razer.gg.module.Module;
+import RazerOfficial.Razer.gg.module.impl.combat.velocity.SleepVelocity;
 import RazerOfficial.Razer.gg.value.Mode;
 import RazerOfficial.Razer.gg.value.Value;
 import lombok.Getter;
@@ -57,6 +58,8 @@ public class BooleanValue extends Value<Boolean> {
         super(name, parent, defaultValue, hideIf);
         this.mode = mode;
     }
+
+
 
     @Override
     public void setValue(final Boolean value) {

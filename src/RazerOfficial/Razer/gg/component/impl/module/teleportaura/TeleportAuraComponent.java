@@ -22,6 +22,7 @@ import RazerOfficial.Razer.gg.util.rotation.RotationUtil;
 import RazerOfficial.Razer.gg.util.vector.Vector2f;
 import RazerOfficial.Razer.gg.util.vector.Vector3d;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.play.client.C02PacketUseEntity;
 import org.lwjgl.opengl.GL11;
@@ -132,13 +133,13 @@ public class TeleportAuraComponent extends Component {
         }
     }
 
-    public EntityLivingBase getTarget() {
+    public Entity getTarget() {
         if (!tpa.isEnabled()) return null;
 
         if (!mc.theWorld.loadedEntityList.contains(tpa.target == null ? mc.thePlayer : tpa.target) || tpa.attacked) {
-            List<EntityLivingBase> targets = Razer.INSTANCE.getTargetManager().getTargets(tpa.range.getValue().doubleValue());
+            List<Entity> targets = Razer.INSTANCE.getTargetManager().getTargets(tpa.range.getValue().doubleValue());
 
-            EntityLivingBase target = null;
+            Entity target = null;
 
             switch (tpa.mode.getValue().getName()) {
                 case "Single":

@@ -3,6 +3,7 @@ package net.minecraft.entity;
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.event.impl.motion.JumpEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.MinimumMotionEvent;
+import RazerOfficial.Razer.gg.event.impl.other.HurtEvent;
 import RazerOfficial.Razer.gg.event.impl.render.SwingAnimationEvent;
 import RazerOfficial.Razer.gg.util.player.MoveUtil;
 import com.google.common.base.Predicate;
@@ -764,9 +765,10 @@ public abstract class EntityLivingBase extends Entity implements java.io.Seriali
      * Called when the entity is attacked.
      */
     public boolean attackEntityFrom(final DamageSource source, float amount) {
-        if (this.isEntityInvulnerable(source)) {
+
+        if(this.isEntityInvulnerable(source)) {
             return false;
-        } else if (this.worldObj.isRemote) {
+        } else if(this.worldObj.isRemote) {
             return false;
         } else {
             this.entityAge = 0;

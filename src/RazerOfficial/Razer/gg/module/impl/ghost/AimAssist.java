@@ -5,6 +5,7 @@ import RazerOfficial.Razer.gg.api.Rise;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
+import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
 import RazerOfficial.Razer.gg.event.impl.render.Render2DEvent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
@@ -14,11 +15,16 @@ import RazerOfficial.Razer.gg.util.rotation.RotationUtil;
 import RazerOfficial.Razer.gg.util.vector.Vector2f;
 import RazerOfficial.Razer.gg.value.impl.BooleanValue;
 import RazerOfficial.Razer.gg.value.impl.BoundsNumberValue;
+import com.viaversion.viaversion.libs.fastutil.objects.ObjectArrayList;
 import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Alan
@@ -33,6 +39,10 @@ public class AimAssist extends Module {
     private final BooleanValue onRotate = new BooleanValue("Only on mouse movement", this, true);
     private Vector2f rotations, lastRotations;
 
+
+    private static List<Entity> targets = new ObjectArrayList<>(0);
+
+
     @Override
     protected void onDisable() {
         EntityRenderer.mouseAddedX = EntityRenderer.mouseAddedY = 0;
@@ -46,13 +56,13 @@ public class AimAssist extends Module {
 
         if (mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) return;
 
-        final List<EntityLivingBase> entities = Razer.INSTANCE.getTargetManager().getTargets(5);
+        final List<Entity> entities = Razer.INSTANCE.getTargetManager().getTargets(5);
 
         if (entities.isEmpty()) {
             return;
         }
 
-        final EntityLivingBase target = entities.get(0);
+        final Entity target = entities.get(0);
 
         rotations = RotationUtil.calculate(target);
     };

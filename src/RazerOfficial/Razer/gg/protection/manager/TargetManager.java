@@ -6,7 +6,11 @@ import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
 import RazerOfficial.Razer.gg.module.impl.combat.KillAura;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Comparator;
 import java.util.List;
@@ -19,11 +23,11 @@ import java.util.stream.Collectors;
  */
 public class TargetManager extends ConcurrentLinkedQueue<EntityLivingBase> implements InstanceAccess {
 
-    boolean players = true;
-    boolean invisibles = false;
-    boolean animals = false;
-    boolean mobs = false;
-    boolean teams = false;
+    boolean players;
+    boolean invisibles;
+    boolean animals;
+    boolean mobs;
+    boolean teams;
 
     private int loadedEntitySize;
 
@@ -54,12 +58,39 @@ public class TargetManager extends ConcurrentLinkedQueue<EntityLivingBase> imple
         }
     }
 
-    public List<EntityLivingBase> getTargets(final double range) {
-        return this.stream()
-                .filter(entity -> mc.thePlayer.getDistanceToEntity(entity) < range)
-                .filter(entity -> mc.theWorld.loadedEntityList.contains(entity))
+    public List<Entity> getTargets(final double range) {
+        return mc.theWorld.loadedEntityList.stream()
+                // must be a player, not a sheep or somethin
+                .filter(entity -> entity instanceof EntityPlayer)
+                // not ourselfs
+                .filter(entity -> entity != mc.thePlayer)
+                // no blink entity
                 .filter(entity -> !Razer.INSTANCE.getBotManager().contains(entity))
+                // no dead entities
+                .filter(entity -> entity.isEntityAlive())
+                // must be in distance
+                .filter(entity -> mc.thePlayer.getDistanceSqToEntity(entity) <= range)
+                // sort usin distance
                 .sorted(Comparator.comparingDouble(entity -> mc.thePlayer.getDistanceSqToEntity(entity)))
+                // return a list
+                .collect(Collectors.toList());
+    }
+
+    public List<Entity> getTarget(final double range) {
+        return mc.theWorld.loadedEntityList.stream()
+                // must be a player, not a sheep or somethin
+                .filter(entity -> entity instanceof EntityPlayer)
+                // not ourselfs
+                .filter(entity -> entity != mc.thePlayer)
+                // no blink entity
+                .filter(entity -> !Razer.INSTANCE.getBotManager().contains(entity))
+                // no dead entities
+                .filter(entity -> entity.isEntityAlive())
+                // must be in distance
+                .filter(entity -> mc.thePlayer.getDistanceSqToEntity(entity) <= range)
+                // sort usin distance
+                .sorted(Comparator.comparingDouble(entity -> mc.thePlayer.getDistanceSqToEntity(entity)))
+                // return a list
                 .collect(Collectors.toList());
     }
 }

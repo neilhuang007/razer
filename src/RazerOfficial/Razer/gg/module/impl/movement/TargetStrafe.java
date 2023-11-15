@@ -19,6 +19,7 @@ import RazerOfficial.Razer.gg.util.rotation.RotationUtil;
 import RazerOfficial.Razer.gg.util.vector.Vector3d;
 import RazerOfficial.Razer.gg.value.impl.BooleanValue;
 import RazerOfficial.Razer.gg.value.impl.NumberValue;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 
@@ -36,7 +37,7 @@ public class TargetStrafe extends Module {
 
     public final BooleanValue holdJump = new BooleanValue("Hold Jump", this, true);
     private float yaw;
-    private EntityLivingBase target;
+    private Entity target;
     private boolean left, colliding;
     private boolean active;
 
@@ -80,7 +81,7 @@ public class TargetStrafe extends Module {
             return;
         }
 
-        final List<EntityLivingBase> targets = Razer.INSTANCE.getTargetManager().getTargets(this.range.getValue().doubleValue() + 3);
+        final List<Entity> targets = Razer.INSTANCE.getTargetManager().getTargets(this.range.getValue().doubleValue() + 3);
 
         if (targets.isEmpty()) {
             target = null;

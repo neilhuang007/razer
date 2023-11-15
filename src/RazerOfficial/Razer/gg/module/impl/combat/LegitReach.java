@@ -45,7 +45,7 @@ public final class LegitReach extends Module {
     public final Listener<PreUpdateEvent> onPreUpdate = event -> {
 
         // Getting targets and selecting the nearest one
-        List<EntityLivingBase> targets = Razer.INSTANCE.getTargetManager().getTargets(9);
+        List<Entity> targets = Razer.INSTANCE.getTargetManager().getTargets(9);
 
         if (targets.isEmpty()) {
             isActive = true;

@@ -42,7 +42,7 @@ public final class ClientSpoofer extends Module {
 
                 case "Lunar": {
                     wrapper.setChannel("REGISTER");
-                    wrapper.setData(createPacketBuffer("Lunar-Razer", false));
+                    wrapper.setData(createPacketBuffer("Lunar", false));
                     break;
                 }
 

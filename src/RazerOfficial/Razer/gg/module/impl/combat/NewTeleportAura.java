@@ -10,6 +10,7 @@ import RazerOfficial.Razer.gg.value.impl.BoundsNumberValue;
 import RazerOfficial.Razer.gg.value.impl.ModeValue;
 import RazerOfficial.Razer.gg.value.impl.NumberValue;
 import RazerOfficial.Razer.gg.value.impl.SubMode;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import util.time.StopWatch;
 
@@ -38,8 +39,8 @@ public final class NewTeleportAura extends Module {
 
     public final BoundsNumberValue cps = new BoundsNumberValue("CPS", this, 10, 15, 1, 20, 1);
 
-    public List<EntityLivingBase> attackedList = new ArrayList<>();
-    public EntityLivingBase target;
+    public List<Entity> attackedList = new ArrayList<>();
+    public Entity target;
     public Vec3 targetPosition, position;
     public boolean attacked;
     public long nextSwing;
