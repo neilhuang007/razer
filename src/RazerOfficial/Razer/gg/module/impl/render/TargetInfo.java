@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.render.ProjectionComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -27,7 +27,7 @@ import javax.vecmath.Vector4d;
  * @since 10/19/2021
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.render.targetinfo.name", description = "module.render.targetinfo.description", category = Category.RENDER)
 public final class TargetInfo extends Module {
 

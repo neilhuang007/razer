@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.event;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
@@ -12,7 +11,7 @@ import RazerOfficial.Razer.gg.event.impl.other.KillEvent;
 import RazerOfficial.Razer.gg.event.impl.other.WorldChangeEvent;
 import net.minecraft.entity.Entity;
 
-@Rise
+@Razer
 //@Priority(priority = -100) /* Must be run before all modules */
 public class EntityKillEventComponent extends Component {
 
@@ -23,7 +22,7 @@ public class EntityKillEventComponent extends Component {
         threadPool.execute(() -> {
             if (target != null && !mc.theWorld.loadedEntityList.contains(target)) {
                 target = null;
-                Razer.INSTANCE.getEventBus().handle(new KillEvent(target));
+                RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(new KillEvent(target));
             }
         });
     };

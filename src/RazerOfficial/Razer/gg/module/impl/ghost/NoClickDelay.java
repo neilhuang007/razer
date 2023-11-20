@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.ghost;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
@@ -13,7 +13,7 @@ import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
  * @author Alan Jr. (Not Billionaire)
  * @since 19/9/2022
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.ghost.noclickdelay.name", description = "module.ghost.noclickdelay.description", category = Category.GHOST)
 public class NoClickDelay extends Module {
 

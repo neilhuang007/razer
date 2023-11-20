@@ -1,13 +1,13 @@
 package RazerOfficial.Razer.gg.component.impl.render;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
 import util.time.StopWatch;
 
-@Rise
+@Razer
 public class SmoothCameraComponent extends Component {
 
     public static double y;

@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.ghost;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -16,7 +16,7 @@ import net.minecraft.item.ItemBlock;
  * @since 29/01/2021
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.ghost.fastplace.name", description = "module.ghost.fastplace.description", category = Category.GHOST)
 public class FastPlace extends Module {
 

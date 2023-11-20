@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.ghost;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
@@ -16,7 +16,7 @@ import org.lwjgl.input.Mouse;
  * @author Alan
  * @since 29/01/2021
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.ghost.hitbox.name", description = "module.ghost.hitbox.description", category = Category.GHOST)
 public class HitBox extends Module {
     public final NumberValue expand = new NumberValue("Expand Amount", this, 0, 0, 6, 0.01);

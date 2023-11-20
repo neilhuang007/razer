@@ -3,7 +3,7 @@ package RazerOfficial.Razer.gg.util.tuples;
 /**
  * This is property of Error.
  * All rights reserved.
- * I hereby grant permission to use this code in Rise 6.0 and all future versions.
+ * I hereby grant permission to use this code in Razer 6.0 and all future versions.
  * I do not grant permission to use this code in any other client.
  **/
 

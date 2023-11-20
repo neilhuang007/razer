@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.combat;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.module.teleportaura.TeleportAuraComponent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
@@ -11,7 +11,6 @@ import RazerOfficial.Razer.gg.value.impl.ModeValue;
 import RazerOfficial.Razer.gg.value.impl.NumberValue;
 import RazerOfficial.Razer.gg.value.impl.SubMode;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import util.time.StopWatch;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ import java.util.List;
  * @since 11/17/2022
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.combat.newteleportaura.name", description = "module.combat.newteleportaura.description", category = Category.COMBAT)
 public final class NewTeleportAura extends Module {
     public final NumberValue range = new NumberValue("Range", this, 30, 6, 100, 1);

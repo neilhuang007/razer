@@ -1,14 +1,13 @@
 package RazerOfficial.Razer.gg.module.impl.combat;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;
 import RazerOfficial.Razer.gg.module.impl.combat.antibot.*;
 import RazerOfficial.Razer.gg.value.impl.BooleanValue;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.combat.antibot.name", description = "module.combat.antibot.description", category = Category.COMBAT)
 public final class AntiBot extends Module {
 
@@ -29,6 +28,6 @@ public final class AntiBot extends Module {
 
     @Override
     protected void onDisable() {
-        Razer.INSTANCE.getBotManager().clear();
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().clear();
     }
 }

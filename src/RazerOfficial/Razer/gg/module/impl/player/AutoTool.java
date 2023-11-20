@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
@@ -19,7 +19,7 @@ import net.minecraft.util.BlockPos;
  * @since 24/06/2023
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.autotool.name", description = "module.player.autotool.description", category = Category.PLAYER)
 public class AutoTool extends Module {
 

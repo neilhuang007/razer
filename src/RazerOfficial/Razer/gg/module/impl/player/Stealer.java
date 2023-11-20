@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.GUIDetectionComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -18,7 +18,7 @@ import net.minecraft.item.ItemStack;
 import util.time.StopWatch;
 
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.stealer.name", description = "module.player.stealer.description", category = Category.PLAYER)
 public class Stealer extends Module {
 

@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.movement;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @author Auth
  * @since 23/07/2022
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.movement.potionextender.name", description = "module.movement.potionextender.description", category = Category.MOVEMENT)
 public class PotionExtender extends Module {
 

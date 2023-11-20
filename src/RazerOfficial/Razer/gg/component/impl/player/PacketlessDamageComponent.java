@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.component.impl.render.SmoothCameraComponent;
 import RazerOfficial.Razer.gg.event.Listener;
@@ -9,7 +9,7 @@ import RazerOfficial.Razer.gg.event.impl.input.MoveInputEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
 import lombok.Getter;
 
-@Rise
+@Razer
 public final class PacketlessDamageComponent extends Component {
 
     @Getter

@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.ghost;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
@@ -24,7 +23,7 @@ import util.type.EvictingList;
  * @since 29/01/2021
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.ghost.aimbacktrack.name", description = "module.ghost.aimbacktract.description", category = Category.GHOST)
 public class AimBacktrack extends Module {
 
@@ -57,7 +56,7 @@ public class AimBacktrack extends Module {
 
                 if (movingObjectPosition.entityHit != null && !attacked) {
                     final AttackEvent e = new AttackEvent(movingObjectPosition.entityHit);
-                    Razer.INSTANCE.getEventBus().handle(e);
+                    RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(e);
 
                     if (e.isCancelled()) return;
                     mc.playerController.attackEntity(mc.thePlayer, movingObjectPosition.entityHit);

@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.movement;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;
@@ -13,7 +13,7 @@ import RazerOfficial.Razer.gg.value.impl.ModeValue;
  * @since 20/10/2021
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.movement.phase.name", description = "module.movement.phase.description", category = Category.MOVEMENT)
 public class Phase extends Module {
 

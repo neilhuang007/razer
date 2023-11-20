@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.hypixel.APIKeyComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.render.sniperoverlay.name", description = "module.render.sniperoverlay.description", category = Category.RENDER)
 public final class SniperOverlay extends Module {
 

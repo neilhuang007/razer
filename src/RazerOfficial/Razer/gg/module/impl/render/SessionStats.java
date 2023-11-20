@@ -1,7 +1,7 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
 import RazerOfficial.Razer.gg.api.Hidden;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * @author Hazsi
  * @since 10/13/2022
  */
-@Rise
+@Razer
 @Hidden
 @ModuleInfo(name = "module.render.sessionstats.name", description = "module.render.sessionstats.description", category = Category.RENDER)
 public class SessionStats extends Module {

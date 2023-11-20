@@ -1,6 +1,5 @@
 package net.minecraft.client.gui;
 
-import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.event.impl.render.LimitedRender2DEvent;
 import RazerOfficial.Razer.gg.event.impl.render.RenderHungerEvent;
 import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
@@ -285,7 +284,7 @@ public class GuiIngame extends Gui {
             this.overlayPlayerList.updatePlayerList(false);
         }
 
-        Razer.INSTANCE.getEventBus().handle(new LimitedRender2DEvent(scaledResolution, partialTicks));
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(new LimitedRender2DEvent(scaledResolution, partialTicks));
 
         LIMITED_PRE_RENDER_RUNNABLES.forEach(Runnable::run);
         LIMITED_POST_RENDER_RUNNABLES.forEach(Runnable::run);
@@ -300,7 +299,7 @@ public class GuiIngame extends Gui {
             final float f = zLevel;
             zLevel = -90.0F;
 
-            final Interface module = Rise.INSTANCE.getModuleManager().get(Interface.class);
+            final Interface module = Razer.INSTANCE.getModuleManager().get(Interface.class);
 
             if (module.smoothHotbar.getValue()) {
                 for (int time = 0; time < stopwatch.getElapsedTime(); ++time) {
@@ -315,7 +314,7 @@ public class GuiIngame extends Gui {
             if (module.customHotbar.getValue()) {
                 Gui.drawRect(i - 91, sr.getScaledHeight() - 22, (sr.getScaledWidth() / 2F) + 91, sr.getScaledHeight(), 1342177280);
                 Gui.drawRect(rPosX + 1, sr.getScaledHeight() - 22, rPosX + 23, sr.getScaledHeight(), 1342177280);
-                Gui.drawRect(rPosX + 1, sr.getScaledHeight() - 21, rPosX + 23, sr.getScaledHeight() - 22, Rise.INSTANCE.getThemeManager().getTheme().getColor().getRGB());
+                Gui.drawRect(rPosX + 1, sr.getScaledHeight() - 21, rPosX + 23, sr.getScaledHeight() - 22, Razer.INSTANCE.getThemeManager().getTheme().getColor().getRGB());
             } else {
                 this.drawTexturedModalRect(i - 91, sr.getScaledHeight() - 22, 0, 0, 182, 22);
                 this.drawTexturedModalRect(rPosX, sr.getScaledHeight() - 22 - 1, 0, 22, 24, 22);
@@ -625,7 +624,7 @@ public class GuiIngame extends Gui {
                     }
                 }
 
-                Razer.INSTANCE.getEventBus().handle(new RenderHungerEvent(p_180477_1_));
+                RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(new RenderHungerEvent(p_180477_1_));
             } else if (entity instanceof EntityLivingBase) {
                 this.mc.mcProfiler.endStartSection("mountHealth");
                 final EntityLivingBase entitylivingbase = (EntityLivingBase) entity;

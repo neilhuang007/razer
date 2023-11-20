@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.hypixel;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -14,7 +14,7 @@ import net.minecraft.network.play.server.S02PacketChat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Rise
+@Razer
 public final class APIKeyComponent extends Component {
 
     private final Pattern pattern = Pattern.compile("Your new API key is (.*)");

@@ -1,11 +1,9 @@
 package RazerOfficial.Razer.gg.module.impl.ghost;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
-import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
 import RazerOfficial.Razer.gg.event.impl.render.Render2DEvent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
@@ -18,20 +16,16 @@ import RazerOfficial.Razer.gg.value.impl.BoundsNumberValue;
 import com.viaversion.viaversion.libs.fastutil.objects.ObjectArrayList;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Alan
  * @since 29/01/2021
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.ghost.aimassist.name", description = "module.ghost.aimassist.description", category = Category.GHOST)
 public class AimAssist extends Module {
 
@@ -56,7 +50,7 @@ public class AimAssist extends Module {
 
         if (mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) return;
 
-        final List<Entity> entities = Razer.INSTANCE.getTargetManager().getTargets(5);
+        final List<Entity> entities = RazerOfficial.Razer.gg.Razer.INSTANCE.getTargetManager().getTargets(5);
 
         if (entities.isEmpty()) {
             return;

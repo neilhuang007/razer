@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;
@@ -8,7 +8,7 @@ import RazerOfficial.Razer.gg.module.impl.render.esp.ChamsESP;
 import RazerOfficial.Razer.gg.module.impl.render.esp.GlowESP;
 import RazerOfficial.Razer.gg.value.impl.BooleanValue;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.render.esp.name", description = "module.render.esp.description", category = Category.RENDER)
 public final class ESP extends Module {
 

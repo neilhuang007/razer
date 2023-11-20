@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.combat;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.PingSpoofComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -19,7 +18,6 @@ import RazerOfficial.Razer.gg.value.impl.BooleanValue;
 import RazerOfficial.Razer.gg.value.impl.NumberValue;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S14PacketEntity;
 import net.minecraft.network.play.server.S18PacketEntityTeleport;
@@ -28,7 +26,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.combat.legitreach.name", description = "module.combat.legitreach.description", category = Category.COMBAT)
 public final class LegitReach extends Module {
 
@@ -45,7 +43,7 @@ public final class LegitReach extends Module {
     public final Listener<PreUpdateEvent> onPreUpdate = event -> {
 
         // Getting targets and selecting the nearest one
-        List<Entity> targets = Razer.INSTANCE.getTargetManager().getTargets(9);
+        List<Entity> targets = RazerOfficial.Razer.gg.Razer.INSTANCE.getTargetManager().getTargets(9);
 
         if (targets.isEmpty()) {
             isActive = true;

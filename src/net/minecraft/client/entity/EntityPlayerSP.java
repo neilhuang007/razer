@@ -1,14 +1,11 @@
 package net.minecraft.client.entity;
 
-import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.event.impl.input.ChatInputEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.*;
-import RazerOfficial.Razer.gg.event.impl.other.HurtEvent;
 import RazerOfficial.Razer.gg.event.impl.other.MoveEvent;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import RazerOfficial.Razer.gg.util.vector.Vector2f;
-import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -161,13 +158,13 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
             prevRenderPitchHead = renderPitchHead;
             renderPitchHead = rotationPitch;
 
-            Razer.INSTANCE.getEventBus().handle(new PreUpdateEvent());
+            RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(new PreUpdateEvent());
 
             super.onUpdate();
 
             this.onUpdateWalkingPlayer();
 
-            Razer.INSTANCE.getEventBus().handle(new PostMotionEvent());
+            RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(new PostMotionEvent());
         }
     }
 
@@ -192,7 +189,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
                 this.onGround
         );
 
-        Razer.INSTANCE.getEventBus().handle(event);
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(event);
 
         final boolean flag = this.isSprinting();
 
@@ -228,7 +225,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
             final double d4 = event.getPitch() - this.lastReportedPitch;
 
 //            MinimumFlyingEvent minimumFlyingEvent = new MinimumFlyingEvent(9.0E-4D);
-//            Rise.INSTANCE.getEventBus().handle(minimumFlyingEvent);
+//            Razer.INSTANCE.getEventBus().handle(minimumFlyingEvent);
 
             final boolean flag2 = d0 * d0 + d1 * d1 + d2 * d2 > 9.0E-4D || this.positionUpdateTicks >= 20;
             final boolean flag3 = d3 != 0.0D || d4 != 0.0D;
@@ -288,7 +285,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
      */
     public void sendChatMessage(final String message) {
         final ChatInputEvent event = new ChatInputEvent(message);
-        Razer.INSTANCE.getEventBus().handle(event);
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(event);
 
         if (event.isCancelled())
             return;
@@ -420,7 +417,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
 
             if (!this.isOpenBlockSpace(blockpos)) {
                 PushOutOfBlockEvent pushOutOfBlockEvent = new PushOutOfBlockEvent();
-                Razer.INSTANCE.getEventBus().handle(pushOutOfBlockEvent);
+                RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(pushOutOfBlockEvent);
                 if (pushOutOfBlockEvent.isCancelled()) {
                     return false;
                 }
@@ -710,7 +707,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
         this.movementInput.updatePlayerMoveState();
 
         final SlowDownEvent slowDownEvent = new SlowDownEvent(0.2F, 0.2F);
-        Razer.INSTANCE.getEventBus().handle(slowDownEvent);
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(slowDownEvent);
 
         if (!slowDownEvent.isCancelled() && this.isUsingItem() && !this.isRiding()) {
             this.movementInput.moveStrafe *= slowDownEvent.getStrafeMultiplier();
@@ -811,7 +808,7 @@ public class EntityPlayerSP extends AbstractClientPlayer implements InstanceAcce
     @Override
     public void moveEntity(double x, double y, double z) {
         final MoveEvent moveEvent = new MoveEvent(x, y, z);
-        Razer.INSTANCE.getEventBus().handle(moveEvent);
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(moveEvent);
 
         if (moveEvent.isCancelled()) {
             return;

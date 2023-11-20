@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.render;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
@@ -10,7 +10,7 @@ import RazerOfficial.Razer.gg.util.render.particle.Particle;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-@Rise
+@Razer
 public class ParticleComponent extends Component {
 
     public static ConcurrentLinkedQueue<Particle> particles = new ConcurrentLinkedQueue<>();

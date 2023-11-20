@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.movement;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -20,7 +19,6 @@ import RazerOfficial.Razer.gg.util.vector.Vector3d;
 import RazerOfficial.Razer.gg.value.impl.BooleanValue;
 import RazerOfficial.Razer.gg.value.impl.NumberValue;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 
 import java.util.List;
@@ -29,7 +27,7 @@ import java.util.List;
  * @author Alan
  * @since 20/10/2021
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.movement.targetstrafe.name", description = "module.movement.targetstrafe.description", category = Category.MOVEMENT)
 public class TargetStrafe extends Module {
 
@@ -81,7 +79,7 @@ public class TargetStrafe extends Module {
             return;
         }
 
-        final List<Entity> targets = Razer.INSTANCE.getTargetManager().getTargets(this.range.getValue().doubleValue() + 3);
+        final List<Entity> targets = RazerOfficial.Razer.gg.Razer.INSTANCE.getTargetManager().getTargets(this.range.getValue().doubleValue() + 3);
 
         if (targets.isEmpty()) {
             target = null;

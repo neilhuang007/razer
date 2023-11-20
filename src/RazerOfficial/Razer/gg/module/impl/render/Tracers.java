@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.render.Render3DEvent;
@@ -15,7 +14,7 @@ import net.minecraft.entity.Entity;
 
 import java.awt.*;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.render.tracers.name", description = "module.render.tracers.description", category = Category.RENDER)
 public final class Tracers extends Module {
 
@@ -29,8 +28,8 @@ public final class Tracers extends Module {
         GlStateManager.loadIdentity();
         mc.entityRenderer.orientCamera(mc.timer.renderPartialTicks);
 
-        for (final Entity player : Razer.INSTANCE.getTargetManager()) {
-            if (player == mc.thePlayer || player.isDead || Razer.INSTANCE.getBotManager().contains(player)) {
+        for (final Entity player : RazerOfficial.Razer.gg.Razer.INSTANCE.getTargetManager()) {
+            if (player == mc.thePlayer || player.isDead || RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().contains(player)) {
                 continue;
             }
 

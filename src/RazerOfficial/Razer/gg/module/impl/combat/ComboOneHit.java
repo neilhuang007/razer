@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.combat;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
@@ -11,7 +11,7 @@ import RazerOfficial.Razer.gg.util.packet.PacketUtil;
 import RazerOfficial.Razer.gg.value.impl.NumberValue;
 import net.minecraft.network.play.client.C02PacketUseEntity;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.combat.comboonehit.name", description = "module.combat.comboonehit.description", category = Category.COMBAT)
 public final class ComboOneHit extends Module {
 

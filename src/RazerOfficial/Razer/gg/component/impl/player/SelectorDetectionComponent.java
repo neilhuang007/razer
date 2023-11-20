@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
@@ -10,7 +10,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
-@Rise
+@Razer
 public final class SelectorDetectionComponent extends Component  {
 
     private static boolean selector;

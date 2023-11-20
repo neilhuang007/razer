@@ -1,6 +1,5 @@
 package RazerOfficial.Razer.gg.ui.click.standard.components.category;
 
-import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.Type;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.ui.click.standard.RiseClickGUI;
@@ -28,13 +27,13 @@ public final class SidebarCategory implements InstanceAccess {
     public SidebarCategory() {
         categories = Arrays.stream(Category.values())
                 .map(CategoryComponent::new)
-                .filter(category -> category.category.clientType == Razer.CLIENT_TYPE || category.category.clientType == Type.BOTH)
+                .filter(category -> category.category.clientType == RazerOfficial.Razer.gg.Razer.CLIENT_TYPE || category.category.clientType == Type.BOTH)
                 .collect(Collectors.toList());
     }
 
     public void preRenderClickGUI() {
         /* ClickGUI */
-        final RiseClickGUI clickGUI = Razer.INSTANCE.getStandardClickGUI();
+        final RiseClickGUI clickGUI = RazerOfficial.Razer.gg.Razer.INSTANCE.getStandardClickGUI();
         final Color color = new Color(clickGUI.sidebarColor.getRed(), clickGUI.sidebarColor.getGreen(), clickGUI.sidebarColor.getBlue(), (int) Math.min(opacity, clickGUI.sidebarColor.getAlpha()));
 
         RenderUtil.roundedRectangle(clickGUI.position.x, clickGUI.position.y, sidebarWidth + 20, clickGUI.scale.y, getStandardClickGUI().getRound(), ColorUtil.withAlpha(color, 240));
@@ -42,7 +41,7 @@ public final class SidebarCategory implements InstanceAccess {
 
     public void renderSidebar(final float mouseX, final float mouseY) {
         /* ClickGUI */
-        final RiseClickGUI clickGUI = Razer.INSTANCE.getStandardClickGUI();
+        final RiseClickGUI clickGUI = RazerOfficial.Razer.gg.Razer.INSTANCE.getStandardClickGUI();
 
         /* Animations */
         final long time = System.currentTimeMillis();
@@ -85,11 +84,11 @@ public final class SidebarCategory implements InstanceAccess {
         final float posX = clickGUI.position.getX() + 9;
         final float posY = clickGUI.position.getY() + ((19.5F + 30) / 2.0F - nunitoLarge.height() / 2.0F);
 
-        FontManager.getProductSansRegular(32).drawString(Razer.NAME, posX + 5, posY + 2, ColorUtil.withAlpha(Color.WHITE, (int) opacity).hashCode());
-        FontManager.getProductSansRegular(16).drawString(Razer.VERSION, posX + 5 + FontManager.getProductSansRegular(32).width(Razer.NAME), posY, ColorUtil.withAlpha(getTheme().getFirstColor(), (int) Math.min(opacity, 200)).getRGB());
+        FontManager.getProductSansRegular(32).drawString(RazerOfficial.Razer.gg.Razer.NAME, posX + 5, posY + 2, ColorUtil.withAlpha(Color.WHITE, (int) opacity).hashCode());
+        FontManager.getProductSansRegular(16).drawString(RazerOfficial.Razer.gg.Razer.VERSION, posX + 5 + FontManager.getProductSansRegular(32).width(RazerOfficial.Razer.gg.Razer.NAME), posY, ColorUtil.withAlpha(getTheme().getFirstColor(), (int) Math.min(opacity, 200)).getRGB());
 
-//        this.poppinsBold.drawString(Rise.NAME, (float) (clickGUI.position.x + sidebarWidth - 56), clickGUI.position.y + 12, new Color(0, 0, 0, (int) Math.min(opacity, 100)).hashCode());
-//        this.poppinsBold.drawString(Rise.NAME, (float) (clickGUI.position.x + sidebarWidth - 56), clickGUI.position.y + 11, new Color(clickGUI.accentColor.getRed(), clickGUI.accentColor.getGreen(), clickGUI.accentColor.getBlue(), (int) opacity).hashCode());
+//        this.poppinsBold.drawString(Razer.NAME, (float) (clickGUI.position.x + sidebarWidth - 56), clickGUI.position.y + 12, new Color(0, 0, 0, (int) Math.min(opacity, 100)).hashCode());
+//        this.poppinsBold.drawString(Razer.NAME, (float) (clickGUI.position.x + sidebarWidth - 56), clickGUI.position.y + 11, new Color(clickGUI.accentColor.getRed(), clickGUI.accentColor.getGreen(), clickGUI.accentColor.getBlue(), (int) opacity).hashCode());
     }
 
     public void bloom() {

@@ -1,12 +1,12 @@
 package RazerOfficial.Razer.gg.component.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
 
-@Rise
+@Razer
 public final class FallDistanceComponent extends Component {
 
     public static float distance;

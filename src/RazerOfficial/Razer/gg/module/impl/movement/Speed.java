@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.movement;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
@@ -16,7 +16,7 @@ import RazerOfficial.Razer.gg.value.impl.ModeValue;
  * @author Patrick (implementation)
  * @since 10/19/2021
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.movement.speed.name", description = "module.movement.speed.description", category = Category.MOVEMENT)
 public class Speed extends Module {
 

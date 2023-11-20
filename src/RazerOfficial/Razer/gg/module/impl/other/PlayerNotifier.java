@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.other;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
@@ -17,7 +16,7 @@ import net.minecraft.util.Vec3i;
 
 import java.util.ArrayList;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.other.playernotifier.name", description = "module.other.playernotifier.description", category = Category.OTHER)
 public final class PlayerNotifier extends Module {
 
@@ -40,7 +39,7 @@ public final class PlayerNotifier extends Module {
 
         threadPool.execute(() -> {
             for (EntityLivingBase entity : mc.theWorld.playerEntities) {
-                if (PlayerUtil.sameTeam(entity) || Razer.INSTANCE.getBotManager().contains(entity) || entity == mc.thePlayer) {
+                if (PlayerUtil.sameTeam(entity) || RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().contains(entity) || entity == mc.thePlayer) {
                     continue;
                 }
 

@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.other;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.BlinkComponent;
 import RazerOfficial.Razer.gg.component.impl.player.PingSpoofComponent;
 import RazerOfficial.Razer.gg.component.impl.render.ESPComponent;
@@ -30,7 +29,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.other.debugger.name", category = Category.OTHER, description = "module.other.debugger.description")
 public final class Debugger extends Module implements InstanceAccess {
 
@@ -96,12 +95,12 @@ public final class Debugger extends Module implements InstanceAccess {
             NORMAL_POST_BLOOM_RUNNABLES.add(() -> RenderUtil.roundedRectangle(position.position.x, position.position.y, position.scale.x, position.scale.y, getTheme().getRound(), getTheme().getDropShadow()));
 
             NORMAL_POST_RENDER_RUNNABLES.add(() -> {
-                mc.fontRendererObj.drawStringWithShadow(Razer.NAME + " " + Razer.VERSION + " INDEV " + date.format(LocalDateTime.now()), position.position.x + padding, position.position.y + padding, new Color(255, 255, 0).getRGB());
+                mc.fontRendererObj.drawStringWithShadow(RazerOfficial.Razer.gg.Razer.NAME + " " + RazerOfficial.Razer.gg.Razer.VERSION + " INDEV " + date.format(LocalDateTime.now()), position.position.x + padding, position.position.y + padding, new Color(255, 255, 0).getRGB());
                 mc.fontRendererObj.drawStringWithShadow("FPS: " + Minecraft.getDebugFPS() + " [target " + mc.getLimitFramerate() + "]", position.position.x + padding, position.position.y + padding * 2, new Color(255, 255, 0).getRGB());
 
                 mc.fontRendererObj.drawString("Debugger", position.position.x + padding, position.position.y + padding * 4, getTheme().getFirstColor().hashCode());
 
-                if (Razer.DEVELOPMENT_SWITCH) {
+                if (RazerOfficial.Razer.gg.Razer.DEVELOPMENT_SWITCH) {
                     mc.fontRendererObj.drawString("PingSpoof: " + PingSpoofComponent.spoofing + " Amount: " + PingSpoofComponent.delay, position.position.x + padding, position.position.y + padding * 5, Color.WHITE.hashCode());
                     mc.fontRendererObj.drawString("Blink: " + BlinkComponent.blinking, position.position.x + padding, position.position.y + padding * 6, Color.WHITE.hashCode());
                 } else {
@@ -109,7 +108,7 @@ public final class Debugger extends Module implements InstanceAccess {
                     mc.fontRendererObj.drawString("Hidden due to not in dev mode", position.position.x + padding, position.position.y + padding * 6, Color.WHITE.hashCode());
                 }
 
-                mc.fontRendererObj.drawString("Bot Amount: " + Razer.INSTANCE.getBotManager().size(), position.position.x + padding, position.position.y + padding * 7, Color.WHITE.hashCode());
+                mc.fontRendererObj.drawString("Bot Amount: " + RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().size(), position.position.x + padding, position.position.y + padding * 7, Color.WHITE.hashCode());
                 mc.fontRendererObj.drawString("ESPs Amount: " + ESPComponent.esps.size(), position.position.x + padding, position.position.y + padding * 8, Color.WHITE.hashCode());
 
                 mc.fontRendererObj.drawString("Performance", position.position.x + padding, position.position.y + padding * 9, getTheme().getFirstColor().hashCode());

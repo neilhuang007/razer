@@ -1,6 +1,5 @@
 package RazerOfficial.Razer.gg.module.api.manager;
 
-import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -28,7 +27,7 @@ public final class ModuleManager extends ArrayList<Module> {
 //
 //        reflections.getSubTypesOf(Module.class).forEach(clazz -> {
 //            try {
-//                if (!Modifier.isAbstract(clazz.getModifiers()) && clazz != Interface.class && (clazz != Test.class || Rise.DEVELOPMENT_SWITCH)) {
+//                if (!Modifier.isAbstract(clazz.getModifiers()) && clazz != Interface.class && (clazz != Test.class || Razer.DEVELOPMENT_SWITCH)) {
 //                    this.add(clazz.newInstance());
 //                }
 //            } catch (final Exception e) {
@@ -40,7 +39,7 @@ public final class ModuleManager extends ArrayList<Module> {
         this.stream().filter(module -> module.getModuleInfo().autoEnabled()).forEach(module -> module.setEnabled(true));
 
         // Has to be a listener to handle the key presses
-        Razer.INSTANCE.getEventBus().register(this);
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().register(this);
     }
 
     public List<Module> getAll() {

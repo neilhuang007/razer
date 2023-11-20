@@ -36,7 +36,7 @@ import java.util.LinkedList;
 /*    */ }
 
 
-/* Location:              F:\QQ\1446679699\FileRecv\Rise.jar\\util\type\EvictingList.class
+/* Location:              F:\QQ\1446679699\FileRecv\Razer.jar\\util\type\EvictingList.class
  * Java compiler version: 8 (52.0)
  * JD-Core Version:       1.1.3
  */

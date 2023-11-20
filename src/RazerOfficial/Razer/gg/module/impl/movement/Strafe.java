@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.movement;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.StrafeEvent;
@@ -13,7 +13,7 @@ import RazerOfficial.Razer.gg.util.player.MoveUtil;
  * @author Alan Jr.
  * @since 9/17/2022
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.movement.strafe.name", description = "module.movement.strafe.description", category = Category.MOVEMENT)
 public class Strafe extends Module {
 

@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.other;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.GUIDetectionComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -35,7 +35,7 @@ import util.time.StopWatch;
 import java.util.Collections;
 import java.util.List;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.other.nuker.name", description = "module.other.nuker.description", category = Category.OTHER)
 public final class Nuker extends Module {
 

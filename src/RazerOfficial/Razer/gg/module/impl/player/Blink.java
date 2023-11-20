@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.PingSpoofComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -20,7 +19,7 @@ import net.minecraft.client.entity.EntityOtherPlayerMP;
  * @since 23/10/2021
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.blink.name", description = "module.player.blink.description", category = Category.PLAYER)
 public class Blink extends Module {
 
@@ -66,7 +65,7 @@ public class Blink extends Module {
 
     public void deSpawnEntity() {
         if (blinkEntity != null) {
-            Razer.INSTANCE.getBotManager().remove(blinkEntity);
+            RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().remove(blinkEntity);
             mc.theWorld.removeEntityFromWorld(blinkEntity.getEntityId());
             blinkEntity = null;
         }
@@ -81,7 +80,7 @@ public class Blink extends Module {
             blinkEntity.setInvisible(mc.thePlayer.isInvisible());
             blinkEntity.setSneaking(mc.thePlayer.isSneaking());
             blinkEntity.inventory = mc.thePlayer.inventory;
-            Razer.INSTANCE.getBotManager().add(blinkEntity);
+            RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().add(blinkEntity);
 
             mc.theWorld.addEntityToWorld(blinkEntity.getEntityId(), blinkEntity);
         }

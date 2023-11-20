@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.other;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
@@ -13,11 +13,11 @@ import RazerOfficial.Razer.gg.value.impl.NumberValue;
 import RazerOfficial.Razer.gg.value.impl.StringValue;
 import util.time.StopWatch;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.other.spammer.name", description = "module.other.spammer.description", category = Category.OTHER)
 public final class  Spammer extends Module {
 
-    private final StringValue message = new StringValue("Message", this, "Buy Rise at riseclient.com!");
+    private final StringValue message = new StringValue("Message", this, "Buy Razer at riseclient.com!");
     private final NumberValue delay = new NumberValue("Delay", this, 3000, 0, 20000, 1);
 
     private final StopWatch stopWatch = new StopWatch();

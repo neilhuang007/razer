@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.BadPacketsComponent;
 import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
 import RazerOfficial.Razer.gg.event.Listener;
@@ -19,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement;
 import util.time.StopWatch;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.autohead.name", description = "module.player.autohead.description", category = Category.PLAYER)
 public class AutoHead extends Module {
 

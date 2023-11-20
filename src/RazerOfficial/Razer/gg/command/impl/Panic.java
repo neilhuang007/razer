@@ -1,14 +1,13 @@
 package RazerOfficial.Razer.gg.command.impl;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.command.Command;
 
 /**
  * @author Alan
  * @since 3/02/2022
  */
-@Rise
+@Razer
 public final class Panic extends Command {
 
     public Panic() {
@@ -17,7 +16,7 @@ public final class Panic extends Command {
 
     @Override
     public void execute(final String[] args) {
-        Razer.INSTANCE.getModuleManager().getAll().stream().filter(module ->
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getModuleManager().getAll().stream().filter(module ->
                 !module.getModuleInfo().autoEnabled()).forEach(module -> module.setEnabled(false));
     }
 }

@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.other;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
@@ -11,7 +11,7 @@ import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 import util.time.StopWatch;
 
 
-@Rise
+@Razer
 @ModuleInfo(name = "test", description = "timer", category = Category.OTHER)
 public class Test extends Module {
     StopWatch stopWatch = new StopWatch();

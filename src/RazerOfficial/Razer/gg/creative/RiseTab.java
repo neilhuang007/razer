@@ -1,6 +1,5 @@
 package RazerOfficial.Razer.gg.creative;
 
-import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import RazerOfficial.Razer.gg.util.player.ItemUtil;
 import RazerOfficial.Razer.gg.util.player.PlayerUtil;
@@ -36,7 +35,7 @@ public final class RiseTab extends CreativeTabs implements InstanceAccess {
         baseCompound.setBoolean("Invisible", true);
         baseCompound.setBoolean("NoGravity", true);
         baseCompound.setBoolean("CustomNameVisible", true);
-        baseCompound.setString("CustomName", "Rise Razer");
+        baseCompound.setString("CustomName", "Razer Razer");
         baseCompound.setTag("Pos", posList);
         baseCompound.setTag("pose", posList);
         hologram.setTagInfo("EntityTag", baseCompound);
@@ -53,7 +52,7 @@ public final class RiseTab extends CreativeTabs implements InstanceAccess {
         baseCompound1.setBoolean("Invisible", true);
         baseCompound1.setBoolean("NoGravity", true);
         baseCompound1.setBoolean("CustomNameVisible", true);
-        baseCompound1.setString("CustomName", "\"" + "Rise Razer" + "\"");
+        baseCompound1.setString("CustomName", "\"" + "Razer Razer" + "\"");
         baseCompound1.setTag("Pos", posList1);
         hologramVia.setTagInfo("EntityTag", baseCompound1);
         hologramVia.setStackDisplayName("\247rHologram (Via Version)");
@@ -152,7 +151,7 @@ public final class RiseTab extends CreativeTabs implements InstanceAccess {
 
     @Override
     public String getTranslatedTabLabel() {
-        return Razer.NAME;
+        return RazerOfficial.Razer.gg.Razer.NAME;
     }
 
     @Override

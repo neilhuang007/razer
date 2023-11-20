@@ -23,7 +23,6 @@ public class NumberValue extends Value<Number> {
                        final Number min, final Number max, final Number decimalPlaces) {
         super(name, parent, defaultValue);
         this.decimalPlaces = decimalPlaces;
-
         this.min = min;
         this.max = max;
     }

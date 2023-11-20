@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
@@ -11,7 +11,7 @@ import net.minecraft.network.play.client.*;
 
 import static net.minecraft.network.play.client.C16PacketClientStatus.EnumState.OPEN_INVENTORY_ACHIEVEMENT;
 
-@Rise
+@Razer
 public final class BadPacketsComponent extends Component {
 
     private static boolean slot, attack, swing, block, inventory;

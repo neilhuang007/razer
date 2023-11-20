@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.render.ProjectionComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -24,7 +23,7 @@ import java.awt.*;
  * @author Alan
  * @since 29/04/2022
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.render.nametags.name", description = "module.render.nametags.description", category = Category.RENDER)
 public final class NameTags extends Module {
 
@@ -36,7 +35,7 @@ public final class NameTags extends Module {
     public final Listener<Render2DEvent> onRender2D = event -> {
 
         Font nunitoLight14 = FontManager.getNunitoLight(14);
-        for (EntityLivingBase entity : Razer.INSTANCE.getTargetManager()) {
+        for (EntityLivingBase entity : RazerOfficial.Razer.gg.Razer.INSTANCE.getTargetManager()) {
             if (entity == InstanceAccess.mc.thePlayer) {
                 continue;
             }

@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.BadPacketsComponent;
 import RazerOfficial.Razer.gg.component.impl.player.RotationComponent;
 import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
@@ -26,7 +26,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import util.time.StopWatch;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.autopot.name", description = "module.player.autopot.description", category = Category.PLAYER)
 public class AutoPot extends Module {
 

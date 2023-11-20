@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.render.ProjectionComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -21,7 +21,7 @@ import java.awt.*;
  * @author Hazsi, Alan
  * @since 10/11/2022
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.render.2desp.name", description = "module.render.projectionesp.description", category = Category.RENDER)
 public class ProjectionESP extends Module {
 

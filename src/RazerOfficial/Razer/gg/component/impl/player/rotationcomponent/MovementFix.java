@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum MovementFix {
     OFF("Off"),
-    NORMAL("Rise"),
+    NORMAL("Razer"),
     TRADITIONAL("Traditional"),
     BACKWARDS_SPRINT("Backwards Sprint");
 

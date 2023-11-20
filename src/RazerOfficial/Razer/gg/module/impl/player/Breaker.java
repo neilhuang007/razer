@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.RotationComponent;
 import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
 import RazerOfficial.Razer.gg.component.impl.player.rotationcomponent.MovementFix;
@@ -29,7 +29,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.breaker.name", description = "module.player.breaker.description", category = Category.PLAYER)
 public class Breaker extends Module {
 

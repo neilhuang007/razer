@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.SelectorDetectionComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -31,7 +31,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import util.time.StopWatch;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.manager.name", description = "module.player.manager.description", category = Category.PLAYER)
 public class Manager extends Module {
 

@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.render.Render3DEvent;
@@ -14,7 +14,7 @@ import net.minecraft.tileentity.TileEntityEnderChest;
 
 import java.util.ConcurrentModificationException;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.render.chestesp.name", description = "module.render.chestesp.description", category = Category.RENDER)
 public final class ChestESP extends Module {
 

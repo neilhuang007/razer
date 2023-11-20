@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.ghost;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.input.MoveInputEvent;
@@ -18,7 +18,7 @@ import net.minecraft.item.ItemBlock;
  * @author Auth
  * @since 27/4/2022
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.ghost.legitscaffold.name", description = "module.ghost.eagle.description", category = Category.GHOST)
 public class Eagle extends Module {
 

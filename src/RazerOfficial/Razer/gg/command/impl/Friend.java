@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.command.impl;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.command.Command;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  * @author Alan
  * @since 10/19/2022
  */
-@Rise
+@Razer
 public final class Friend extends Command {
 
     public Friend() {
@@ -31,13 +30,13 @@ public final class Friend extends Command {
                 }
                 switch (action) {
                     case "add":
-                        Razer.INSTANCE.getBotManager().add(entityPlayer);
+                        RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().add(entityPlayer);
                         ChatUtil.display(String.format("Added %s to friends list", target));
                         success = true;
                         break;
 
                     case "remove":
-                        Razer.INSTANCE.getBotManager().remove(entityPlayer);
+                        RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().remove(entityPlayer);
                         ChatUtil.display(String.format("Removed %s from friends list", target));
                         success = true;
                         break;

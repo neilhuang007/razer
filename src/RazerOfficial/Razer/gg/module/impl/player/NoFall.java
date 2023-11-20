@@ -1,7 +1,7 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;
@@ -14,7 +14,7 @@ import RazerOfficial.Razer.gg.value.impl.ModeValue;
  * @since 23/10/2021
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.nofall.name", description = "module.player.nofall.description", category = Category.PLAYER)
 public class NoFall extends Module {
 

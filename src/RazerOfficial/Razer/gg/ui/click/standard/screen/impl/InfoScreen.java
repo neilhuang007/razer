@@ -1,6 +1,5 @@
 package RazerOfficial.Razer.gg.ui.click.standard.screen.impl;
 
-import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.ui.click.standard.screen.Screen;
 import RazerOfficial.Razer.gg.util.font.FontManager;
 import RazerOfficial.Razer.gg.util.render.ColorUtil;
@@ -25,14 +24,14 @@ public class InfoScreen extends Screen {
         final double sidebar = getStandardClickGUI().getSidebar().sidebarWidth;
 
         // Draw left column (client name and version)
-        FontManager.getProductSansRegular(32).drawString(Razer.NAME, position.getX() + sidebar + 20,
+        FontManager.getProductSansRegular(32).drawString(RazerOfficial.Razer.gg.Razer.NAME, position.getX() + sidebar + 20,
                 position.getY() + 20, Color.WHITE.getRGB());
-        FontManager.getProductSansRegular(16).drawString(Razer.VERSION,
-                position.getX() + sidebar + 20 + FontManager.getProductSansRegular(32).width(Razer.NAME),
+        FontManager.getProductSansRegular(16).drawString(RazerOfficial.Razer.gg.Razer.VERSION,
+                position.getX() + sidebar + 20 + FontManager.getProductSansRegular(32).width(RazerOfficial.Razer.gg.Razer.NAME),
                 position.getY() + 18, new Color(255, 255, 255, 100).getRGB());
-        FontManager.getNunito(17).drawString(Razer.VERSION_FULL, position.getX() + sidebar + 20,
+        FontManager.getNunito(17).drawString(RazerOfficial.Razer.gg.Razer.VERSION_FULL, position.getX() + sidebar + 20,
                 position.getY() + 50, new Color(255, 255, 255, 164).getRGB());
-        FontManager.getNunito(17).drawString(Razer.VERSION_DATE, position.getX() + sidebar + 20,
+        FontManager.getNunito(17).drawString(RazerOfficial.Razer.gg.Razer.VERSION_DATE, position.getX() + sidebar + 20,
                 position.getY() + 65, new Color(255, 255, 255, 164).getRGB());
 
         // Draw right column (user info)
@@ -63,7 +62,7 @@ public class InfoScreen extends Screen {
     // Returns the first column of the credits.
     // Method so I can hotswap the string
     private static String getCredits1() {
-        return "Rise " + Razer.VERSION + " (riseclient.com)\n" +
+        return "Razer " + RazerOfficial.Razer.gg.Razer.VERSION + " (riseclient.com)\n" +
                 "\n" +
                 "Designed and built by Alan and Hazsi.\n" +
                 "\n" +
@@ -98,7 +97,7 @@ public class InfoScreen extends Screen {
                 "Special Thanks\n" +
                 "  -> Auth and Error as contributing to development\n" +
                 "  -> Config and script makers\n" +
-                "  -> You, as a user of Rise. Thank you, on behalf of all of us!\n";
+                "  -> You, as a user of Razer. Thank you, on behalf of all of us!\n";
     }
 
     // Returns the second column of the credits

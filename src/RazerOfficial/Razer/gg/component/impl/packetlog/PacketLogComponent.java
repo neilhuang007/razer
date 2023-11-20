@@ -1,13 +1,13 @@
 package RazerOfficial.Razer.gg.component.impl.packetlog;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.other.ServerJoinEvent;
 import RazerOfficial.Razer.gg.event.impl.other.WorldChangeEvent;
 
-@Rise
+@Razer
 public class PacketLogComponent extends Component  {
 
     private int worldChanges;

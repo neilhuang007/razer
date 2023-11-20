@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.ghost;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;
@@ -14,7 +14,7 @@ import RazerOfficial.Razer.gg.value.impl.NumberValue;
  * @since 29/01/2021
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.ghost.wtap.name", description = "module.ghost.wtap.description", category = Category.GHOST)
 public class WTap extends Module {
     private final ModeValue mode = new ModeValue("Mode", this)

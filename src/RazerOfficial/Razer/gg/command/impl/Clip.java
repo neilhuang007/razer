@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.command.impl;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.command.Command;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 
@@ -8,7 +8,7 @@ import RazerOfficial.Razer.gg.util.chat.ChatUtil;
  * @author Auth
  * @since 3/02/2022
  */
-@Rise
+@Razer
 public final class Clip extends Command {
 
     public Clip() {

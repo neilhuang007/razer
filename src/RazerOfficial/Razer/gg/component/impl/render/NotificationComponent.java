@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.render;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
@@ -21,7 +21,7 @@ import util.type.EvictingList;
 
 import java.awt.*;
 
-@Rise
+@Razer
 public class NotificationComponent extends Component {
 
     private static EvictingList<Triple<String, String, Integer>> queue = new EvictingList<>(5);

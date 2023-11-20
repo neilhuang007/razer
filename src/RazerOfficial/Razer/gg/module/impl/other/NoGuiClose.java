@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.other;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketReceiveEvent;
@@ -16,7 +16,7 @@ import net.minecraft.network.play.server.S2EPacketCloseWindow;
  * @author Alan Jr.
  * @since 9/17/2022
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.other.noguiclose.name", category = Category.OTHER, description = "module.other.noguiclose.description")
 public final class NoGuiClose extends Module {
     private final BooleanValue chatonly = new BooleanValue("Chat Only", this, false);

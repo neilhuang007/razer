@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.module.teleportaura;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.component.impl.player.RotationComponent;
 import RazerOfficial.Razer.gg.component.impl.player.rotationcomponent.MovementFix;
@@ -23,7 +22,6 @@ import RazerOfficial.Razer.gg.util.vector.Vector2f;
 import RazerOfficial.Razer.gg.util.vector.Vector3d;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.play.client.C02PacketUseEntity;
 import org.lwjgl.opengl.GL11;
 
@@ -32,7 +30,7 @@ import java.util.List;
 
 import static net.minecraft.network.play.client.C02PacketUseEntity.Action.ATTACK;
 
-@Rise
+@Razer
 public class TeleportAuraComponent extends Component {
 
     private NewTeleportAura tpa;
@@ -137,7 +135,7 @@ public class TeleportAuraComponent extends Component {
         if (!tpa.isEnabled()) return null;
 
         if (!mc.theWorld.loadedEntityList.contains(tpa.target == null ? mc.thePlayer : tpa.target) || tpa.attacked) {
-            List<Entity> targets = Razer.INSTANCE.getTargetManager().getTargets(tpa.range.getValue().doubleValue());
+            List<Entity> targets = RazerOfficial.Razer.gg.Razer.INSTANCE.getTargetManager().getTargets(tpa.range.getValue().doubleValue());
 
             Entity target = null;
 

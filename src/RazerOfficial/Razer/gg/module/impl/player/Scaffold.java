@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.BadPacketsComponent;
 import RazerOfficial.Razer.gg.component.impl.player.BlinkComponent;
 import RazerOfficial.Razer.gg.component.impl.player.RotationComponent;
@@ -51,7 +51,7 @@ import java.util.Objects;
  * @since ??/??/21
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.scaffold.name", description = "module.player.scaffold.description", category = Category.PLAYER)
 public class Scaffold extends Module {
 

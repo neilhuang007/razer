@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.other;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -11,7 +11,7 @@ import RazerOfficial.Razer.gg.module.api.ModuleInfo;
 import RazerOfficial.Razer.gg.util.math.MathUtil;
 import RazerOfficial.Razer.gg.value.impl.BoundsNumberValue;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.other.timer.name", description = "module.other.timer.description", category = Category.OTHER)
 public final class Timer extends Module {
 

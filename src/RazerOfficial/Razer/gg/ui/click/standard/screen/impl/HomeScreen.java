@@ -13,15 +13,15 @@ public final class HomeScreen extends Screen implements InstanceAccess {
     public void onRender(final int mouseX, final int mouseY, final float partialTicks) {
         final RiseClickGUI clickGUI = getStandardClickGUI();
 
-        /* Saves the position of the Rise logo */
+        /* Saves the position of the Razer logo */
         final Vector2f positionOfLogo = new Vector2f(clickGUI.position.x + 20, clickGUI.position.y + 20);
 
         /* Draws logo */
-//        InstanceAccess.nunitoLarge.drawString(Rise.NAME, positionOfLogo.x, positionOfLogo.y, clickGUI.logoColor.hashCode());
+//        InstanceAccess.nunitoLarge.drawString(Razer.NAME, positionOfLogo.x, positionOfLogo.y, clickGUI.logoColor.hashCode());
 
         /* Draws version number */
-//        InstanceAccess.nunitoMedium.drawString(Rise.VERSION,
-//                positionOfLogo.x + InstanceAccess.nunitoLarge.width(Rise.NAME), positionOfLogo.y + 11,
+//        InstanceAccess.nunitoMedium.drawString(Razer.VERSION,
+//                positionOfLogo.x + InstanceAccess.nunitoLarge.width(Razer.NAME), positionOfLogo.y + 11,
 //                clickGUI.fontDarkerColor.hashCode());
 
         /* Draws session information */

@@ -1,13 +1,17 @@
 package RazerOfficial.Razer.gg.ui.click.standard.components;
 
 
+import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.module.Module;
+import RazerOfficial.Razer.gg.module.impl.combat.Velocity;
+import RazerOfficial.Razer.gg.module.impl.combat.velocity.StandardVelocity;
 import RazerOfficial.Razer.gg.ui.click.standard.RiseClickGUI;
 import RazerOfficial.Razer.gg.ui.click.standard.components.value.ValueComponent;
 import RazerOfficial.Razer.gg.ui.click.standard.components.value.impl.*;
 import RazerOfficial.Razer.gg.ui.click.standard.screen.impl.SearchScreen;
 import RazerOfficial.Razer.gg.util.animation.Animation;
 import RazerOfficial.Razer.gg.util.animation.Easing;
+import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 import RazerOfficial.Razer.gg.util.font.FontManager;
 import RazerOfficial.Razer.gg.util.gui.GUIUtil;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
@@ -119,6 +123,13 @@ public class ModuleComponent implements InstanceAccess {
                 if (valueComponent.getValue() != null && valueComponent.getValue().getHideIf() != null && valueComponent.getValue().getHideIf().getAsBoolean()) {
                     continue;
                 }
+
+//                if((valueComponent.getValue() != null ? valueComponent.getValue().getHideIf() : null)==null){
+//                    ChatUtil.display(valueComponent.getValue() + " name " + valueComponent.getValue().getName() + " hide if is null");
+//                }else{
+//                    ChatUtil.display(valueComponent.getValue() + " name " + valueComponent.getValue().getName() + " hide if " );
+//                }
+
 
                 valueComponent.draw(new Vector2d(position.x + 6f +
                         (valueComponent.getValue().getHideIf() == null ? 0 : 10),

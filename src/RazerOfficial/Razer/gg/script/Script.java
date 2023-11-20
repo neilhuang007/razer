@@ -2,6 +2,7 @@ package RazerOfficial.Razer.gg.script;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.script.util.ScriptHandler;
+import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 import lombok.Data;
 import org.apache.commons.io.FileUtils;
 
@@ -61,6 +62,7 @@ public final class Script {
             if (this.loaded) this.unload();
 
             if (this.sourceFile != null) code = FileUtils.readFileToString(sourceFile, (Charset) null);
+            System.out.println(sourceFile);
             if (this.code == null) throw new ScriptException("Empty script");
 
             // Create a new ScriptEngine and handler for this script.
@@ -71,8 +73,12 @@ public final class Script {
             // Add some script-specific bindings, global bindings are managed in ScriptManager
             this.engine.put("script", apiHandler);
 
+            //ChatUtil.display("code is " + code);
+
             // Evaluate the code thus loading the script.
             this.engine.eval(code);
+
+
 
             // Mark the script as loaded.
             this.loaded = true;

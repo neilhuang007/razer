@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.combat;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.hypixel.InventoryDeSyncComponent;
 import RazerOfficial.Razer.gg.component.impl.player.BadPacketsComponent;
 import RazerOfficial.Razer.gg.component.impl.player.GUIDetectionComponent;
@@ -66,7 +65,7 @@ import java.util.stream.Collectors;
  * @author Alan
  * @since 11/17/2021
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.combat.killaura.name", description = "module.combat.killaura.description", category = Category.COMBAT)
 public final class KillAura extends Module {
 
@@ -564,11 +563,11 @@ public final class KillAura extends Module {
     private void attack(final Entity target) {
         this.attack = Math.min(Math.max(this.attack, this.attack + 2), 5);
 
-        Razer.INSTANCE.getEventBus().handle(new ClickEvent());
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(new ClickEvent());
         if (!this.noSwing.getValue()) mc.thePlayer.swingItem();
 
         final AttackEvent event = new AttackEvent(target);
-        Razer.INSTANCE.getEventBus().handle(event);
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(event);
 
         if (!event.isCancelled()) {
             if (this.keepSprint.getValue()) {
@@ -797,7 +796,7 @@ public final class KillAura extends Module {
             /*
              * Getting targets and selecting the nearest one
              */
-            targets = Razer.INSTANCE.getTargetManager().getTargets(range.getValue().doubleValue() + expandRange);
+            targets = RazerOfficial.Razer.gg.Razer.INSTANCE.getTargetManager().getTargets(range.getValue().doubleValue() + expandRange);
 
             if (targets.isEmpty()) {
                 this.randomiseTargetRotations();

@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.render;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.render.Render2DEvent;
@@ -23,7 +23,7 @@ import java.awt.*;
  * @author Hazsi
  * @since 10/13/2022
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.render.radar.name", description = "module.render.radar.description", category = Category.RENDER)
 public class Radar extends Module {
 

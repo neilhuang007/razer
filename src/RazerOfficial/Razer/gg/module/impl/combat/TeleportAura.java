@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.combat;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.input.ClickEvent;
@@ -18,7 +17,6 @@ import RazerOfficial.Razer.gg.util.pathfinding.unlegit.Vec3;
 import RazerOfficial.Razer.gg.util.render.RenderUtil;
 import RazerOfficial.Razer.gg.value.impl.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.play.client.C02PacketUseEntity;
 import net.minecraft.network.play.client.C03PacketPlayer;
 import net.minecraft.potion.Potion;
@@ -32,7 +30,7 @@ import java.util.List;
  * @author Alan
  * @since 11/17/2021
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.combat.teleportaura.name", description = "module.combat.teleportaura.description", category = Category.COMBAT)
 public final class TeleportAura extends Module {
 
@@ -62,7 +60,7 @@ public final class TeleportAura extends Module {
         /*
          * Getting targets and selecting the nearest one
          */
-        final List<Entity> targets = Razer.INSTANCE.getTargetManager().getTargets(range.getValue().doubleValue());
+        final List<Entity> targets = RazerOfficial.Razer.gg.Razer.INSTANCE.getTargetManager().getTargets(range.getValue().doubleValue());
 
         if (targets.isEmpty()) {
             target = null;
@@ -134,7 +132,7 @@ public final class TeleportAura extends Module {
         mc.playerController.syncCurrentPlayItem();
 
         final AttackEvent event = new AttackEvent(target);
-        Razer.INSTANCE.getEventBus().handle(event);
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(event);
 
         if (event.isCancelled()) {
             return;
@@ -152,7 +150,7 @@ public final class TeleportAura extends Module {
             PacketUtil.sendNoEvent(new C03PacketPlayer.C04PacketPlayerPosition(vector.getX(), vector.getY(), vector.getZ(), true));
         }
 
-        Razer.INSTANCE.getEventBus().handle(new ClickEvent());
+        RazerOfficial.Razer.gg.Razer.INSTANCE.getEventBus().handle(new ClickEvent());
         mc.thePlayer.swingItem();
 
         PacketUtil.sendNoEvent(new C02PacketUseEntity(target, C02PacketUseEntity.Action.ATTACK));

@@ -153,7 +153,7 @@ import java.util.List;
 /*     */ }
 
 
-/* Location:              F:\QQ\1446679699\FileRecv\Rise.jar\\util\ImgurUtil.class
+/* Location:              F:\QQ\1446679699\FileRecv\Razer.jar\\util\ImgurUtil.class
  * Java compiler version: 8 (52.0)
  * JD-Core Version:       1.1.3
  */

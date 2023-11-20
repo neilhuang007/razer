@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketReceiveEvent;
@@ -12,7 +12,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S32PacketConfirmTransaction;
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.player.inventorysync.name", description = "module.player.inventorysync.description", category = Category.PLAYER)
 public class InventorySync extends Module {
 

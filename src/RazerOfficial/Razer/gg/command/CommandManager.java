@@ -5,6 +5,7 @@ import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.input.ChatInputEvent;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;
+import org.reflections.Reflections;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,15 +21,15 @@ public final class CommandManager extends ArrayList<Command> {
      * Called on client start
      */
     public void init() {
-//        final Reflections reflections = new Reflections("com.riseclient.razor.command.impl");
-//
-//        reflections.getSubTypesOf(Command.class).forEach(clazz -> {
-//            try {
-//                this.add(clazz.newInstance());
-//            } catch (final Exception e) {
-//                e.printStackTrace();
-//            }
-//        });
+        final Reflections reflections = new Reflections("RazerOfficial.Razer.gg.command.impl");
+
+        reflections.getSubTypesOf(Command.class).forEach(clazz -> {
+            try {
+                this.add(clazz.newInstance());
+            } catch (final Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         Razer.INSTANCE.getEventBus().register(this);
     }

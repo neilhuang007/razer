@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.Priorities;
@@ -18,7 +18,7 @@ import util.time.StopWatch;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-@Rise
+@Razer
 public final class PingSpoofComponent extends Component {
 
     public static final ConcurrentLinkedQueue<PacketUtil.TimedPacket> incomingPackets = new ConcurrentLinkedQueue<>();

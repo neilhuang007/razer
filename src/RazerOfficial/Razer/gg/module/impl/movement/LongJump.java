@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.movement;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.PacketlessDamageComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -17,7 +17,7 @@ import RazerOfficial.Razer.gg.value.impl.ModeValue;
  * @author Auth
  * @since 3/02/2022
  */
-@Rise
+@Razer
 @ModuleInfo(name = "module.movement.longjump.name", description = "module.movement.longjump.description", category = Category.MOVEMENT)
 public class LongJump extends Module {
 

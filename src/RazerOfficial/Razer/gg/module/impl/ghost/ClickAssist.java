@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.module.impl.ghost;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.BadPacketsComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
@@ -15,7 +15,7 @@ import RazerOfficial.Razer.gg.value.impl.NumberValue;
  * @since 29/01/2021
  */
 
-@Rise
+@Razer
 @ModuleInfo(name = "module.ghost.clickassist.name", description = "module.ghost.clickassist.description", category = Category.GHOST)
 public class ClickAssist extends Module {
 

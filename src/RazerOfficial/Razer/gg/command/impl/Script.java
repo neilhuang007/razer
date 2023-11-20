@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.command.impl;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.command.Command;
 import RazerOfficial.Razer.gg.script.ScriptManager;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;
@@ -15,7 +14,7 @@ import java.util.Locale;
  * @author Strikeless
  * @since 14.05.2022
  */
-@Rise
+@Razer
 public final class Script extends Command {
 
     public Script() {
@@ -31,7 +30,7 @@ public final class Script extends Command {
 
         final String action = args[1].toLowerCase(Locale.getDefault());
 
-        final ScriptManager scriptManager = Razer.INSTANCE.getScriptManager();
+        final ScriptManager scriptManager = RazerOfficial.Razer.gg.Razer.INSTANCE.getScriptManager();
 
         final RazerOfficial.Razer.gg.script.Script script;
         if (args.length > 2) {
@@ -51,7 +50,7 @@ public final class Script extends Command {
                 }
 
                 case "reload": {
-                    Razer.INSTANCE.getScriptManager().reloadScripts();
+                    RazerOfficial.Razer.gg.Razer.INSTANCE.getScriptManager().reloadScripts();
                     break;
                 }
 

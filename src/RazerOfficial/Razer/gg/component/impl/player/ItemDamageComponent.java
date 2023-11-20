@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.component.impl.player;
 
-import RazerOfficial.Razer.gg.api.Rise;
+import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.component.Component;
 import RazerOfficial.Razer.gg.component.impl.player.rotationcomponent.MovementFix;
 import RazerOfficial.Razer.gg.event.Listener;
@@ -24,7 +24,7 @@ import net.minecraft.network.play.server.S27PacketExplosion;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
-@Rise
+@Razer
 public final class ItemDamageComponent extends Component {
 
     public static boolean active;
