@@ -15,7 +15,10 @@ import RazerOfficial.Razer.gg.util.render.RenderUtil;
 import RazerOfficial.Razer.gg.util.shader.RiseShaders;
 import RazerOfficial.Razer.gg.util.shader.base.ShaderRenderType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.GuiMultiplayer;
+import net.minecraft.client.gui.GuiOptions;
+import net.minecraft.client.gui.GuiSelectWorld;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 
 import java.awt.*;

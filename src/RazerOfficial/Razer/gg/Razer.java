@@ -25,7 +25,6 @@ import RazerOfficial.Razer.gg.ui.theme.ThemeManager;
 import RazerOfficial.Razer.gg.util.ReflectionUtil;
 import RazerOfficial.Razer.gg.util.file.FileManager;
 import RazerOfficial.Razer.gg.util.file.FileType;
-
 import RazerOfficial.Razer.gg.util.file.config.ConfigFile;
 import RazerOfficial.Razer.gg.util.file.config.ConfigManager;
 import RazerOfficial.Razer.gg.util.file.data.DataManager;

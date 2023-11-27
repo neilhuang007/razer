@@ -9,6 +9,8 @@ import RazerOfficial.Razer.gg.event.impl.other.ServerJoinEvent;
 import RazerOfficial.Razer.gg.event.impl.other.WorldChangeEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketSendEvent;
 import RazerOfficial.Razer.gg.util.packet.PacketUtil;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.entity.Entity;
 import net.minecraft.network.Packet;
 import net.minecraft.network.handshake.client.C00Handshake;
 import net.minecraft.network.login.client.C00PacketLoginStart;
@@ -29,6 +31,8 @@ public final class BlinkComponent extends Component {
     public static boolean blinking, dispatch;
     public static ArrayList<Class<?>> exemptedPackets = new ArrayList<>();
     public static StopWatch exemptionWatch = new StopWatch();
+
+    private static Entity blinkEntity;
 
     public static void setExempt(Class<?>... packets) {
         exemptedPackets = new ArrayList<>(Arrays.asList(packets));
@@ -94,5 +98,29 @@ public final class BlinkComponent extends Component {
         packets.clear();
         BlinkComponent.blinking = false;
     };
+
+
+    public static void deSpawnEntity() {
+        if (blinkEntity != null) {
+            RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().remove(blinkEntity);
+            mc.theWorld.removeEntityFromWorld(blinkEntity.getEntityId());
+            blinkEntity = null;
+        }
+    }
+
+    public static void spawnEntity(Entity e) {
+        if (blinkEntity == null) {
+            blinkEntity = e;
+            blinkEntity.setPositionAndRotation(e.posX, e.posY, e.posZ, e.rotationYaw, e.rotationPitch);
+            //blinkEntity.rotationYawHead = e.rotationYawHead;
+            blinkEntity.setSprinting(e.isSprinting());
+            blinkEntity.setInvisible(e.isInvisible());
+            blinkEntity.setSneaking(e.isSneaking());
+            //blinkEntity.inventory = e.inventory;
+            RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().add(blinkEntity);
+
+            mc.theWorld.addEntityToWorld(blinkEntity.getEntityId(), blinkEntity);
+        }
+    }
 
 }

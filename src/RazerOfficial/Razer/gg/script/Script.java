@@ -2,7 +2,6 @@ package RazerOfficial.Razer.gg.script;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.script.util.ScriptHandler;
-import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 import lombok.Data;
 import org.apache.commons.io.FileUtils;
 
@@ -77,6 +76,7 @@ public final class Script {
 
             // Evaluate the code thus loading the script.
             this.engine.eval(code);
+
 
 
 

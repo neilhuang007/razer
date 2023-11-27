@@ -3,8 +3,6 @@ package RazerOfficial.Razer.gg.ui.click.standard.components;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.module.Module;
-import RazerOfficial.Razer.gg.module.impl.combat.Velocity;
-import RazerOfficial.Razer.gg.module.impl.combat.velocity.StandardVelocity;
 import RazerOfficial.Razer.gg.ui.click.standard.RiseClickGUI;
 import RazerOfficial.Razer.gg.ui.click.standard.components.value.ValueComponent;
 import RazerOfficial.Razer.gg.ui.click.standard.components.value.impl.*;
@@ -12,6 +10,8 @@ import RazerOfficial.Razer.gg.ui.click.standard.screen.impl.SearchScreen;
 import RazerOfficial.Razer.gg.util.animation.Animation;
 import RazerOfficial.Razer.gg.util.animation.Easing;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;
+import RazerOfficial.Razer.gg.util.dragging.Mouse;
+import RazerOfficial.Razer.gg.util.font.Font;
 import RazerOfficial.Razer.gg.util.font.FontManager;
 import RazerOfficial.Razer.gg.util.gui.GUIUtil;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
@@ -23,6 +23,7 @@ import RazerOfficial.Razer.gg.util.vector.Vector2f;
 import RazerOfficial.Razer.gg.value.Value;
 import RazerOfficial.Razer.gg.value.impl.*;
 import lombok.Getter;
+import org.lwjgl.input.Keyboard;
 import util.time.StopWatch;
 
 import java.awt.*;
@@ -40,6 +41,20 @@ public class ModuleComponent implements InstanceAccess {
     public StopWatch stopwatch = new StopWatch();
     public Animation hoverAnimation = new Animation(Easing.LINEAR, 50);
     public boolean mouseDown;
+
+    public boolean isPending;
+
+    public Float bindposx;
+    public Float bindposY;
+
+    public boolean isPending(boolean enabled) {
+        isPending = enabled;
+        return isPending;
+    }
+
+    public boolean getPending(){
+        return isPending;
+    }
 
     public ModuleComponent(final Module module) {
         this.module = module;
@@ -104,17 +119,7 @@ public class ModuleComponent implements InstanceAccess {
         FontManager.getNunito(15).drawString(Localization.get(module.getModuleInfo().description()), (float) position.x + 6f,
                 (float) position.y + 25, ColorUtil.withAlpha(fontColor, 100).hashCode());
 
-//        if (module.getKeyCode() != Keyboard.KEY_NONE) {
-//            double keyBindScale = 10;
-//            String key = Keyboard.getKeyName(module.getKeyCode());
-//
-//            RenderUtil.roundedRectangle(position.x + 222f, position.y + 10 - keyBindScale / 2, keyBindScale, keyBindScale, 1.5f,
-//                    clickGUI.sidebarColor.darker());
-//
-//            FontRenderer nunitoExtraSmall = FontManager.getNunito(12);
-//            FontManager.getNunito(12).drawString(key, position.x + 222f + keyBindScale / 2 - nunitoExtraSmall.width(key) / 2f,
-//                    position.y + 10 + keyBindScale / 2 - nunitoExtraSmall.height() / 2f - 1, clickGUI.fontColor.hashCode());
-//        }
+
 
         /* Allows for settings to be drawn */
         scale = new Vector2f(getStandardClickGUI().moduleDefaultScale.x, 38);
@@ -124,12 +129,6 @@ public class ModuleComponent implements InstanceAccess {
                     continue;
                 }
 
-//                if((valueComponent.getValue() != null ? valueComponent.getValue().getHideIf() : null)==null){
-//                    ChatUtil.display(valueComponent.getValue() + " name " + valueComponent.getValue().getName() + " hide if is null");
-//                }else{
-//                    ChatUtil.display(valueComponent.getValue() + " name " + valueComponent.getValue().getName() + " hide if " );
-//                }
-
 
                 valueComponent.draw(new Vector2d(position.x + 6f +
                         (valueComponent.getValue().getHideIf() == null ? 0 : 10),
@@ -138,22 +137,74 @@ public class ModuleComponent implements InstanceAccess {
                 scale.y = (float) (scale.y + valueComponent.getHeight());
             }
 
-            // This makes the expanded category look better
-            scale.y = scale.y - 2;
+            String name = Keyboard.getKeyName(module.getKeyCode());
+            // tries to draw keybind
+
+            String key = Keyboard.getKeyName(module.getKeyCode());
+
+            Font nunitoSmall = FontManager.getNunito(16);
+
+            if(name == null){
+                module.setKeyCode(0);
+                name = "NONE";
+            }
+
+            // NOOOOO ESCAPE
+            if(name.contains("ESCAPE")){
+                ChatUtil.display(module.getDisplayName());
+                module.setKeyCode(0);
+                name = "NONE";
+            }
+
+            nunitoSmall.drawString("Keybind: " + name, position.x + 6f,
+                    position.y + scale.y + 1,clickGUI.fontColor.hashCode());
+
+            // expands the bg for the keybind
+            scale.y = scale.y + 12;
+
+//            // remembers the position without position x and y
+//            Float bindposx = 6f;
+//            Float bindposY = scale.y + 1;
         }
 
-//        double range = 14;
-//        double padding = 4;
-//        String name = Keyboard.getKeyName(module.getKeyCode());
-//        Font font;
-//
-//        if (name.length() == 1) {
-//            RenderUtil.roundedRectangle(position.x + scale.x - range - padding, position.y + padding, range, range, 4, clickGUI.sidebarColor.darker().darker());
-//
-//            font = FontManager.getProductSansLight(18);
-//            font.drawCenteredString(name, position.x - range / 2 - padding + scale.x - 0.5, position.y + padding + range / 2 - 2.5, ColorUtil.withAlpha(clickGUI.fontColor, 100).getRGB());
-//        }
+        /*
 
+        use this expression for the whole left
+        position.x - range / 2 + scale.x + 4 + 0.5
+
+         */
+
+        // draws the binding on top right
+
+        double range = 14;
+        double padding = 4;
+        String name = Keyboard.getKeyName(module.getKeyCode());
+        if(name == null){
+            module.setKeyCode(0);
+            name = "NONE";
+        }
+        Font font;
+        font = FontManager.getProductSansLight(18);
+
+
+        // NOOOOO ESCAPE
+        if(name.contains("ESCAPE")){
+            ChatUtil.display(module.getDisplayName());
+            module.setKeyCode(0);
+            name = "NONE";
+        }
+
+        if(name.contains("NONE")){
+            // don't do anything
+        }else{
+            // the dark bg
+            RenderUtil.roundedRectangle(position.x - range / 2 + scale.x + 4 + 0.5 - padding - font.width(name) - padding, position.y + padding,font.width(name)+ padding + padding,range, 4, clickGUI.sidebarColor.darker().darker());
+
+            // stuff like LCONTROL RSHIFT
+            font.drawString(name, position.x - range / 2 + scale.x + 4 + 0.5 - padding - font.width(name), position.y + padding + range / 2 - 2.5, ColorUtil.withAlpha(clickGUI.fontColor, 100).getRGB());
+
+            // remember add a value is right minus is left
+        }
         stopwatch.reset();
     }
 
@@ -167,8 +218,20 @@ public class ModuleComponent implements InstanceAccess {
             }
         }
 
-//        final boolean overModule = GUIUtil.mouseOver(position.x, position.y, scale.x, getStandardClickGUI().moduleDefaultScale.getY() - 3, Mouse.getMouse().x, Mouse.getMouse().y);
+        Font font;
+        font = FontManager.getProductSansLight(18);
+
+        RenderUtil.roundedRectangle(position.x,
+                position.y, 16, 16, 4, Color.CYAN);
+
+
+//        final boolean overModule = GUIUtil.mouseOver(position.x + 6f,
+//                position.y - scale.y - 2, scale.x, 16 , Mouse.getMouse().x, Mouse.getMouse().y);
+//
+//
+//
 //        if (overModule) {
+//            ChatUtil.display("over keybinds settings");
 //            module.setKeyCode(keyCode);
 //        }
     }

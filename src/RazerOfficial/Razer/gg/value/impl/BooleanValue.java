@@ -1,7 +1,6 @@
 package RazerOfficial.Razer.gg.value.impl;
 
 import RazerOfficial.Razer.gg.module.Module;
-import RazerOfficial.Razer.gg.module.impl.combat.velocity.SleepVelocity;
 import RazerOfficial.Razer.gg.value.Mode;
 import RazerOfficial.Razer.gg.value.Value;
 import lombok.Getter;

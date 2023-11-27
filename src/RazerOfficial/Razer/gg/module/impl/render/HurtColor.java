@@ -7,15 +7,19 @@ import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;
 import RazerOfficial.Razer.gg.value.impl.BooleanValue;
+import RazerOfficial.Razer.gg.value.impl.ColorValue;
+
+import java.awt.*;
 
 /**
  * @author Alan
  * @since 28/05/2022
  */
 
-@ModuleInfo(name = "module.render.hurtcolor.name", description = "module.render.hurtcolor.description", category = Category.RENDER)
+@ModuleInfo(name = "Damage Tint", description = "Changes Damage Color", category = Category.RENDER)
 public final class HurtColor extends Module {
 
+    private final ColorValue color = new ColorValue("Hurt Color",this, Color.decode("#a08fffe2"));
     private final BooleanValue oldDamage = new BooleanValue("1.7 Damage Animation", this, true);
 
 

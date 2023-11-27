@@ -7,12 +7,10 @@ import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
 import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketReceiveEvent;
 import RazerOfficial.Razer.gg.module.impl.combat.Velocity;
-import RazerOfficial.Razer.gg.util.player.MoveUtil;
 import RazerOfficial.Razer.gg.value.Mode;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.network.play.server.S27PacketExplosion;
-import net.minecraft.util.MovementInputFromOptions;
 import util.time.StopWatch;
 
 import java.util.Random;

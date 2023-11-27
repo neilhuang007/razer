@@ -2,7 +2,6 @@ package RazerOfficial.Razer.gg.ui.menu.impl.alt.impl;
 
 import RazerOfficial.Razer.gg.util.font.impl.minecraft.FontRenderer;
 import net.minecraft.client.Minecraft;
-
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ChatAllowedCharacters;

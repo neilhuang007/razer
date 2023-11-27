@@ -2,15 +2,13 @@ package net.minecraft.client;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
-import RazerOfficial.Razer.gg.event.impl.input.MoveInputEvent;
-import RazerOfficial.Razer.gg.module.impl.render.FreeLook;
 import RazerOfficial.Razer.gg.event.impl.input.ClickEvent;
 import RazerOfficial.Razer.gg.event.impl.input.KeyboardInputEvent;
 import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
 import RazerOfficial.Razer.gg.event.impl.other.GameEvent;
 import RazerOfficial.Razer.gg.event.impl.other.PossibleClickEvent;
 import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
-
+import RazerOfficial.Razer.gg.module.impl.render.FreeLook;
 import RazerOfficial.Razer.gg.ui.menu.impl.intro.IntroSequence;
 import RazerOfficial.Razer.gg.ui.menu.impl.main.MainMenu;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;

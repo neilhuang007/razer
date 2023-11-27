@@ -10,6 +10,6 @@ public final class ScriptClassFilter implements ClassFilter {
 
     @Override
     public boolean exposeToScripts(final String className) {
-        return className.startsWith("com.alan.gg.script.api");
+        return className.startsWith("RazerOfficial.Razer.gg.script.api");
     }
 }

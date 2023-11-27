@@ -8,8 +8,6 @@ import RazerOfficial.Razer.gg.module.impl.combat.KillAura;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Comparator;

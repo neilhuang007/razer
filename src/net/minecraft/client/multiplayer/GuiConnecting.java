@@ -1,10 +1,10 @@
 package net.minecraft.client.multiplayer;
 
-import by.radioegor146.nativeobfuscator.Native;
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.LastConnectionComponent;
 import RazerOfficial.Razer.gg.event.impl.other.ServerJoinEvent;
 import RazerOfficial.Razer.gg.util.player.ServerUtil;
+import by.radioegor146.nativeobfuscator.Native;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiDisconnected;

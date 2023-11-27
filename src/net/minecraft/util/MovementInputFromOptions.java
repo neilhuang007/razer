@@ -2,7 +2,6 @@ package net.minecraft.util;
 
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.event.impl.input.MoveInputEvent;
-import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
 import net.minecraft.client.settings.GameSettings;
 
 public class MovementInputFromOptions extends MovementInput {

@@ -3,7 +3,6 @@ package net.minecraft.entity;
 import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.event.impl.motion.JumpEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.MinimumMotionEvent;
-import RazerOfficial.Razer.gg.event.impl.other.HurtEvent;
 import RazerOfficial.Razer.gg.event.impl.render.SwingAnimationEvent;
 import RazerOfficial.Razer.gg.util.player.MoveUtil;
 import com.google.common.base.Predicate;

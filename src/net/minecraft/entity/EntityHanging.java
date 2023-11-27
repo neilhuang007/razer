@@ -1,7 +1,5 @@
 package net.minecraft.entity;
 
-import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.event.impl.other.HurtEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneDiode;
 import net.minecraft.entity.player.EntityPlayer;
