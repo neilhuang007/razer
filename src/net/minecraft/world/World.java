@@ -1411,7 +1411,8 @@ public abstract class World implements IBlockAccess, InstanceAccess, java.io.Ser
             }
         }
 
-        this.theProfiler.endStartSection("blockEntities");
+        /*
+                this.theProfiler.endStartSection("blockEntities");
         this.processingLoadedTiles = true;
         final Iterator<TileEntity> iterator = this.tickableTileEntities.iterator();
 
@@ -1504,6 +1505,87 @@ public abstract class World implements IBlockAccess, InstanceAccess, java.io.Ser
         }
 //        });
 
+
+        this.theProfiler.endSection();
+        this.theProfiler.endSection();
+    }
+         */
+
+        this.theProfiler.endStartSection("blockEntities");
+        this.processingLoadedTiles = true;
+        Iterator<TileEntity> iterator = this.tickableTileEntities.iterator();
+
+        while (iterator.hasNext())
+        {
+            TileEntity tileentity = (TileEntity)iterator.next();
+
+            if (!tileentity.isInvalid() && tileentity.hasWorldObj())
+            {
+                BlockPos blockpos = tileentity.getPos();
+
+                if (this.isBlockLoaded(blockpos) && this.worldBorder.contains(blockpos))
+                {
+                    try
+                    {
+                        ((ITickable)tileentity).update();
+                    }
+                    catch (Throwable throwable)
+                    {
+                        CrashReport crashreport2 = CrashReport.makeCrashReport(throwable, "Ticking block entity");
+                        CrashReportCategory crashreportcategory1 = crashreport2.makeCategory("Block entity being ticked");
+                        tileentity.addInfoToCrashReport(crashreportcategory1);
+                        throw new ReportedException(crashreport2);
+                    }
+                }
+            }
+
+            if (tileentity.isInvalid())
+            {
+                iterator.remove();
+                this.loadedTileEntityList.remove(tileentity);
+
+                if (this.isBlockLoaded(tileentity.getPos()))
+                {
+                    this.getChunkFromBlockCoords(tileentity.getPos()).removeTileEntity(tileentity.getPos());
+                }
+            }
+        }
+
+        this.processingLoadedTiles = false;
+
+        if (!this.tileEntitiesToBeRemoved.isEmpty())
+        {
+            this.tickableTileEntities.removeAll(this.tileEntitiesToBeRemoved);
+            this.loadedTileEntityList.removeAll(this.tileEntitiesToBeRemoved);
+            this.tileEntitiesToBeRemoved.clear();
+        }
+
+        this.theProfiler.endStartSection("pendingBlockEntities");
+
+        if (!this.addedTileEntityList.isEmpty())
+        {
+            for (int j1 = 0; j1 < this.addedTileEntityList.size(); ++j1)
+            {
+                TileEntity tileentity1 = (TileEntity)this.addedTileEntityList.get(j1);
+
+                if (!tileentity1.isInvalid())
+                {
+                    if (!this.loadedTileEntityList.contains(tileentity1))
+                    {
+                        this.addTileEntity(tileentity1);
+                    }
+
+                    if (this.isBlockLoaded(tileentity1.getPos()))
+                    {
+                        this.getChunkFromBlockCoords(tileentity1.getPos()).addTileEntity(tileentity1.getPos(), tileentity1);
+                    }
+
+                    this.markBlockForUpdate(tileentity1.getPos());
+                }
+            }
+
+            this.addedTileEntityList.clear();
+        }
 
         this.theProfiler.endSection();
         this.theProfiler.endSection();

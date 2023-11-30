@@ -60,6 +60,7 @@ public class BooleanValue extends Value<Boolean> {
 
 
 
+
     @Override
     public void setValue(final Boolean value) {
         super.setValue(value);

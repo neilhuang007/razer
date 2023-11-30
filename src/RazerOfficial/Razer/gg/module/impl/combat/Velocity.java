@@ -8,6 +8,7 @@ import RazerOfficial.Razer.gg.module.impl.combat.velocity.*;
 import RazerOfficial.Razer.gg.value.impl.BooleanValue;
 import RazerOfficial.Razer.gg.value.impl.ModeValue;
 import RazerOfficial.Razer.gg.value.impl.NumberValue;
+import RazerOfficial.Razer.gg.value.impl.SubMode;
 
 @Razer
 @ModuleInfo(name = "module.combat.velocity.name", description = "module.combat.velocity.description" /* Sorry, Tecnio. */ /* Sorry Hazsi. */, category = Category.COMBAT)
@@ -20,12 +21,12 @@ public final class Velocity extends Module {
             .add(new WatchdogVelocity("Watchdog", this))
             .add(new SleepVelocity("Cancel",this))
             .add(new LadderVelocity("Ladder Abuse",this))
+            .add(new GrimVelocity("Grim",this))
             .setDefault("Standard");
 
 
     public final BooleanValue LagBackDetection = new BooleanValue("Lagback Detections", this, true, () -> !mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder"));
     // bruh the clickgui does not read the things properly in the mode value so has to write like this
-
     public final BooleanValue retoggle = new BooleanValue("retoggle", this, true,() -> !(mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder") && LagBackDetection.getValue()));
 
     public final NumberValue RetoggleDelay = new NumberValue("Retoggle Delay(ms)", this, 0.5F,0.1,3,0.1,()-> !(mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder") && LagBackDetection.getValue()));

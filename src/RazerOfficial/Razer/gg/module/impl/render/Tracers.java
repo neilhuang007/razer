@@ -7,8 +7,10 @@ import RazerOfficial.Razer.gg.event.impl.render.Render3DEvent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;
+import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 import RazerOfficial.Razer.gg.util.render.ColorUtil;
 import RazerOfficial.Razer.gg.util.render.RenderUtil;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 
@@ -21,6 +23,7 @@ public final class Tracers extends Module {
     @EventLink()
     public final Listener<Render3DEvent> onRender3D = event -> {
         if (mc.gameSettings.hideGUI) {
+            ChatUtil.display(ChatFormatting.RED + "HideGUI Enabled Module Detoggled");
             return;
         }
 
@@ -29,9 +32,9 @@ public final class Tracers extends Module {
         mc.entityRenderer.orientCamera(mc.timer.renderPartialTicks);
 
         for (final Entity player : RazerOfficial.Razer.gg.Razer.INSTANCE.getTargetManager()) {
-            if (player == mc.thePlayer || player.isDead || RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().contains(player)) {
-                continue;
-            }
+//            if (player == mc.thePlayer || player.isDead || RazerOfficial.Razer.gg.Razer.INSTANCE.getBotManager().contains(player)) {
+//                continue;
+//            }
 
             final double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * event.getPartialTicks();
             final double y = (player.lastTickPosY + (player.posY - player.lastTickPosY) * event.getPartialTicks()) + 1.62F;
