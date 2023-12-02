@@ -97,6 +97,7 @@ public class Main {
                 Minecraft.stopIntegratedServer();
             }
         });
+        // this is the thread place
         Thread.currentThread().setName("Razer thread");
         (new Minecraft(gameconfiguration)).run();
     }

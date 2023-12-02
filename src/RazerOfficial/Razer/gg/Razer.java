@@ -36,6 +36,8 @@ import by.radioegor146.nativeobfuscator.Native;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.client.Minecraft;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
 import java.io.File;
@@ -54,11 +56,16 @@ import java.util.concurrent.Executors;
 @Native
 public enum Razer {
 
+
+
+
     /**
      * Simple enum instance for our client as enum instances
      * are immutable and are very easy to create and use.
      */
     INSTANCE;
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public static String NAME = "Razer";
     public static String VERSION = "1.0";
@@ -168,10 +175,15 @@ public enum Razer {
         this.eventBus = new EventBus();
         this.packetLogManager = new PacketLogManager();
 
+
         // Register
         String[] paths = {
                 "RazerOfficial.Razer.gg"
         };
+
+        // needed no spaced registration path
+        // somehting like c:/aa a/hacks/razor is not going to work
+        LOGGER.info("Please Make sure the current path does not contain spaces");
 
         for (String path : paths) {
             if (!ReflectionUtil.dirExist(path)) {
