@@ -25,14 +25,14 @@ public final class Velocity extends Module {
             .setDefault("Standard");
 
 
-    public final BooleanValue LagBackDetection = new BooleanValue("Lagback Detections", this, true, () -> !mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder"));
+    public final BooleanValue LagBackDetection = new BooleanValue("Lagback Detections", this, true, () -> !mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder") || mode.getValue().getName().contains("Grim"));
     // bruh the clickgui does not read the things properly in the mode value so has to write like this
-    public final BooleanValue retoggle = new BooleanValue("retoggle", this, true,() -> !(mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder") && LagBackDetection.getValue()));
+    public final BooleanValue retoggle = new BooleanValue("retoggle", this, true,() -> !(mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder") || mode.getValue().getName().contains("Grim") && LagBackDetection.getValue()));
 
-    public final NumberValue RetoggleDelay = new NumberValue("Retoggle Delay(ms)", this, 0.5F,0.1,3,0.1,()-> !(mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder") && LagBackDetection.getValue()));
+    public final NumberValue RetoggleDelay = new NumberValue("Retoggle Delay(ms)", this, 0.5F,0.1,3,0.1,()-> !(mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder") || mode.getValue().getName().contains("Grim") && LagBackDetection.getValue()));
 
 
-    public final NumberValue LagBacks = new NumberValue("Lagbacks Disable", this, 0, 0, 50, 1, () -> !(mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder") && LagBackDetection.getValue()));
+    public final NumberValue LagBacks = new NumberValue("Lagbacks Disable", this, 0, 0, 50, 1, () -> !(mode.getValue().getName().contains("Standard") || mode.getValue().getName().contains("Ladder") || mode.getValue().getName().contains("Grim") && LagBackDetection.getValue()));
 
     public final BooleanValue onExplosion = new BooleanValue("Explosion Reduction", this, false);
 

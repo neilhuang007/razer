@@ -3,7 +3,7 @@ package RazerOfficial.Razer.gg.module.impl.movement;
 import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
-import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.event.impl.player.TeleportEvent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;

@@ -3,7 +3,7 @@ package RazerOfficial.Razer.gg.module.impl.combat.velocity;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
-import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.event.impl.player.TeleportEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketReceiveEvent;
 import RazerOfficial.Razer.gg.module.impl.combat.Velocity;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;

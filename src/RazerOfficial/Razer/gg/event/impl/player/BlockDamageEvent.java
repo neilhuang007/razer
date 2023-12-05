@@ -1,4 +1,4 @@
-package RazerOfficial.Razer.gg.event.impl.other;
+package RazerOfficial.Razer.gg.event.impl.player;
 
 import RazerOfficial.Razer.gg.event.CancellableEvent;
 import lombok.Getter;

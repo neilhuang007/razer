@@ -1,6 +1,10 @@
 package RazerOfficial.Razer.gg.util.player;
 
+import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.player.MouseOverEntityEvent;
+import RazerOfficial.Razer.gg.event.impl.render.MouseOverEvent;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
+import com.google.common.base.Predicates;
 import lombok.experimental.UtilityClass;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
@@ -8,9 +12,12 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
+import net.optifine.reflect.Reflector;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -40,6 +47,29 @@ public class PlayerUtil implements InstanceAccess {
         put(3, 11); // Haste
         put(13, 12); // Water Breathing
     }};
+
+    public static double fovFromEntity(Entity en) {
+        return ((((double) (mc.thePlayer.rotationYaw - fovToEntity(en)) % 360.0D) + 540.0D) % 360.0D) - 180.0D;
+    }
+
+
+    public static float fovToEntity(Entity ent) {
+        double x = ent.posX - mc.thePlayer.posX;
+        double z = ent.posZ - mc.thePlayer.posZ;
+        double yaw = Math.atan2(x, z) * 57.2957795D;
+        return (float) (yaw * -1.0D);
+    }
+
+    public static double PitchFromEntity(Entity en, float f) {
+        return (double) (mc.thePlayer.rotationPitch - pitchToEntity(en, f));
+    }
+
+    public static float pitchToEntity(Entity ent, float f) {
+        double x = mc.thePlayer.getDistanceToEntity(ent);
+        double y = mc.thePlayer.posY - (ent.posY + f);
+        double pitch = (((Math.atan2(x, y) * 180.0D) / 3.141592653589793D));
+        return (float) (90 - pitch);
+    }
 
     /**
      * Gets the block at a position
@@ -115,6 +145,78 @@ public class PlayerUtil implements InstanceAccess {
         }
         return false;
     }
+
+    /**
+     * Finds what block or object the mouse is over at the specified partial tick time. Args: partialTickTime
+     */
+    public static Entity getMouseOver(final float partialTicks, final double Reach) {
+        Entity pointedEntity = null;
+        final Entity entity = mc.getRenderViewEntity();
+
+        if (entity != null && mc.theWorld != null) {
+            mc.mcProfiler.startSection("pick");
+            pointedEntity = null;
+            double blockReachDistance = Reach;
+            mc.objectMouseOver = entity.rayTrace(blockReachDistance, partialTicks);
+            double distance = blockReachDistance;
+            final Vec3 vec3 = entity.getPositionEyes(partialTicks);
+            boolean flag = false;
+            double reach = Reach;
+            float expand = 0;
+
+            if (mc.objectMouseOver != null) {
+                distance = mc.objectMouseOver.hitVec.distanceTo(vec3);
+            }
+
+            final Vec3 vec31 = entity.getLook(partialTicks);
+            final Vec3 vec32 = vec3.addVector(vec31.xCoord * blockReachDistance, vec31.yCoord * blockReachDistance, vec31.zCoord * blockReachDistance);
+            pointedEntity = null;
+            Vec3 vec33 = null;
+            final float f = 1.0F;
+            final List<Entity> list = mc.theWorld.getEntitiesInAABBexcluding(entity, entity.getEntityBoundingBox().addCoord(vec31.xCoord * blockReachDistance, vec31.yCoord * blockReachDistance, vec31.zCoord * blockReachDistance).expand(f, f, f), Predicates.and(EntitySelectors.NOT_SPECTATING, Entity::canBeCollidedWith));
+            double d2 = distance;
+
+            for (final Entity entity1 : list) {
+                final float f1 = entity1.getCollisionBorderSize() + ((entity instanceof EntityPlayer && !entity.isInvisible()) ? expand : 0);
+                final AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f1, f1, f1);
+                final MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
+
+                if (axisalignedbb.isVecInside(vec3)) {
+                    if (d2 >= 0.0D) {
+                        pointedEntity = entity1;
+                        vec33 = movingobjectposition == null ? vec3 : movingobjectposition.hitVec;
+                        d2 = 0.0D;
+                    }
+                } else if (movingobjectposition != null) {
+                    final double d3 = vec3.distanceTo(movingobjectposition.hitVec);
+
+                    if (d3 < d2 || d2 == 0.0D) {
+                        boolean flag1 = false;
+
+                        if (Reflector.ForgeEntity_canRiderInteract.exists()) {
+                            flag1 = Reflector.callBoolean(entity1, Reflector.ForgeEntity_canRiderInteract);
+                        }
+
+                        if (!flag1 && entity1 == entity.ridingEntity) {
+                            if (d2 == 0.0D) {
+                                pointedEntity = entity1;
+                                vec33 = movingobjectposition.hitVec;
+                            }
+                        } else {
+                            pointedEntity = entity1;
+                            vec33 = movingobjectposition.hitVec;
+                            d2 = d3;
+                        }
+                    }
+                }
+            }
+
+            mc.mcProfiler.endSection();
+            return pointedEntity;
+        }
+        return null;
+    }
+    
 
     /**
      * Checks if there is a block under the player

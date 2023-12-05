@@ -2,7 +2,7 @@ package RazerOfficial.Razer.gg.module.impl.combat.criticals;
 
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
-import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
+import RazerOfficial.Razer.gg.event.impl.player.AttackEvent;
 import RazerOfficial.Razer.gg.module.impl.combat.Criticals;
 import RazerOfficial.Razer.gg.util.packet.PacketUtil;
 import RazerOfficial.Razer.gg.value.Mode;

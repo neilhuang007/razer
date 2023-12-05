@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer;
 
 import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.event.impl.player.MouseOverEntityEvent;
 import RazerOfficial.Razer.gg.event.impl.render.MouseOverEvent;
 import RazerOfficial.Razer.gg.event.impl.render.Render2DEvent;
 import RazerOfficial.Razer.gg.event.impl.render.Render3DEvent;
@@ -496,6 +497,8 @@ public class EntityRenderer implements IResourceManagerReloadListener, InstanceA
                 if (axisalignedbb.isVecInside(vec3)) {
                     if (d2 >= 0.0D) {
                         this.pointedEntity = entity1;
+                        MouseOverEntityEvent mouseOverEntityEvent = new MouseOverEntityEvent(pointedEntity);
+                        Razer.INSTANCE.getEventBus().handle(mouseOverEntityEvent);
                         vec33 = movingobjectposition == null ? vec3 : movingobjectposition.hitVec;
                         d2 = 0.0D;
                     }
@@ -512,10 +515,14 @@ public class EntityRenderer implements IResourceManagerReloadListener, InstanceA
                         if (!flag1 && entity1 == entity.ridingEntity) {
                             if (d2 == 0.0D) {
                                 this.pointedEntity = entity1;
+                                MouseOverEntityEvent mouseOverEntityEvent = new MouseOverEntityEvent(pointedEntity);
+                                Razer.INSTANCE.getEventBus().handle(mouseOverEntityEvent);
                                 vec33 = movingobjectposition.hitVec;
                             }
                         } else {
                             this.pointedEntity = entity1;
+                            MouseOverEntityEvent mouseOverEntityEvent = new MouseOverEntityEvent(pointedEntity);
+                            Razer.INSTANCE.getEventBus().handle(mouseOverEntityEvent);
                             vec33 = movingobjectposition.hitVec;
                             d2 = d3;
                         }

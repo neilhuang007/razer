@@ -5,7 +5,7 @@ import RazerOfficial.Razer.gg.Type;
 import RazerOfficial.Razer.gg.component.impl.render.ParticleComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
-import RazerOfficial.Razer.gg.event.impl.other.KillEvent;
+import RazerOfficial.Razer.gg.event.impl.player.KillEvent;
 import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
 import RazerOfficial.Razer.gg.event.impl.render.Render2DEvent;
 import RazerOfficial.Razer.gg.module.impl.render.Interface;

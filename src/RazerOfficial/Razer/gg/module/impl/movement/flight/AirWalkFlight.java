@@ -2,7 +2,7 @@ package RazerOfficial.Razer.gg.module.impl.movement.flight;
 
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
-import RazerOfficial.Razer.gg.event.impl.other.BlockAABBEvent;
+import RazerOfficial.Razer.gg.event.impl.player.BlockAABBEvent;
 import RazerOfficial.Razer.gg.module.impl.movement.Flight;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import RazerOfficial.Razer.gg.value.Mode;

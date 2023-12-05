@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer;
 
 import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.event.impl.other.BlockDamageEvent;
+import RazerOfficial.Razer.gg.event.impl.player.BlockDamageEvent;
 import RazerOfficial.Razer.gg.util.chat.ChatUtil;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;
 import com.google.common.collect.Lists;

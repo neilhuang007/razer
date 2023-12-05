@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.script.api.wrapper.impl.event.impl;
 
-import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
+import RazerOfficial.Razer.gg.event.impl.player.AttackEvent;
 import RazerOfficial.Razer.gg.script.api.wrapper.impl.ScriptEntity;
 import RazerOfficial.Razer.gg.script.api.wrapper.impl.event.CancellableScriptEvent;
 

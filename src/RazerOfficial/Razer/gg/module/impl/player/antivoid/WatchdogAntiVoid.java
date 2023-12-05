@@ -2,7 +2,7 @@ package RazerOfficial.Razer.gg.module.impl.player.antivoid;
 
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
-import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.event.impl.player.TeleportEvent;
 import RazerOfficial.Razer.gg.event.impl.other.WorldChangeEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketSendEvent;
 import RazerOfficial.Razer.gg.module.impl.movement.LongJump;

@@ -4,7 +4,7 @@ package RazerOfficial.Razer.gg.module.impl.movement.phase;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
-import RazerOfficial.Razer.gg.event.impl.other.BlockAABBEvent;
+import RazerOfficial.Razer.gg.event.impl.player.BlockAABBEvent;
 import RazerOfficial.Razer.gg.module.impl.movement.Phase;
 import RazerOfficial.Razer.gg.util.packet.PacketUtil;
 import RazerOfficial.Razer.gg.util.player.PlayerUtil;

@@ -4,7 +4,7 @@ import RazerOfficial.Razer.gg.component.impl.player.BlinkComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
-import RazerOfficial.Razer.gg.event.impl.other.BlockAABBEvent;
+import RazerOfficial.Razer.gg.event.impl.player.BlockAABBEvent;
 import RazerOfficial.Razer.gg.event.impl.other.WorldChangeEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketReceiveEvent;
 import RazerOfficial.Razer.gg.module.impl.movement.Phase;

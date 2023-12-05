@@ -4,7 +4,7 @@ import RazerOfficial.Razer.gg.api.Razer;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
-import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
+import RazerOfficial.Razer.gg.event.impl.player.AttackEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketSendEvent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;

@@ -5,7 +5,7 @@ import RazerOfficial.Razer.gg.component.impl.player.PingSpoofComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreUpdateEvent;
-import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
+import RazerOfficial.Razer.gg.event.impl.player.AttackEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketReceiveEvent;
 import RazerOfficial.Razer.gg.event.impl.render.Render3DEvent;
 import RazerOfficial.Razer.gg.module.Module;

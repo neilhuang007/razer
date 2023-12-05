@@ -1,7 +1,7 @@
 package net.minecraft.block;
 
 import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.event.impl.other.BlockAABBEvent;
+import RazerOfficial.Razer.gg.event.impl.player.BlockAABBEvent;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockState;

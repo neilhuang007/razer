@@ -1,6 +1,6 @@
 package RazerOfficial.Razer.gg.script.api.wrapper.impl.event.impl;
 
-import RazerOfficial.Razer.gg.event.impl.other.KillEvent;
+import RazerOfficial.Razer.gg.event.impl.player.KillEvent;
 import RazerOfficial.Razer.gg.script.api.wrapper.impl.ScriptEntity;
 import RazerOfficial.Razer.gg.script.api.wrapper.impl.event.ScriptEvent;
 

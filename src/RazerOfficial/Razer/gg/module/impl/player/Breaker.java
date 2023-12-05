@@ -7,7 +7,7 @@ import RazerOfficial.Razer.gg.component.impl.player.rotationcomponent.MovementFi
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreUpdateEvent;
-import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.event.impl.player.TeleportEvent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;
 import RazerOfficial.Razer.gg.module.api.ModuleInfo;

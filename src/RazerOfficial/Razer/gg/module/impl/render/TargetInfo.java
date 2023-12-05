@@ -5,7 +5,7 @@ import RazerOfficial.Razer.gg.component.impl.render.ProjectionComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
-import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
+import RazerOfficial.Razer.gg.event.impl.player.AttackEvent;
 import RazerOfficial.Razer.gg.event.impl.render.Render2DEvent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.api.Category;

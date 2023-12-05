@@ -4,7 +4,7 @@ import RazerOfficial.Razer.gg.Razer;
 import RazerOfficial.Razer.gg.component.impl.player.SlotComponent;
 import RazerOfficial.Razer.gg.event.impl.input.ClickEvent;
 import RazerOfficial.Razer.gg.event.impl.input.KeyboardInputEvent;
-import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
+import RazerOfficial.Razer.gg.event.impl.player.AttackEvent;
 import RazerOfficial.Razer.gg.event.impl.other.GameEvent;
 import RazerOfficial.Razer.gg.event.impl.other.PossibleClickEvent;
 import RazerOfficial.Razer.gg.event.impl.other.TickEvent;

@@ -3,7 +3,7 @@ package RazerOfficial.Razer.gg.module.impl.movement.longjump;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.StrafeEvent;
-import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.event.impl.player.TeleportEvent;
 import RazerOfficial.Razer.gg.module.impl.movement.LongJump;
 import RazerOfficial.Razer.gg.util.player.MoveUtil;
 import RazerOfficial.Razer.gg.value.Mode;

@@ -3,7 +3,7 @@ package RazerOfficial.Razer.gg.module.impl.ghost.wtap;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
-import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
+import RazerOfficial.Razer.gg.event.impl.player.AttackEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketSendEvent;
 import RazerOfficial.Razer.gg.module.impl.ghost.WTap;
 import RazerOfficial.Razer.gg.util.packet.PacketUtil;

@@ -3,7 +3,7 @@ package RazerOfficial.Razer.gg.module.impl.movement.speed;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.other.MoveEvent;
-import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.event.impl.player.TeleportEvent;
 import RazerOfficial.Razer.gg.module.impl.movement.Speed;
 import RazerOfficial.Razer.gg.util.packet.PacketUtil;
 import RazerOfficial.Razer.gg.util.player.MoveUtil;

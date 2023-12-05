@@ -10,7 +10,7 @@ import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.input.MoveInputEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.PreUpdateEvent;
-import RazerOfficial.Razer.gg.event.impl.other.BlockAABBEvent;
+import RazerOfficial.Razer.gg.event.impl.player.BlockAABBEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketSendEvent;
 import RazerOfficial.Razer.gg.module.impl.movement.Flight;
 import RazerOfficial.Razer.gg.util.packet.PacketUtil;

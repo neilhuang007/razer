@@ -4,7 +4,7 @@ import RazerOfficial.Razer.gg.component.impl.player.FallDistanceComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
-import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.event.impl.player.TeleportEvent;
 import RazerOfficial.Razer.gg.module.impl.player.NoFall;
 import RazerOfficial.Razer.gg.util.player.PlayerUtil;
 import RazerOfficial.Razer.gg.value.Mode;

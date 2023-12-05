@@ -8,7 +8,7 @@ import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.SlowDownEvent;
-import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.event.impl.player.TeleportEvent;
 import RazerOfficial.Razer.gg.module.impl.combat.KillAura;
 import RazerOfficial.Razer.gg.module.impl.movement.NoSlow;
 import RazerOfficial.Razer.gg.util.interfaces.InstanceAccess;

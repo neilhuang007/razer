@@ -20,7 +20,7 @@ import RazerOfficial.Razer.gg.event.impl.motion.PostMotionEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.PreMotionEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.PreUpdateEvent;
 import RazerOfficial.Razer.gg.event.impl.motion.SlowDownEvent;
-import RazerOfficial.Razer.gg.event.impl.other.AttackEvent;
+import RazerOfficial.Razer.gg.event.impl.player.AttackEvent;
 import RazerOfficial.Razer.gg.event.impl.other.WorldChangeEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketSendEvent;
 import RazerOfficial.Razer.gg.event.impl.render.MouseOverEvent;

@@ -19,7 +19,7 @@ import java.awt.*;
 @ModuleInfo(name = "Damage Tint", description = "Changes Damage Color", category = Category.RENDER)
 public final class HurtColor extends Module {
 
-    private final ColorValue color = new ColorValue("Hurt Color",this, Color.decode("#a08fffe2"));
+    private final ColorValue color = new ColorValue("Hurt Color",this, Color.CYAN.brighter().brighter());
     private final BooleanValue oldDamage = new BooleanValue("1.7 Damage Animation", this, true);
 
 

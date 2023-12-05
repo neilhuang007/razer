@@ -1,104 +1,129 @@
 package RazerOfficial.Razer.gg.module.impl.combat.velocity;
 
 import RazerOfficial.Razer.gg.Razer;
+import RazerOfficial.Razer.gg.component.impl.player.PingSpoofComponent;
+import RazerOfficial.Razer.gg.component.impl.render.NotificationComponent;
 import RazerOfficial.Razer.gg.event.Listener;
 import RazerOfficial.Razer.gg.event.annotations.EventLink;
+import RazerOfficial.Razer.gg.event.impl.other.TickEvent;
 import RazerOfficial.Razer.gg.event.impl.packet.PacketReceiveEvent;
 import RazerOfficial.Razer.gg.module.Module;
 import RazerOfficial.Razer.gg.module.impl.combat.KillAura;
 import RazerOfficial.Razer.gg.module.impl.combat.Velocity;
+import RazerOfficial.Razer.gg.util.chat.ChatUtil;
+import RazerOfficial.Razer.gg.util.notifications.windows.NotificationUtil;
+import RazerOfficial.Razer.gg.util.packet.PacketUtil;
 import RazerOfficial.Razer.gg.util.player.MoveUtil;
 import RazerOfficial.Razer.gg.value.Mode;
-import RazerOfficial.Razer.gg.value.impl.BooleanValue;
-import RazerOfficial.Razer.gg.value.impl.ListValue;
-import RazerOfficial.Razer.gg.value.impl.ModeValue;
-import RazerOfficial.Razer.gg.value.impl.SubMode;
+import RazerOfficial.Razer.gg.value.impl.*;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.C02PacketUseEntity;
+import net.minecraft.network.play.client.C03PacketPlayer;
 import net.minecraft.network.play.client.C0APacketAnimation;
 import net.minecraft.network.play.client.C0FPacketConfirmTransaction;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.potion.Potion;
+import net.optifine.config.RangeInt;
+import util.time.StopWatch;
+
+import java.util.Random;
 
 public class GrimVelocity extends Mode<Velocity> {
 
-    private ModeValue mode = new ModeValue("Mode", this)
-            .add(new SubMode("Silky"))
-            .add(new SubMode("Grim Combat"))
-            .add(new SubMode("Grim Safe"))
-            .add(new SubMode("Jump Reset"))
-            .add(new SubMode("None"))
-            .setDefault("Grim Safe");
 
-    private final BooleanValue swingFix = new BooleanValue("1.9+ Swing Fix", this,false, () -> mode.getValue().equals("Grim Combat"));
-
-
-
-
-    private int start = 0;
 
     public GrimVelocity(String name, Velocity parent) {
         super(name, parent);
     }
 
+    private Boolean isretoggle = false;
+
+    private final NumberValue horizontal = new NumberValue("Horizontal", this, 0, 0, 100, 1);
+    private final NumberValue vertical = new NumberValue("Vertical", this, 0, 0, 100, 1);
+
+    private final NumberValue chance = new NumberValue("Chance", this, 100, 0, 100, 1);
+
+    StopWatch stopWatch = new StopWatch();
+    private Integer Lagbacks = 0;
+
+    private Boolean shouldcancel;
+
+    @EventLink
+    public final Listener<TickEvent> onTick = event -> {
+        // retoggle timer
+        if(isretoggle && stopWatch.finished(this.getParent().RetoggleDelay.getValue().longValue() * 1000)){
+            NotificationComponent.post("Velocity Retoggled","Velocity Retoggled after " + this.getParent().RetoggleDelay.getValue() + "seconds");
+            stopWatch.reset();
+            isretoggle = false;
+        }
+    };
+
     @EventLink()
     public final Listener<PacketReceiveEvent> onPacketReceiveEvent = event -> {
-        Packet<?> packet = event.getPacket();
-        if (packet instanceof S12PacketEntityVelocity) {
-            if (((S12PacketEntityVelocity) packet).entityID != mc.thePlayer.getEntityId()) {
-                return;
-            }
-//            System.out.println("VELO EVENT");
-//            System.out.println(mode.getValue().getName());
-            if (mode.getValue().getName().contains("Silky")) {
-                //System.out.println("Silky");
+        if (getParent().onSwing.getValue() || getParent().onSprint.getValue() && !mc.thePlayer.isSwingInProgress)
+            return;
+        final Packet<?> p = event.getPacket();
+
+        final double horizontal = this.horizontal.getValue().doubleValue();
+        final double vertical = this.vertical.getValue().doubleValue();
+
+        if (p instanceof C0FPacketConfirmTransaction){
+            if(shouldcancel){
                 event.setCancelled(true);
-                if (mc.thePlayer.onGround) {
-                    mc.thePlayer.motionY = ((S12PacketEntityVelocity) packet).getMotionY() / 8000.0;
-                    if (mc.thePlayer.isPotionActive(Potion.moveSpeed) && MoveUtil.isMoving()) MoveUtil.strafe();
-                }
-            } else if (mode.getValue().getName().contains("Grim Combat")) {
-                //System.out.println("Grim Combat");
-                final KillAura killAura = ((KillAura) (Razer.INSTANCE.getModuleManager().get(KillAura.class)));
-                final Entity target = killAura.target != null ? killAura.target : null;
+                shouldcancel = false;
+            }
+        }
 
-                if (target == null) return;
+        if (p instanceof S12PacketEntityVelocity) {
 
-                for (int i = 0; i < 12; ++i) {
-                    mc.getNetHandler().addToSendQueue(new C0FPacketConfirmTransaction());
+            final S12PacketEntityVelocity wrapper = (S12PacketEntityVelocity) p;
+            // detection of lagback should be here
+            float hor = (float) (horizontal / 100);
+            float ver = (float) (vertical / 100);
 
-                    if (!swingFix.getValue()) mc.getNetHandler().addToSendQueue(new C0APacketAnimation());
+            if (wrapper.getEntityID() == mc.thePlayer.getEntityId()) {
+                if (isretoggle) {
+                    return;
+                } else {
+                    double x = wrapper.getMotionX() * hor, y = wrapper.getMotionY() * ver, z = wrapper.getMotionZ() * hor;
+                    if (Math.abs(wrapper.getMotionX()) + Math.abs(wrapper.getMotionZ()) + Math.abs(wrapper.getMotionY()) < 3500) {
+                        if (this.getParent().LagBackDetection.getValue()) {
+                            if (Lagbacks >= this.getParent().LagBacks.getValue().intValue()) {
+                                stopWatch.reset();
+                                NotificationComponent.post("LagBacks Detected","Lagged Backed " + Lagbacks + " times, auto disabled to prevent " + ChatFormatting.DARK_PURPLE + "BAN");
+                                Lagbacks = 0;
+                                // start the retoggle timer
+                                // the reason cannot do this here is because once unenabled all checks stopped working
+                                if (this.getParent().retoggle.getValue()) {
+                                    NotificationComponent.post("Retoggle Timer Started", "retoggle delay started");
+                                    isretoggle = true;
+                                } else {
+                                    NotificationComponent.post("Velocity Disabled","Module ShutDown excavated");
+                                    Razer.INSTANCE.getModuleManager().get(Velocity.class).setEnabled(false);
+                                }
 
-                    mc.getNetHandler().addToSendQueue(new C02PacketUseEntity(target, C02PacketUseEntity.Action.ATTACK));
+                            } else {
+                                Lagbacks += 1;
+                                NotificationComponent.post("LagBacks Detected","Fixed LagBack, You may be detected" + "S12 #" + mc.thePlayer.ticksExisted + " this is the " + Lagbacks + " time");
+                                event.setCancelled(true);
+                            }
+                        }
+                    } else {
+                        // if in chance
+                        if(Math.random() <= chance.getValue().doubleValue()){
 
-                    if (swingFix.getValue()) mc.getNetHandler().addToSendQueue(new C0APacketAnimation());
-                }
-            } else if (mode.getValue().getName().contains("Grim Safe")) {
-                System.out.println("Grim Safe");
-                if (mc.thePlayer.hurtTime > 0) {
-                    mc.thePlayer.motionX += -1.0E-7;
-                    mc.thePlayer.motionY += -1.0E-7;
-                    mc.thePlayer.motionZ += -1.0E-7;
-                    mc.thePlayer.isAirBorne = true;
-                }
-            } else if (mode.getValue().getName().contains("Jump Reset")) {
-                if (mc.thePlayer.hurtTime >= 8) {
-                    mc.gameSettings.keyBindJump.setPressed(true);
-                }
+                            // no fake velocity
 
-                if (mc.thePlayer.hurtTime >= 7 && !mc.gameSettings.keyBindForward.isPressed()) {
-                    mc.gameSettings.keyBindForward.setPressed(true);
-                    start = 1;
-                }
-                if (mc.thePlayer.hurtTime >= 1 && mc.thePlayer.hurtTime <= 6) {
-                    mc.gameSettings.keyBindJump.setPressed(false);
-                    if (start == 1) {
-                        mc.gameSettings.keyBindForward.setPressed(false);
-                        start = 0;
+                            if(!mc.thePlayer.onGround){
+                                return;
+                            }
+                            shouldcancel = true;
+                            event.setCancelled(true);
+                        }
                     }
                 }
-            } else if (mode.getValue().getName().contains("None")) {
             }
         }
     };

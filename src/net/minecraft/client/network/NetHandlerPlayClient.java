@@ -1,7 +1,7 @@
 package net.minecraft.client.network;
 
 import RazerOfficial.Razer.gg.Razer;
-import RazerOfficial.Razer.gg.event.impl.other.TeleportEvent;
+import RazerOfficial.Razer.gg.event.impl.player.TeleportEvent;
 import RazerOfficial.Razer.gg.ui.menu.impl.main.MainMenu;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.FutureCallback;
