@@ -7,7 +7,9 @@ import RazerOfficial.Razer.gg.util.vector.Vector2f;
 import RazerOfficial.Razer.gg.util.vector.Vector3d;
 import lombok.experimental.UtilityClass;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -20,6 +22,27 @@ import net.minecraft.util.Vec3;
 
 @UtilityClass
 public class RotationUtil implements InstanceAccess {
+
+    public static double[] getDistance(double x, double z, double y) {
+        final double distance = MathHelper.sqrt_double(x * x + z * z), // @off
+                yaw = Math.atan2(z, x) * 180.0D / Math.PI - 90.0F,
+                pitch = -(Math.atan2(y, distance) * 180.0D / Math.PI); // @on
+
+        return new double[]{mc.thePlayer.rotationYaw + MathHelper.wrapAngleTo180_float(
+                (float) (yaw - mc.thePlayer.rotationYaw)), mc.thePlayer.rotationPitch + MathHelper.wrapAngleTo180_float(
+                (float) (pitch - mc.thePlayer.rotationPitch))};
+    }
+
+    public static double[] getRotationsNeeded(Entity entity) {
+        if (entity == null) return null;
+
+        final EntityPlayerSP player = mc.thePlayer;
+        final double diffX = entity.posX - player.posX, // @off
+                diffY = ((EntityLivingBase) entity).posY + entity.getEyeHeight() * 0.9 - (player.posY + player.getEyeHeight()),
+                diffZ = entity.posZ - player.posZ; // @on
+
+        return getDistance(diffX, diffZ, diffY);
+    }
 
     public Vector2f calculate(final Vector3d from, final Vector3d to) {
         final Vector3d diff = to.subtract(from);

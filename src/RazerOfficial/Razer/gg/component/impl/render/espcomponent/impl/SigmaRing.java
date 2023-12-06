@@ -18,6 +18,8 @@ public class SigmaRing extends ESP implements InstanceAccess {
         super(espColor);
     }
 
+
+
     @Override
     public void render3D() {
 

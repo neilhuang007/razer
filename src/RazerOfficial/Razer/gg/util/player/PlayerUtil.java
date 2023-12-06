@@ -160,9 +160,6 @@ public class PlayerUtil implements InstanceAccess {
             mc.objectMouseOver = entity.rayTrace(blockReachDistance, partialTicks);
             double distance = blockReachDistance;
             final Vec3 vec3 = entity.getPositionEyes(partialTicks);
-            boolean flag = false;
-            double reach = Reach;
-            float expand = 0;
 
             if (mc.objectMouseOver != null) {
                 distance = mc.objectMouseOver.hitVec.distanceTo(vec3);
@@ -173,20 +170,16 @@ public class PlayerUtil implements InstanceAccess {
             pointedEntity = null;
             Vec3 vec33 = null;
             final float f = 1.0F;
-            final List<Entity> list = mc.theWorld.getEntitiesInAABBexcluding(entity, entity.getEntityBoundingBox().addCoord(vec31.xCoord * blockReachDistance, vec31.yCoord * blockReachDistance, vec31.zCoord * blockReachDistance).expand(f, f, f), Predicates.and(EntitySelectors.NOT_SPECTATING, Entity::canBeCollidedWith));
+            final List<Entity> list = mc.theWorld.getEntitiesInAABBexcluding(entity, entity.getEntityBoundingBox().addCoord(vec31.xCoord * blockReachDistance, vec31.yCoord * blockReachDistance, vec31.zCoord * blockReachDistance), Predicates.and(EntitySelectors.NOT_SPECTATING, Entity::canBeCollidedWith));
             double d2 = distance;
 
             for (final Entity entity1 : list) {
-                final float f1 = entity1.getCollisionBorderSize() + ((entity instanceof EntityPlayer && !entity.isInvisible()) ? expand : 0);
+                final float f1 = entity1.getCollisionBorderSize();
                 final AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f1, f1, f1);
                 final MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
 
                 if (axisalignedbb.isVecInside(vec3)) {
-                    if (d2 >= 0.0D) {
-                        pointedEntity = entity1;
-                        vec33 = movingobjectposition == null ? vec3 : movingobjectposition.hitVec;
-                        d2 = 0.0D;
-                    }
+                    pointedEntity = entity1;
                 } else if (movingobjectposition != null) {
                     final double d3 = vec3.distanceTo(movingobjectposition.hitVec);
 

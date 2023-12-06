@@ -28,6 +28,7 @@ public class  ESP implements InstanceAccess {
 
     public void updateTargets() {
         target = getModule(KillAura.class).target;
+
         TeleportAura teleportAura = getModule(TeleportAura.class);
         if (teleportAura.isEnabled()) target = getModule(TeleportAura.class).target;
     }
