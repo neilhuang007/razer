@@ -89,4 +89,28 @@ public class MathUtil {
     public double clamp(double min, double max, double n) {
         return Math.max(min, Math.min(max, n));
     }
+
+    public static float[] constrainAngle(float[] vector) {
+
+        vector[0] = (vector[0] % 360F);
+        vector[1] = (vector[1] % 360F);
+
+        while (vector[0] <= -180) {
+            vector[0] = (vector[0] + 360);
+        }
+
+        while (vector[1] <= -180) {
+            vector[1] = (vector[1] + 360);
+        }
+
+        while (vector[0] > 180) {
+            vector[0] = (vector[0] - 360);
+        }
+
+        while (vector[1] > 180) {
+            vector[1] = (vector[1] - 360);
+        }
+
+        return vector;
+    }
 }
